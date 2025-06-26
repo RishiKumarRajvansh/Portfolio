@@ -1,0 +1,502 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- Hero Section -->
+<section id="home" class="hero">
+    <div class="hero-background">
+        <div class="stars"></div>
+        <div class="floating-doodles" id="floating-doodles"></div>
+    </div>
+    <div class="container">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title">
+                    <span class="greeting">HELLO, I'M</span>
+                    <span class="name" id="typewriter"></span>
+                </h1>
+                <p class="hero-subtitle">PYTHON DEVELOPER & DATA SCIENTIST</p>
+                <p class="hero-description">
+                    Passionate about transforming data into actionable insights and building scalable solutions. Specialized in machine learning, data analysis, and full-stack Python development.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#projects" class="btn btn-primary">VIEW MY WORK</a>
+                    <a href="{{ url_for('contact') }}" class="btn btn-secondary">GET IN TOUCH</a>
+                </div>
+                
+                <!-- Cards below buttons -->
+                <div class="hero-cards">
+                    <div class="profile-card">
+                        <div class="profile-avatar">
+                            <i class="fas fa-terminal"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="tech-stats">
+                        <div class="stat-card">
+                            <div class="stat-icon"><i class="fab fa-python"></i></div>
+                            <div class="stat-info">
+                                <span class="stat-number" data-target="3">3+</span>
+                                <span class="stat-label">YEARS PYTHON</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon"><i class="fas fa-chart-bar"></i></div>
+                            <div class="stat-info">
+                                <span class="stat-number" data-target="1">1+</span>
+                                <span class="stat-label">DATA PROJECTS</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon"><i class="fas fa-flask"></i></div>
+                            <div class="stat-info">
+                                <span class="stat-number" data-target="15">15+</span>
+                                <span class="stat-label">FLASK APPS</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon"><i class="fas fa-robot"></i></div>
+                            <div class="stat-info">
+                                <span class="stat-number" data-target="10">10+</span>
+                                <span class="stat-label">ML MODELS</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- About Section -->
+<section id="about" class="about">
+    <div class="container">
+        <h2 class="section-title">About Me</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <p class="about-intro">
+                    I'm a creative and analytical developer with a passion for turning complex problems into elegant solutions.
+                </p>
+                
+                <!-- Technical Skills -->
+                <div class="about-section">
+                    <h3 class="about-section-title">Technical Skills</h3>
+                    <div class="tech-skills">
+                        <span class="tech-tag">PYTHON</span>
+                        <span class="tech-tag">JAVASCRIPT</span>
+                        <span class="tech-tag">HTML/CSS</span>
+                        <span class="tech-tag">FLASK</span>
+                        <span class="tech-tag">DJANGO</span>
+                        <span class="tech-tag">DATA SCIENCE</span>
+                        <span class="tech-tag">MACHINE LEARNING</span>
+                        <span class="tech-tag">SQL</span>
+                    </div>
+                </div>
+                
+                <!-- Interests -->
+                <div class="about-section">
+                    <h3 class="about-section-title">Interests</h3>
+                    <div class="interests-list">
+                        <div class="interest-item">
+                            <i class="fas fa-film"></i>
+                            <span>Marvel Movies & Web Series</span>
+                        </div>
+                        <div class="interest-item">
+                            <i class="fas fa-gamepad"></i>
+                            <span>Video Gaming</span>
+                        </div>
+                        <div class="interest-item">
+                            <i class="fas fa-star"></i>
+                            <span>Stargazing & Constellations</span>
+                        </div>
+                        <div class="interest-item">
+                            <i class="fas fa-robot"></i>
+                            <span>Testing New AI Technologies</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="about-stats">
+                <div class="stat-card">
+                    <div class="stat-number" data-target="3">3+</div>
+                    <div class="stat-label">YEARS EXPERIENCE</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" data-target="1">1+</div>
+                    <div class="stat-label">PROJECTS COMPLETED</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" data-target="5">5+</div>
+                    <div class="stat-label">TECHNOLOGIES</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Education Section -->
+<section id="education" class="education">
+    <div class="container">
+        <h2 class="section-title">Education</h2>
+        <div class="education-grid">
+            <div class="education-card">
+                <div class="education-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <div class="education-content">
+                    <h3 class="education-degree">Bachelor of Technology</h3>
+                    <h4 class="education-field">Computer Science & Engineering</h4>
+                    <p class="education-institution">Indian Institute of Technology</p>
+                    <p class="education-year">2019 - 2023</p>
+                    <p class="education-description">
+                        Specialized in Data Structures, Algorithms, Machine Learning, and Software Engineering. 
+                        Graduated with distinction and completed capstone project on predictive analytics.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="education-card">
+                <div class="education-icon">
+                    <i class="fas fa-certificate"></i>
+                </div>
+                <div class="education-content">
+                    <h3 class="education-degree">Data Science Certification</h3>
+                    <h4 class="education-field">Machine Learning & Analytics</h4>
+                    <p class="education-institution">Stanford Online</p>
+                    <p class="education-year">2022</p>
+                    <p class="education-description">
+                        Comprehensive certification covering supervised and unsupervised learning, 
+                        neural networks, and statistical analysis techniques.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="education-card">
+                <div class="education-icon">
+                    <i class="fas fa-award"></i>
+                </div>
+                <div class="education-content">
+                    <h3 class="education-degree">Python Developer Certification</h3>
+                    <h4 class="education-field">Full Stack Development</h4>
+                    <p class="education-institution">Python Institute</p>
+                    <p class="education-year">2021</p>
+                    <p class="education-description">
+                        Advanced Python programming certification covering web frameworks, 
+                        database integration, and API development.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Experience Section -->
+<section id="experience" class="experience">
+    <div class="container">
+        <h2 class="section-title">Experience</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3 class="timeline-title">Senior Python Developer</h3>
+                    <h4 class="timeline-company">Tech Solutions Inc.</h4>
+                    <p class="timeline-description">
+                        Led development of data analysis platforms and machine learning models for enterprise clients.
+                        Implemented scalable solutions using Python, Flask, and cloud technologies.
+                    </p>
+                </div>
+                <div class="timeline-date">2023 - Present</div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3 class="timeline-title">Data Scientist</h3>
+                    <h4 class="timeline-company">Analytics Pro</h4>
+                    <p class="timeline-description">
+                        Developed predictive models and automated data pipelines. Worked with large datasets
+                        to extract meaningful insights for business decision-making.
+                    </p>
+                </div>
+                <div class="timeline-date">2022 - 2023</div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3 class="timeline-title">Junior Python Developer</h3>
+                    <h4 class="timeline-company">StartUp Labs</h4>
+                    <p class="timeline-description">
+                        Built web applications using Flask and Django. Collaborated with cross-functional teams
+                        to deliver high-quality software solutions.
+                    </p>
+                </div>
+                <div class="timeline-date">2021 - 2022</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Projects Section -->
+<section id="projects" class="projects">
+    <div class="container">
+        <h2 class="section-title">Featured Projects</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-image">
+                    <div class="project-icon"><i class="fas fa-chart-bar"></i></div>
+                    <div class="project-overlay">
+                        <div class="project-links">
+                            <a href="#" class="project-btn">Live Demo</a>
+                            <a href="#" class="project-btn">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <h3 class="project-title">Sales Analytics Dashboard</h3>
+                    <p class="project-description">
+                        Interactive dashboard for sales data visualization and analysis. Built with Python, Dash, and Plotly.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Dash</span>
+                        <span class="tech-tag">Plotly</span>
+                        <span class="tech-tag">Pandas</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="project-card">
+                <div class="project-image">
+                    <div class="project-icon"><i class="fas fa-robot"></i></div>
+                    <div class="project-overlay">
+                        <div class="project-links">
+                            <a href="#" class="project-btn">Live Demo</a>
+                            <a href="#" class="project-btn">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <h3 class="project-title">ML Prediction Model</h3>
+                    <p class="project-description">
+                        Machine learning model for customer behavior prediction with 95% accuracy using ensemble methods.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Scikit-learn</span>
+                        <span class="tech-tag">XGBoost</span>
+                        <span class="tech-tag">Flask</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="project-card">
+                <div class="project-image">
+                    <div class="project-icon"><i class="fas fa-globe"></i></div>
+                    <div class="project-overlay">
+                        <div class="project-links">
+                            <a href="#" class="project-btn">Live Demo</a>
+                            <a href="#" class="project-btn">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <h3 class="project-title">Portfolio Website</h3>
+                    <p class="project-description">
+                        Modern, responsive portfolio website built with Flask and modern CSS techniques.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Flask</span>
+                        <span class="tech-tag">HTML5</span>
+                        <span class="tech-tag">CSS3</span>
+                        <span class="tech-tag">JavaScript</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials Section -->
+<section id="testimonials" class="testimonials">
+    <div class="container">
+        <h2 class="section-title">What Colleagues Say</h2>
+        <p class="section-subtitle">Testimonials from my LinkedIn connections</p>
+        
+        <div class="testimonials-container">
+            <div class="testimonial-slider">
+                <div class="testimonial-card active">
+                    <div class="testimonial-content">
+                        <p class="testimonial-text">
+                            "Working with Rishi has been a great experience. His technical expertise in Python and data analysis is impressive, but what sets him apart is his ability to communicate complex concepts clearly. He's a natural teacher and mentor, always ready to help teammates learn and grow. His work ethic is exemplary."
+                        </p>
+                        <div class="testimonial-author">
+                            <h4 class="author-name">DAVID KUMAR</h4>
+                            <p class="author-title">Team Lead, TechSolutions Inc</p>
+                            <p class="testimonial-date">August 2024</p>
+                            <div class="testimonial-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p class="testimonial-text">
+                            "Rishi's attention to detail and problem-solving approach is remarkable. He consistently delivers high-quality code and has a deep understanding of machine learning algorithms. Working with him on data science projects has been incredibly productive and insightful."
+                        </p>
+                        <div class="testimonial-author">
+                            <h4 class="author-name">SARAH JOHNSON</h4>
+                            <p class="author-title">Senior Data Scientist, Analytics Pro</p>
+                            <p class="testimonial-date">December 2024</p>
+                            <div class="testimonial-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p class="testimonial-text">
+                            "Excellent collaborator with strong technical skills. Rishi brings innovative solutions to complex problems and has great communication skills. His expertise in Python development and data visualization tools like Plotly made our project a huge success."
+                        </p>
+                        <div class="testimonial-author">
+                            <h4 class="author-name">MICHAEL CHEN</h4>
+                            <p class="author-title">Product Manager, InnovateLabs</p>
+                            <p class="testimonial-date">October 2024</p>
+                            <div class="testimonial-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p class="testimonial-text">
+                            "Rishi is a dedicated professional who consistently exceeds expectations. His knowledge of Flask framework and database design is exceptional. He's always willing to share his expertise and help team members grow their skills."
+                        </p>
+                        <div class="testimonial-author">
+                            <h4 class="author-name">PRIYA SHARMA</h4>
+                            <p class="author-title">Frontend Developer, WebSolutions</p>
+                            <p class="testimonial-date">September 2024</p>
+                            <div class="testimonial-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="testimonial-navigation">
+                <button class="testimonial-prev" onclick="changeTestimonial(-1)">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <div class="testimonial-dots">
+                    <span class="dot active" onclick="currentTestimonial(1)"></span>
+                    <span class="dot" onclick="currentTestimonial(2)"></span>
+                    <span class="dot" onclick="currentTestimonial(3)"></span>
+                    <span class="dot" onclick="currentTestimonial(4)"></span>
+                </div>
+                <button class="testimonial-next" onclick="changeTestimonial(1)">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+            
+            <div class="linkedin-cta">
+                <a href="https://www.linkedin.com/in/rishikumarrajvansh/" target="_blank" class="btn btn-primary">
+                    <i class="fab fa-linkedin"></i> View All LinkedIn Recommendations
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="contact">
+    <div class="container">
+        <h2 class="section-title">Get In Touch</h2>
+        <div class="contact-content">
+            <div class="contact-info">
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h4>Email</h4>
+                        <p>rishi.kumar@email.com</p>
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h4>Phone</h4>
+                        <p>+1 (555) 123-4567</p>
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h4>Location</h4>
+                        <p>Remote, Worldwide</p>
+                    </div>
+                </div>
+                
+                <div class="freelance-cta">
+                    <h3 class="cta-title">Available for Freelance</h3>
+                    <p class="cta-description">
+                        Ready to bring your data projects to life? Let's discuss how I can help transform your ideas into reality.
+                    </p>
+                    <a href="#" class="btn-cta">Hire Me Now</a>
+                </div>
+            </div>
+            
+            <div class="contact-form">
+                <h3 class="form-title">Send Message</h3>
+                <form>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" name="subject" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
