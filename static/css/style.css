@@ -212,13 +212,13 @@ section {
 
 .nav-container {
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between; /* Changed from flex-start to space-between */
     align-items: center;
-    gap: 1.5rem; /* Reduced gap to prevent overflow */
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 1rem;
+    gap: 2rem; /* Increased gap for better spacing */
+    width: 100%; /* Full width of navbar */
+    max-width: none; /* Remove max-width constraint */
+    margin: 0;
+    padding: 0 2rem; /* Increased padding for better left positioning */
     height: 60px; /* Fixed height smaller than navbar */
     box-sizing: border-box;
     overflow: hidden; /* Prevent any content overflow */
@@ -232,18 +232,21 @@ section {
     text-decoration: none;
     letter-spacing: 2px;
     text-transform: uppercase;
-    padding: 0.5rem 0.8rem; /* Reduced padding to fit within navbar */
-    border-radius: 6px;
+    padding: 0.8rem; /* Made padding equal for circular effect */
+    border-radius: 50%; /* Changed to full circle */
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
     display: flex;
     align-items: center;
-    height: fit-content; /* Ensure it doesn't exceed container height */
+    justify-content: center;
+    height: 45px; /* Fixed dimensions for perfect circle */
+    width: 45px;
     line-height: 1; /* Prevent extra line height */
+    background: rgba(30, 41, 59, 0.3); /* Subtle background */
 }
 
-/* Add same hover effects as nav links */
+/* Add same hover effects as nav links for logo */
 .nav-logo a::before {
     content: '';
     position: absolute;
@@ -262,8 +265,7 @@ section {
 .nav-logo a:hover {
     color: var(--primary-color);
     background: rgba(14, 165, 233, 0.1);
-    transform: translateY(-1px); /* Reduced transform to prevent overflow */
-    text-shadow: 0 0 10px rgba(14, 165, 233, 0.5);
+    transform: translateY(-1px); /* Simple lift effect like nav links */
 }
 
 .logo {
@@ -277,9 +279,10 @@ section {
 
 .nav-menu {
     display: flex;
-    gap: 1.5rem; /* Reduced gap between nav items */
+    gap: 2rem; /* Increased gap between nav items */
     list-style: none;
     margin: 0;
+    margin-left: 2rem; /* Push nav links more to the left */
     padding: 0;
     align-items: center;
     flex-wrap: nowrap;
@@ -2710,13 +2713,17 @@ section {
         justify-content: space-between;
         position: relative;
         gap: 1rem;
-        padding: 0 1rem;
+        padding: 0 1.5rem; /* Increased padding for better mobile spacing */
         height: 50px; /* Smaller height on mobile */
+        width: 100%; /* Full width on mobile */
+        max-width: none; /* Remove max-width constraint on mobile */
     }
     
     .nav-logo a {
-        font-size: 1.3rem; /* Smaller logo on mobile */
-        padding: 0.4rem 0.6rem;
+        font-size: 1.2rem; /* Smaller logo on mobile */
+        padding: 0.6rem; /* Adjusted for circular shape */
+        height: 40px; /* Smaller circle on mobile */
+        width: 40px;
     }
     
     .nav-menu {
@@ -2731,6 +2738,7 @@ section {
         justify-content: center;
         align-items: center;
         gap: 2rem;
+        margin-left: 0; /* Reset margin on mobile */
         transition: right 0.3s ease;
         z-index: 1000;
     }
@@ -2760,11 +2768,13 @@ section {
 @media (max-width: 1200px) and (min-width: 1025px) {
     .nav-container {
         gap: 1.5rem; /* Further reduce gap on medium screens */
-        padding: 0 1rem; /* Consistent padding */
+        padding: 0 1.5rem; /* Consistent padding */
+        max-width: none; /* Full width on medium screens */
     }
     
     .nav-menu {
         gap: 1rem; /* Reduce gap between nav items */
+        margin-left: 1rem; /* Reduce left margin on medium screens */
     }
     
     .nav-link {

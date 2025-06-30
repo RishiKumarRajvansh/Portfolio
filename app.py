@@ -278,7 +278,7 @@ def get_doodles():
     visual_styles = ['solid', 'gradient', 'outlined', 'glow', 'split', 'double', 'layered', 'neon']
     
     # Log API request
-    app.logger.info(f"Doodle API request: count={count}, seed={seed}, section={section}")
+    # app.logger.info(f"Doodle API request: count={count}, seed={seed}, section={section}")
     
     doodles = []
     for _ in range(count):
@@ -333,11 +333,13 @@ def update_doodle_status():
     
     # Update global animation status
     if 'count' in data:
-        app.logger.info(f"Client reports {data['count']} active doodles")
+        # app.logger.info(f"Client reports {data['count']} active doodles")
+        pass
     
     # Log if client reports issues
     if 'issues' in data and data['issues']:
-        app.logger.warning(f"Client reports doodle issues: {data['issues']}")
+        # app.logger.warning(f"Client reports doodle issues: {data['issues']}")
+        pass
     
     return jsonify({'status': 'ok', 'server_time': datetime.datetime.now().isoformat()})
 
