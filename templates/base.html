@@ -5,29 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Rishi Kumar - Python Developer & Data Scientist{% endblock %}</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- Latest FontAwesome with increased integrity -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/doodle.css') }}" rel="stylesheet">
+    <!-- FontAwesome direct load verification -->
+    <script>
+        window.addEventListener('DOMContentLoaded', function() {
+            // Check if FontAwesome is properly loaded
+            const faLoaded = (document.querySelector('.fab') || 
+                             document.querySelector('.fas') || 
+                             document.querySelector('.far') || 
+                             document.querySelector('.fa'))?.getBoundingClientRect().width > 0;
+            
+            console.log('FontAwesome loaded check:', faLoaded ? '✅ Loaded' : '❌ Not loaded');
+            
+            if (!faLoaded) {
+                // If FontAwesome doesn't seem to be loaded, try to reload it
+                const link = document.createElement('link');
+                link.rel = 'stylesheet';
+                link.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css';
+                document.head.appendChild(link);
+                console.log('FontAwesome reload attempted');
+            }
+        });
+    </script>
 </head>
 <body>
     <!-- Floating Tech Background Doodles - FontAwesome Icons -->
-    <!-- Static full-stack tech doodles distributed across the page -->
-    <i class="fab fa-python floating-fa-doodle" style="position: fixed; top: 150px; left: 100px; font-size: 35px; color: #3B82F6; z-index: 1; animation: fadeInMove 25s ease-in-out infinite, randomGlow 15s ease-in-out infinite;"></i>
-    <i class="fas fa-code floating-fa-doodle" style="position: fixed; top: 300px; right: 120px; font-size: 30px; color: #10B981; z-index: 1; animation: fadeInMove 30s ease-in-out infinite, randomGlow 18s ease-in-out infinite; animation-delay: 2s;"></i>
-    <i class="fab fa-html5 floating-fa-doodle" style="position: fixed; top: 500px; left: 200px; font-size: 40px; color: #F59E0B; z-index: 1; animation: fadeInMove 35s ease-in-out infinite, randomGlow 20s ease-in-out infinite; animation-delay: 4s;"></i>
-    <i class="fab fa-css3-alt floating-fa-doodle" style="position: fixed; top: 700px; right: 150px; font-size: 32px; color: #EF4444; z-index: 1; animation: fadeInMove 28s ease-in-out infinite, randomGlow 16s ease-in-out infinite; animation-delay: 6s;"></i>
-    <i class="fab fa-js-square floating-fa-doodle" style="position: fixed; top: 900px; left: 80px; font-size: 38px; color: #8B5CF6; z-index: 1; animation: fadeInMove 32s ease-in-out infinite, randomGlow 22s ease-in-out infinite; animation-delay: 8s;"></i>
-    <i class="fab fa-react floating-fa-doodle" style="position: fixed; top: 1100px; right: 180px; font-size: 36px; color: #06B6D4; z-index: 1; animation: fadeInMove 27s ease-in-out infinite, randomGlow 17s ease-in-out infinite; animation-delay: 1s;"></i>
-    <i class="fab fa-aws floating-fa-doodle" style="position: fixed; top: 1300px; left: 250px; font-size: 34px; color: #22C55E; z-index: 1; animation: fadeInMove 33s ease-in-out infinite, randomGlow 19s ease-in-out infinite; animation-delay: 3s;"></i>
-    <i class="fas fa-database floating-fa-doodle" style="position: fixed; top: 1500px; right: 90px; font-size: 31px; color: #FB923C; z-index: 1; animation: fadeInMove 29s ease-in-out infinite, randomGlow 21s ease-in-out infinite; animation-delay: 5s;"></i>
-    <i class="fab fa-docker floating-fa-doodle" style="position: fixed; top: 1700px; left: 160px; font-size: 37px; color: #A855F7; z-index: 1; animation: fadeInMove 31s ease-in-out infinite, randomGlow 14s ease-in-out infinite; animation-delay: 7s;"></i>
-    <i class="fab fa-github floating-fa-doodle" style="position: fixed; top: 1900px; right: 200px; font-size: 33px; color: #EC4899; z-index: 1; animation: fadeInMove 26s ease-in-out infinite, randomGlow 23s ease-in-out infinite; animation-delay: 9s;"></i>
-    <i class="fas fa-server floating-fa-doodle" style="position: fixed; top: 2100px; left: 120px; font-size: 35px; color: #6366F1; z-index: 1; animation: fadeInMove 34s ease-in-out infinite, randomGlow 18s ease-in-out infinite; animation-delay: 2s;"></i>
-    <i class="fas fa-cloud floating-fa-doodle" style="position: fixed; top: 2300px; right: 140px; font-size: 39px; color: #84CC16; z-index: 1; animation: fadeInMove 30s ease-in-out infinite, randomGlow 16s ease-in-out infinite; animation-delay: 4s;"></i>
-    <i class="fab fa-node-js floating-fa-doodle" style="position: fixed; top: 2500px; left: 190px; font-size: 32px; color: #F97316; z-index: 1; animation: fadeInMove 28s ease-in-out infinite, randomGlow 24s ease-in-out infinite; animation-delay: 6s;"></i>
-    <i class="fas fa-robot floating-fa-doodle" style="position: fixed; top: 2700px; right: 110px; font-size: 36px; color: #14B8A6; z-index: 1; animation: fadeInMove 32s ease-in-out infinite, randomGlow 20s ease-in-out infinite; animation-delay: 8s;"></i>
-    <i class="fas fa-terminal floating-fa-doodle" style="position: fixed; top: 2900px; left: 230px; font-size: 34px; color: #F43F5E; z-index: 1; animation: fadeInMove 29s ease-in-out infinite, randomGlow 17s ease-in-out infinite; animation-delay: 1s;"></i>
-    
-    <div class="floating-doodles" id="floating-doodles">
+    <!-- All doodles are now dynamically generated by JavaScript -->
+    <div class="floating-doodles" id="floating-doodles" style="position:fixed; top:0; left:0; width:100vw; height:100vh; z-index:99999; pointer-events:none; overflow:visible;">
         <!-- FontAwesome technical icons will be dynamically generated and animated by JavaScript -->
     </div>
 
@@ -95,5 +102,6 @@
     </footer>
 
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/doodle.js') }}"></script>
 </body>
 </html>

@@ -1,0 +1,138 @@
+/* Doodle Animation System CSS */
+
+/* Doodle container - Fixed positioning to escape stacking contexts */
+.floating-doodles, #floating-doodles {
+    position: fixed !important; /* Fixed position to escape all stacking contexts */
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important; /* Full viewport width */
+    height: 100vh !important; /* Full viewport height */
+    z-index: 1 !important; /* Low z-index to stay behind content */
+    pointer-events: none !important; /* Don't block interaction with page content */
+    overflow: visible !important; /* Allow doodles to overflow the container */
+    display: block !important; /* Force display */
+    visibility: visible !important; /* Force visibility */
+}
+
+/* Individual FontAwesome doodles */
+.floating-fa-doodle {
+    position: fixed !important; /* Fixed position relative to viewport */
+    z-index: 2 !important; /* Low z-index to stay behind main content */
+    pointer-events: none !important; /* Don't interfere with text selection */
+    font-size: 25px !important;
+    line-height: 1 !important;
+    opacity: 0.6 !important; /* More transparent to not interfere with reading */
+    display: block !important;
+    visibility: visible !important;
+    text-shadow: 0 0 5px currentColor;
+    transition: none !important; /* Remove transitions */
+    cursor: default; /* Remove pointer cursor */
+}
+
+/* Animation keyframes */
+@keyframes fadeInMove {
+    0% { 
+        transform: translate(0px, 0px) rotate(0deg) scale(1); 
+        opacity: 0.7; 
+    }
+    15% { 
+        transform: translate(-50px, 80px) rotate(-15deg) scale(1.1); 
+        opacity: 0.9; 
+    }
+    25% { 
+        transform: translate(80px, -50px) rotate(45deg) scale(0.9); 
+        opacity: 0.6; 
+    }
+    35% { 
+        transform: translate(-100px, -80px) rotate(-60deg) scale(1.2); 
+        opacity: 0.8; 
+    }
+    45% { 
+        transform: translate(70px, 120px) rotate(90deg) scale(0.95); 
+        opacity: 0.7; 
+    }
+    55% { 
+        transform: translate(-80px, 30px) rotate(-45deg) scale(1.05); 
+        opacity: 0.9; 
+    }
+    65% { 
+        transform: translate(120px, -90px) rotate(135deg) scale(1.15); 
+        opacity: 0.5; 
+    }
+    75% { 
+        transform: translate(-60px, -100px) rotate(68deg) scale(0.85); 
+        opacity: 0.8; 
+    }
+    85% { 
+        transform: translate(90px, 80px) rotate(-90deg) scale(1.1); 
+        opacity: 0.7; 
+    }
+    100% { 
+        transform: translate(0px, 0px) rotate(0deg) scale(1); 
+        opacity: 0.7; 
+    }
+}
+
+@keyframes randomGlow {
+    0%, 20% { 
+        text-shadow: 0 0 5px currentColor; 
+        filter: brightness(1); 
+    }
+    10% { 
+        text-shadow: 0 0 30px currentColor, 0 0 60px currentColor; 
+        filter: brightness(2.5); 
+    }
+    30%, 50% { 
+        text-shadow: 0 0 8px currentColor; 
+        filter: brightness(1.2); 
+    }
+    40% { 
+        text-shadow: 0 0 40px currentColor, 0 0 80px currentColor; 
+        filter: brightness(2); 
+    }
+    60%, 80% { 
+        text-shadow: 0 0 3px currentColor; 
+        filter: brightness(0.8); 
+    }
+    70% { 
+        text-shadow: 0 0 25px currentColor, 0 0 50px currentColor; 
+        filter: brightness(1.8); 
+    }
+    90%, 100% { 
+        text-shadow: 0 0 5px currentColor; 
+        filter: brightness(1); 
+    }
+}
+
+/* Additional animation patterns */
+@keyframes floatAround {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    20% { transform: translate(100px, -50px) rotate(45deg); }
+    40% { transform: translate(200px, 100px) rotate(90deg); }
+    60% { transform: translate(50px, 200px) rotate(180deg); }
+    80% { transform: translate(-100px, 100px) rotate(270deg); }
+    100% { transform: translate(0, 0) rotate(360deg); }
+}
+
+@keyframes zigZag {
+    0% { transform: translate(0, 0) scale(1); }
+    20% { transform: translate(100px, 100px) scale(1.2); }
+    40% { transform: translate(200px, 0) scale(0.8); }
+    60% { transform: translate(300px, 100px) scale(1.1); }
+    80% { transform: translate(400px, 0) scale(0.9); }
+    100% { transform: translate(0, 0) scale(1); }
+}
+
+@keyframes spiral {
+    0% { transform: rotate(0deg) translateX(0) translateY(0) scale(1); }
+    25% { transform: rotate(90deg) translateX(100px) translateY(100px) scale(1.2); }
+    50% { transform: rotate(180deg) translateX(0) translateY(200px) scale(0.8); }
+    75% { transform: rotate(270deg) translateX(-100px) translateY(100px) scale(1.1); }
+    100% { transform: rotate(360deg) translateX(0) translateY(0) scale(1); }
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-100px) scale(1.2); }
+    75% { transform: translateY(-25px) scale(0.9); }
+}
