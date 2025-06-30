@@ -1,3 +1,76 @@
+// Mobile Navigation Toggle
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('🔧 Initializing mobile navigation...');
+    
+    const navToggle = document.getElementById('nav-toggle');
+    const navMenu = document.getElementById('nav-menu');
+    const navLinks = document.querySelectorAll('.nav-link');
+    
+    console.log('Nav elements found:', {
+        navToggle: !!navToggle,
+        navMenu: !!navMenu,
+        navLinksCount: navLinks.length
+    });
+    
+    // Toggle mobile menu
+    if (navToggle && navMenu) {
+        console.log('✅ Setting up mobile navigation event listeners');
+        
+        navToggle.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            console.log('🔄 Nav toggle clicked');
+            
+            navToggle.classList.toggle('active');
+            navMenu.classList.toggle('active');
+            
+            const isMenuOpen = navMenu.classList.contains('active');
+            console.log('Menu is now:', isMenuOpen ? 'OPEN' : 'CLOSED');
+            
+            // Prevent body scroll when menu is open
+            if (isMenuOpen) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
+        });
+        
+        // Close menu when clicking on nav links
+        navLinks.forEach((link, index) => {
+            link.addEventListener('click', function() {
+                console.log(`Nav link ${index} clicked, closing menu`);
+                navToggle.classList.remove('active');
+                navMenu.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        });
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!navToggle.contains(e.target) && !navMenu.contains(e.target)) {
+                if (navMenu.classList.contains('active')) {
+                    console.log('Clicked outside menu, closing');
+                    navToggle.classList.remove('active');
+                    navMenu.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            }
+        });
+    } else {
+        console.error('❌ Navigation elements not found!');
+    }
+    
+    // Handle window resize
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 1024) {
+            navToggle?.classList.remove('active');
+            navMenu?.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    });
+});
+
 // Global variable to prevent multiple typewriter animations
 let typewriterRunning = false;
 let animationId = null;
@@ -318,8 +391,156 @@ const contactForm = document.querySelector('.contact-form form');
 if (contactForm) {
     contactForm.addEventListener('submit', function(e) {
         e.preventDefault();
-        alert('Thank you for your message! I\'ll get back to you soon.');
+        
+        // Get form data
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const subject = document.getElementById('subject').value;
+        const message = document.getElementById('message').value;
+        
+        // Validate form
+        if (!name || !email || !subject || !message) {
+            showNotification('Please fill in all fields.', 'error');
+            return;
+        }
+        
+        // Try client-side mailto first (primary method)
+        try {
+            const mailtoURL = createMailtoURL({
+                to: 'rishikumarrajvansh@gmail.com',
+                subject: subject,
+                body: `Hello Rishi,\n\nName: ${name}\nEmail: ${email}\n\nMessage:\n${message}\n\nBest regards,\n${name}`
+            });
+            
+            // Open default mail client
+            window.location.href = mailtoURL;
+            
+            // Show success message
+            showNotification('Opening your default mail client...', 'success');
+            
+            // Reset form after a delay
+            setTimeout(() => {
+                contactForm.reset();
+            }, 1000);
+            
+        } catch (error) {
+            // Fallback to server-side submission
+            console.log('Mailto failed, trying server-side submission:', error);
+            submitFormToServer(contactForm);
+        }
     });
+}
+
+// Handle "Get My Pricing" button
+const pricingBtn = document.querySelector('.hire-btn');
+if (pricingBtn) {
+    pricingBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        // Try client-side mailto first
+        try {
+            const mailtoURL = createMailtoURL({
+                to: 'rishikumarrajvansh@gmail.com',
+                subject: 'Freelance Project Pricing Inquiry',
+                body: `Hello Rishi,\n\nI'm interested in your freelance services and would like to get pricing information for my project.\n\nProject details:\n- Project type: [Please specify: Web Development, Data Science, Integration, Automation, Other]\n- Timeline: [Please specify]\n- Budget range: [Please specify]\n- Additional requirements: [Please describe your project in detail]\n\nI look forward to hearing from you.\n\nBest regards,\n[Your Name]`
+            });
+            
+            // Open default mail client
+            window.location.href = mailtoURL;
+            
+            // Show success message
+            showNotification('Opening your default mail client for pricing inquiry...', 'success');
+            
+        } catch (error) {
+            // Fallback to server route
+            console.log('Mailto failed, redirecting to server route:', error);
+            window.location.href = pricingBtn.href;
+        }
+    });
+}
+
+// Server-side form submission fallback
+function submitFormToServer(form) {
+    const formData = new FormData(form);
+    
+    fetch(form.action, {
+        method: 'POST',
+        body: formData,
+        headers: {
+            'Accept': 'application/json'
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.status === 'success') {
+            if (data.mailto_url) {
+                window.location.href = data.mailto_url;
+            }
+            showNotification(data.message, 'success');
+            form.reset();
+        } else {
+            showNotification(data.message || 'An error occurred.', 'error');
+        }
+    })
+    .catch(error => {
+        console.error('Form submission error:', error);
+        showNotification('Failed to submit form. Please try again.', 'error');
+    });
+}
+
+// Helper function to create mailto URLs
+function createMailtoURL(params) {
+    const { to, subject = '', body = '' } = params;
+    const encodedSubject = encodeURIComponent(subject);
+    const encodedBody = encodeURIComponent(body);
+    return `mailto:${to}?subject=${encodedSubject}&body=${encodedBody}`;
+}
+
+// Helper function to show notifications
+function showNotification(message, type = 'info') {
+    // Create notification element
+    const notification = document.createElement('div');
+    notification.className = `notification notification-${type}`;
+    notification.textContent = message;
+    
+    // Style the notification
+    Object.assign(notification.style, {
+        position: 'fixed',
+        top: '20px',
+        right: '20px',
+        background: type === 'success' ? '#10b981' : type === 'error' ? '#ef4444' : '#0ea5e9',
+        color: 'white',
+        padding: '1rem 1.5rem',
+        borderRadius: '12px',
+        boxShadow: '0 4px 20px rgba(0, 0, 0, 0.3)',
+        zIndex: '10000',
+        fontSize: '0.9rem',
+        fontWeight: '600',
+        maxWidth: '300px',
+        opacity: '0',
+        transform: 'translateX(100%)',
+        transition: 'all 0.3s ease'
+    });
+    
+    // Add to document
+    document.body.appendChild(notification);
+    
+    // Animate in
+    requestAnimationFrame(() => {
+        notification.style.opacity = '1';
+        notification.style.transform = 'translateX(0)';
+    });
+    
+    // Auto remove after 4 seconds
+    setTimeout(() => {
+        notification.style.opacity = '0';
+        notification.style.transform = 'translateX(100%)';
+        setTimeout(() => {
+            if (notification.parentNode) {
+                notification.parentNode.removeChild(notification);
+            }
+        }, 300);
+    }, 4000);
 }
 
 // Testimonial Navigation Functions

@@ -770,7 +770,7 @@
                 <!-- Contact Form Section (Right side) -->
                 <div class="contact-form-section">
                     <h3 class="form-title">SEND ME A MESSAGE</h3>
-                    <form class="modern-contact-form">
+                    <form class="modern-contact-form" method="POST" action="{{ url_for('send_message') }}">
                             <div class="form-row">
                                 <div class="form-group">
                                     <label for="name">Your Name</label>
@@ -802,7 +802,7 @@
                 <p class="freelance-description">
                     Looking for expert in web development, Data Science, integrations, or automation to bring your ideas to life.
                 </p>
-                <a href="#" class="hire-btn">GET MY PRICING <i class="fas fa-arrow-right"></i></a>
+                <a href="{{ url_for('pricing_inquiry') }}" class="hire-btn">GET MY PRICING <i class="fas fa-arrow-right"></i></a>
             </div>
         </div>
     </div>

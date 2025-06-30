@@ -64,13 +64,101 @@ def home():
     testimonials = get_linkedin_testimonials()
     return render_template('index.html', testimonials=testimonials)
 
-
-
 @app.route('/contact')
 def contact():
     # Contact form is handled via JavaScript mailto functionality
     # Redirect to home page with contact section
     return redirect(url_for('home') + '#contact')
+
+@app.route('/send-message', methods=['POST'])
+def send_message():
+    """
+    Handle contact form submission - creates mailto URL and redirects
+    """
+    try:
+        # Get form data
+        name = request.form.get('name', '').strip()
+        email = request.form.get('email', '').strip()
+        subject = request.form.get('subject', '').strip()
+        message = request.form.get('message', '').strip()
+        
+        # Validate required fields
+        if not all([name, email, subject, message]):
+            flash('All fields are required.', 'error')
+            return redirect(url_for('home') + '#contact')
+        
+        # Create email body
+        email_body = f"""Hello Rishi,
+
+Name: {name}
+Email: {email}
+
+Message:
+{message}
+
+Best regards,
+{name}"""
+        
+        # Create mailto URL
+        import urllib.parse
+        mailto_url = f"mailto:rishikumarrajvansh@gmail.com?subject={urllib.parse.quote(subject)}&body={urllib.parse.quote(email_body)}"
+        
+        # Return JSON response for AJAX handling
+        if request.headers.get('Content-Type') == 'application/json':
+            return jsonify({
+                'status': 'success',
+                'mailto_url': mailto_url,
+                'message': 'Opening your default mail client...'
+            })
+        
+        # For regular form submission, redirect to mailto URL
+        return redirect(mailto_url)
+        
+    except Exception as e:
+        flash('An error occurred while processing your message.', 'error')
+        return redirect(url_for('home') + '#contact')
+
+@app.route('/pricing-inquiry')
+def pricing_inquiry():
+    """
+    Handle pricing inquiry - creates mailto URL for pricing request
+    """
+    try:
+        # Create pricing inquiry email body
+        email_body = """Hello Rishi,
+
+I'm interested in your freelance services and would like to get pricing information for my project.
+
+Project details:
+- Project type: [Please specify: Web Development, Data Science, Integration, Automation, Other]
+- Timeline: [Please specify]
+- Budget range: [Please specify]
+- Additional requirements: [Please describe your project in detail]
+
+I look forward to hearing from you.
+
+Best regards,
+[Your Name]"""
+        
+        # Create mailto URL
+        import urllib.parse
+        subject = "Freelance Project Pricing Inquiry"
+        mailto_url = f"mailto:rishikumarrajvansh@gmail.com?subject={urllib.parse.quote(subject)}&body={urllib.parse.quote(email_body)}"
+        
+        # Return JSON response for AJAX handling
+        if request.headers.get('Accept') == 'application/json':
+            return jsonify({
+                'status': 'success',
+                'mailto_url': mailto_url,
+                'message': 'Opening your default mail client for pricing inquiry...'
+            })
+        
+        # For regular requests, redirect to mailto URL
+        return redirect(mailto_url)
+        
+    except Exception as e:
+        flash('An error occurred while processing your pricing inquiry.', 'error')
+        return redirect(url_for('home') + '#contact')
 
 # Doodle related data and functions - Python & Data Science focused
 tech_icons = [

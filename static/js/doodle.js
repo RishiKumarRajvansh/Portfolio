@@ -23,7 +23,7 @@ async function fetchDoodleData(count = 10) {
 
 // Create a new floating FontAwesome doodle
 async function createRandomFontAwesomeDoodle(serverData = null) {
-    console.log('🎨 Creating new doodle...');
+    // console.log('🎨 Creating new doodle...');
     
     // Python, Data Science & Programming focused icons
     const pythonDataScienceIcons = [
@@ -80,12 +80,12 @@ async function createRandomFontAwesomeDoodle(serverData = null) {
                 const prefix = doodleData.prefix || 'fas';
                 randomIcon = `${prefix} ${iconName}`;
                 lifetime = doodleData.lifetime || 10000;
-                console.log('Using server-generated doodle data');
+                // console.log('Using server-generated doodle data');
             } else {
                 throw new Error('No doodle data from server');
             }
         } catch (error) {
-            console.log('Falling back to client-side generation:', error.message);
+            // console.log('Falling back to client-side generation:', error.message);
             // Generate on client as fallback
             randomIcon = pythonDataScienceIcons[Math.floor(Math.random() * pythonDataScienceIcons.length)];
             lifetime = Math.floor(Math.random() * 15000) + 5000; // 5-20 seconds
@@ -148,7 +148,7 @@ async function createRandomFontAwesomeDoodle(serverData = null) {
         attempts++;
     }
     
-    console.log(`Creating doodle at position (${fixedLeft}, ${fixedTop}) after ${attempts} attempts`);
+    // console.log(`Creating doodle at position (${fixedLeft}, ${fixedTop}) after ${attempts} attempts`);
     
     const randomSize = Math.floor(Math.random() * 20) + 20; // 20-40px
     
@@ -186,7 +186,7 @@ async function createRandomFontAwesomeDoodle(serverData = null) {
     const doodleContainer = document.getElementById('floating-doodles');
     if (doodleContainer) {
         doodleContainer.appendChild(doodle);
-        console.log(`📍 Doodle ${doodleId} added to container. Container children count:`, doodleContainer.children.length);
+        // console.log(`📍 Doodle ${doodleId} added to container. Container children count:`, doodleContainer.children.length);
     } else {
         console.error('❌ Container not found! Adding to body as fallback');
         document.body.appendChild(doodle); // fallback
@@ -200,8 +200,8 @@ async function createRandomFontAwesomeDoodle(serverData = null) {
         lifespan: lifetime
     });
     
-    console.log(`✅ Created doodle at (${fixedLeft}, ${fixedTop}) with id ${doodleId}. Icon: ${randomIcon}`);
-    console.log('📊 Total active doodles:', faActiveDoodles.length);
+    // console.log(`✅ Created doodle at (${fixedLeft}, ${fixedTop}) with id ${doodleId}. Icon: ${randomIcon}`);
+    // console.log('📊 Total active doodles:', faActiveDoodles.length);
     return doodle;
 }
 
@@ -225,7 +225,7 @@ function killFontAwesomeDoodle(doodleData) {
         faActiveDoodles = faActiveDoodles.filter(d => d.id !== doodleData.id);
         
         // Don't automatically replace doodles here - let lifecycle manager handle it
-        console.log(`Removed doodle ${doodleData.id}, ${faActiveDoodles.length} remaining`);
+        // console.log(`Removed doodle ${doodleData.id}, ${faActiveDoodles.length} remaining`);
     }, 1000);
 }
 
@@ -256,22 +256,22 @@ function manageDoodleLifecycle() {
         }, Math.random() * 2000); // Random delay up to 2 seconds
     }
     
-    console.log(`Doodle lifecycle: ${currentCount} active, ${expiredDoodles.length} removed`);
+    // console.log(`Doodle lifecycle: ${currentCount} active, ${expiredDoodles.length} removed`);
 }
 
 // Initialize the doodle system
 function initFontAwesomeDoodles() {
-    console.log('🌟 Initializing FontAwesome doodle system...');
+    // console.log('🌟 Initializing FontAwesome doodle system...');
     
     try {
         // Clear any existing doodles
         const existingDoodles = document.querySelectorAll('.floating-fa-doodle');
-        console.log(`Found ${existingDoodles.length} existing doodles to remove`);
+        // console.log(`Found ${existingDoodles.length} existing doodles to remove`);
         existingDoodles.forEach(doodle => doodle.remove());
         
         // Verify container
         const container = document.getElementById('floating-doodles');
-        console.log(`Container found: ${container !== null}`);
+        // console.log(`Container found: ${container !== null}`);
         if (!container) {
             console.error('Container #floating-doodles not found!');
             return;
@@ -282,7 +282,7 @@ function initFontAwesomeDoodles() {
         
         // Create initial batch of doodles - distributed across viewport
         const initialCount = window.innerWidth <= 768 ? 8 : 12;
-        console.log(`Creating ${initialCount} initial doodles`);
+        // console.log(`Creating ${initialCount} initial doodles`);
         
         // Create doodles with staggered timing for smooth appearance
         for (let i = 0; i < initialCount; i++) {
@@ -295,7 +295,7 @@ function initFontAwesomeDoodles() {
         // Start lifecycle management with less aggressive timing
         setInterval(manageDoodleLifecycle, 3000); // Every 3 seconds instead of 1
         
-        console.log('✅ FontAwesome doodle system initialized with ' + initialCount + ' doodles');
+        // console.log('✅ FontAwesome doodle system initialized with ' + initialCount + ' doodles');
     } catch (error) {
         console.error('❌ Error initializing doodle system:', error);
     }
@@ -316,7 +316,7 @@ window.addEventListener('scroll', function() {
         if (Math.abs(currentScroll - lastScrollPosition) > 300 && faActiveDoodles.length < faMaxDoodles) {
             // Only 10% chance to create a doodle on significant scroll
             if (Math.random() < 0.1) {
-                console.log('Creating doodle on scroll');
+                // console.log('Creating doodle on scroll');
                 createRandomFontAwesomeDoodle({
                     viewportFocus: true,
                     scrollPosition: currentScroll
@@ -341,8 +341,8 @@ function getRandomColor() {
 
 // Start the doodle system when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
-    console.log("🚀 Doodle.js loaded and ready");
-    console.log("Window dimensions:", window.innerWidth, "x", window.innerHeight);
+    // console.log("🚀 Doodle.js loaded and ready");
+    // console.log("Window dimensions:", window.innerWidth, "x", window.innerHeight);
     console.log("FontAwesome available:", typeof window.FontAwesome !== 'undefined');
     
     // Make sure the container exists
