@@ -242,23 +242,18 @@ window.addEventListener('scroll', () => {
 });
 
 const observerOptions = {
-    threshold: 0.2, // Trigger when 20% of element is visible
-    rootMargin: '0px 0px -10% 0px' // Start animation when element is 10% from bottom of viewport
+    threshold: [0, 0.1, 0.2, 0.3], // Multiple thresholds for better detection
+    rootMargin: '10% 0px 10% 0px' // Add margin on top and bottom for smoother entry/exit detection
 };
 
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
+        console.log('🔍 Observer triggered:', entry.target.className, 'isIntersecting:', entry.isIntersecting, 'scrollDirection:', scrollDirection);
+        
         if (entry.isIntersecting) {
-            // Element is entering the viewport - animate based on scroll direction
+            // Element is entering the viewport - animate to visible state
             entry.target.style.opacity = '1';
-            
-            if (scrollDirection === 'down') {
-                // Scrolling down: animate from bottom to top
-                entry.target.style.transform = 'translateY(0)';
-            } else {
-                // Scrolling up: animate from top to bottom  
-                entry.target.style.transform = 'translateY(0)';
-            }
+            entry.target.style.transform = 'translateY(0)';
             
             // Add special handling for timeline items to stagger animation
             if (entry.target.classList.contains('timeline-item')) {
@@ -266,12 +261,28 @@ const observer = new IntersectionObserver((entries) => {
                 const itemIndex = Array.from(allTimelineItems).indexOf(entry.target);
                 
                 if (scrollDirection === 'down') {
-                    // Scrolling down: stagger from first to last (bottom-to-top effect)
+                    // Scrolling down: stagger from first to last
                     entry.target.style.transitionDelay = `${itemIndex * 0.1}s`;
                 } else {
-                    // Scrolling up: stagger from last to first (top-to-bottom effect)
+                    // Scrolling up: stagger from last to first
                     const reverseIndex = allTimelineItems.length - 1 - itemIndex;
                     entry.target.style.transitionDelay = `${reverseIndex * 0.1}s`;
+                }
+            }
+            
+            // Add staggered animation for education cards
+            if (entry.target.classList.contains('education-card')) {
+                const allEducationCards = document.querySelectorAll('.education-card');
+                const itemIndex = Array.from(allEducationCards).indexOf(entry.target);
+                
+                // Mark as animated
+                entry.target.setAttribute('data-animated', 'true');
+                
+                if (scrollDirection === 'down') {
+                    entry.target.style.transitionDelay = `${itemIndex * 0.15}s`;
+                } else {
+                    const reverseIndex = allEducationCards.length - 1 - itemIndex;
+                    entry.target.style.transitionDelay = `${reverseIndex * 0.15}s`;
                 }
             }
             
@@ -279,21 +290,39 @@ const observer = new IntersectionObserver((entries) => {
             if (entry.target.classList.contains('stat-card') && entry.target.closest('.tech-stats')) {
                 const allStatCards = entry.target.closest('.tech-stats').querySelectorAll('.stat-card');
                 const itemIndex = Array.from(allStatCards).indexOf(entry.target);
-                entry.target.style.transitionDelay = `${itemIndex * 0.1}s`;
+                
+                if (scrollDirection === 'down') {
+                    entry.target.style.transitionDelay = `${itemIndex * 0.1}s`;
+                } else {
+                    const reverseIndex = allStatCards.length - 1 - itemIndex;
+                    entry.target.style.transitionDelay = `${reverseIndex * 0.1}s`;
+                }
             }
             
             // Add staggered animation for portfolio cards
             if (entry.target.classList.contains('portfolio-card')) {
                 const allPortfolioCards = document.querySelectorAll('.portfolio-card');
                 const itemIndex = Array.from(allPortfolioCards).indexOf(entry.target);
-                entry.target.style.transitionDelay = `${itemIndex * 0.15}s`;
+                
+                if (scrollDirection === 'down') {
+                    entry.target.style.transitionDelay = `${itemIndex * 0.15}s`;
+                } else {
+                    const reverseIndex = allPortfolioCards.length - 1 - itemIndex;
+                    entry.target.style.transitionDelay = `${reverseIndex * 0.15}s`;
+                }
             }
             
             // Add staggered animation for project cards
             if (entry.target.classList.contains('project-card-new')) {
                 const allProjectCards = document.querySelectorAll('.project-card-new');
                 const itemIndex = Array.from(allProjectCards).indexOf(entry.target);
-                entry.target.style.transitionDelay = `${itemIndex * 0.2}s`;
+                
+                if (scrollDirection === 'down') {
+                    entry.target.style.transitionDelay = `${itemIndex * 0.2}s`;
+                } else {
+                    const reverseIndex = allProjectCards.length - 1 - itemIndex;
+                    entry.target.style.transitionDelay = `${reverseIndex * 0.2}s`;
+                }
             }
             
             // Add staggered animation for badge cards
@@ -302,7 +331,13 @@ const observer = new IntersectionObserver((entries) => {
                 if (parentCategory) {
                     const categoryBadges = parentCategory.querySelectorAll('.credly-badge');
                     const itemIndex = Array.from(categoryBadges).indexOf(entry.target);
-                    entry.target.style.transitionDelay = `${itemIndex * 0.1}s`;
+                    
+                    if (scrollDirection === 'down') {
+                        entry.target.style.transitionDelay = `${itemIndex * 0.1}s`;
+                    } else {
+                        const reverseIndex = categoryBadges.length - 1 - itemIndex;
+                        entry.target.style.transitionDelay = `${reverseIndex * 0.1}s`;
+                    }
                 }
             }
             
@@ -310,16 +345,28 @@ const observer = new IntersectionObserver((entries) => {
             if (entry.target.classList.contains('interest-item')) {
                 const allInterestItems = document.querySelectorAll('.interest-item');
                 const itemIndex = Array.from(allInterestItems).indexOf(entry.target);
-                entry.target.style.transitionDelay = `${itemIndex * 0.08}s`;
+                
+                if (scrollDirection === 'down') {
+                    entry.target.style.transitionDelay = `${itemIndex * 0.08}s`;
+                } else {
+                    const reverseIndex = allInterestItems.length - 1 - itemIndex;
+                    entry.target.style.transitionDelay = `${reverseIndex * 0.08}s`;
+                }
             }
             
             // Add staggered animation for tech tags
-            if (entry.target.classList.contains('tech-tag')) {
-                const parentSection = entry.target.closest('.tech-skills, .project-technologies');
+            if (entry.target.classList.contains('tech-tag') || entry.target.classList.contains('tech-badge')) {
+                const parentSection = entry.target.closest('.tech-skills, .project-technologies, .project-card-new');
                 if (parentSection) {
-                    const sectionTags = parentSection.querySelectorAll('.tech-tag');
+                    const sectionTags = parentSection.querySelectorAll('.tech-tag, .tech-badge');
                     const itemIndex = Array.from(sectionTags).indexOf(entry.target);
-                    entry.target.style.transitionDelay = `${itemIndex * 0.05}s`;
+                    
+                    if (scrollDirection === 'down') {
+                        entry.target.style.transitionDelay = `${itemIndex * 0.05}s`;
+                    } else {
+                        const reverseIndex = sectionTags.length - 1 - itemIndex;
+                        entry.target.style.transitionDelay = `${reverseIndex * 0.05}s`;
+                    }
                 }
             }
             
@@ -327,22 +374,84 @@ const observer = new IntersectionObserver((entries) => {
             if (entry.target.classList.contains('contact-link-item')) {
                 const allContactItems = document.querySelectorAll('.contact-link-item');
                 const itemIndex = Array.from(allContactItems).indexOf(entry.target);
-                entry.target.style.transitionDelay = `${itemIndex * 0.1}s`;
+                
+                if (scrollDirection === 'down') {
+                    entry.target.style.transitionDelay = `${itemIndex * 0.1}s`;
+                } else {
+                    const reverseIndex = allContactItems.length - 1 - itemIndex;
+                    entry.target.style.transitionDelay = `${reverseIndex * 0.1}s`;
+                }
+            }
+            
+            // Add staggered animation for testimonial cards
+            if (entry.target.classList.contains('testimonial-card')) {
+                const allTestimonialCards = document.querySelectorAll('.testimonial-card');
+                const itemIndex = Array.from(allTestimonialCards).indexOf(entry.target);
+                
+                if (scrollDirection === 'down') {
+                    entry.target.style.transitionDelay = `${itemIndex * 0.2}s`;
+                } else {
+                    const reverseIndex = allTestimonialCards.length - 1 - itemIndex;
+                    entry.target.style.transitionDelay = `${reverseIndex * 0.2}s`;
+                }
+            }
+            
+            // Add staggered animation for section titles and subtitles
+            if (entry.target.classList.contains('section-title') || 
+                entry.target.classList.contains('section-subtitle') ||
+                entry.target.classList.contains('about-section-title') ||
+                entry.target.classList.contains('category-title') ||
+                entry.target.classList.contains('form-title')) {
+                // Section headers animate immediately without stagger
+                entry.target.style.transitionDelay = '0s';
+            }
+            
+            // Add animation for portfolio links
+            if (entry.target.classList.contains('portfolio-links')) {
+                const allPortfolioLinks = document.querySelectorAll('.portfolio-links');
+                const itemIndex = Array.from(allPortfolioLinks).indexOf(entry.target);
+                
+                if (scrollDirection === 'down') {
+                    entry.target.style.transitionDelay = `${itemIndex * 0.1}s`;
+                } else {
+                    const reverseIndex = allPortfolioLinks.length - 1 - itemIndex;
+                    entry.target.style.transitionDelay = `${reverseIndex * 0.1}s`;
+                }
+            }
+
+            // Add animation for badge categories and other containers
+            if (entry.target.classList.contains('badge-category') || 
+                entry.target.classList.contains('badges-grid') ||
+                entry.target.classList.contains('profile-card') ||
+                entry.target.classList.contains('hero-buttons') ||
+                entry.target.classList.contains('tech-skills') ||
+                entry.target.classList.contains('testimonial-controls')) {
+                // Container elements animate without stagger
+                entry.target.style.transitionDelay = '0s';
             }
         } else {
-            // Element is leaving the viewport - reset based on scroll direction
-            entry.target.style.opacity = '0';
-            entry.target.style.transitionDelay = '0s'; // Reset delay
-            
-            if (scrollDirection === 'down') {
-                // If scrolling down and element is leaving, it's going above viewport
-                // Set it to animate from top next time
-                entry.target.style.transform = 'translateY(-30px)';
-            } else {
-                // If scrolling up and element is leaving, it's going below viewport  
-                // Set it to animate from bottom next time
-                entry.target.style.transform = 'translateY(30px)';
-            }
+            // Element is leaving the viewport - prepare for next entry
+            // Use a small delay to avoid flicker when quickly scrolling
+            setTimeout(() => {
+                if (!entry.isIntersecting) { // Double-check it's still out of view
+                    entry.target.style.opacity = '0';
+                    entry.target.style.transitionDelay = '0s'; // Reset delay
+                    
+                    // Mark as not animated for education cards
+                    if (entry.target.classList.contains('education-card')) {
+                        entry.target.setAttribute('data-animated', 'false');
+                    }
+                    
+                    // Set initial position based on current scroll direction
+                    if (scrollDirection === 'down') {
+                        // Element is leaving from top, prepare to enter from top when scrolling back up
+                        entry.target.style.transform = 'translateY(-30px)';
+                    } else {
+                        // Element is leaving from bottom, prepare to enter from bottom when scrolling back down
+                        entry.target.style.transform = 'translateY(30px)';
+                    }
+                }
+            }, 150); // Small delay to prevent flicker
         }
     });
 }, observerOptions);
@@ -372,18 +481,32 @@ document.querySelectorAll(`
     .portfolio-links.skill-item,
     .badges-section .skill-item,
     .tech-tag,
-    .interest-item
+    .tech-badge,
+    .interest-item,
+    .stat-card,
+    .about-section-title,
+    .category-title,
+    .badge-category,
+    .badges-grid,
+    .testimonial-controls,
+    .form-title,
+    .profile-card,
+    .hero-buttons,
+    .tech-skills
 `).forEach((el, index) => {
     el.style.opacity = '0';
     el.style.transform = 'translateY(30px)'; // Default starting position
     el.style.transition = `opacity 0.6s ease, transform 0.6s ease`;
     
     // Add staggered delay for groups of similar elements
-    if (el.classList.contains('tech-tag') || el.classList.contains('interest-item')) {
+    if (el.classList.contains('tech-tag') || 
+        el.classList.contains('tech-badge') || 
+        el.classList.contains('interest-item')) {
         el.style.transitionDelay = `${index * 0.05}s`;
     }
     
     observer.observe(el);
+    console.log('🎯 Observing element for animation:', el.className, el.tagName);
 });
 
 // Contact form handling
@@ -822,5 +945,63 @@ document.addEventListener('DOMContentLoaded', function() {
                 fallbackIcon.style.display = 'none';
             }
         });
+    });
+});
+
+// Force re-initialization of all animated elements for better bi-directional animation
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize education cards
+    const educationCards = document.querySelectorAll('.education-card');
+    educationCards.forEach((card, index) => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(30px)';
+        card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        card.style.transitionDelay = '0s';
+        card.setAttribute('data-animated', 'false');
+    });
+    
+    // Initialize testimonial cards
+    const testimonialCards = document.querySelectorAll('.testimonial-card');
+    testimonialCards.forEach((card, index) => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(30px)';
+        card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        card.style.transitionDelay = '0s';
+    });
+    
+    // Initialize portfolio cards
+    const portfolioCards = document.querySelectorAll('.portfolio-card');
+    portfolioCards.forEach((card, index) => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(30px)';
+        card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        card.style.transitionDelay = '0s';
+    });
+    
+    // Initialize project cards
+    const projectCards = document.querySelectorAll('.project-card-new');
+    projectCards.forEach((card, index) => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(30px)';
+        card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        card.style.transitionDelay = '0s';
+    });
+    
+    // Initialize badge cards
+    const badgeCards = document.querySelectorAll('.credly-badge');
+    badgeCards.forEach((card, index) => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(30px)';
+        card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        card.style.transitionDelay = '0s';
+    });
+    
+    // Initialize stat cards
+    const statCards = document.querySelectorAll('.stat-card');
+    statCards.forEach((card, index) => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(30px)';
+        card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        card.style.transitionDelay = '0s';
     });
 });

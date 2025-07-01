@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Rishi Kumar - Python Developer & Data Scientist{% endblock %}</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Exo+2:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Electrolize:wght@400&family=Audiowide:wght@400&family=Gruppo:wght@400&display=swap" rel="stylesheet">
     <!-- Latest FontAwesome with increased integrity -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
@@ -19,6 +19,29 @@
                              document.querySelector('.fa'))?.getBoundingClientRect().width > 0;
             
             console.log('FontAwesome loaded check:', faLoaded ? '✅ Loaded' : '❌ Not loaded');
+            
+            // Check if Google Fonts are properly loaded
+            const testElement = document.createElement('div');
+            testElement.style.fontFamily = "'Orbitron', sans-serif";
+            testElement.style.fontSize = '16px';
+            testElement.innerHTML = 'TECH FONT TEST';
+            testElement.style.position = 'absolute';
+            testElement.style.visibility = 'hidden';
+            document.body.appendChild(testElement);
+            
+            setTimeout(() => {
+                const computedStyle = window.getComputedStyle(testElement);
+                const fontUsed = computedStyle.fontFamily;
+                console.log('🔤 Font check - Expected: Orbitron, Actual:', fontUsed);
+                
+                if (fontUsed.includes('Orbitron')) {
+                    console.log('✅ Tech fonts loaded successfully');
+                } else {
+                    console.log('❌ Tech fonts not loaded, using fallback:', fontUsed);
+                }
+                
+                document.body.removeChild(testElement);
+            }, 100);
             
             if (!faLoaded) {
                 // If FontAwesome doesn't seem to be loaded, try to reload it

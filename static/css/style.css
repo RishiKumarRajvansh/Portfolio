@@ -10,8 +10,7 @@ html {
     font-size: 16px;
 }
 
-/* Import robotic, futuristic fonts */
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Exo+2:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Electrolize:wght@400&family=Audiowide:wght@400&family=Gruppo:wght@400&display=swap');
+/* Robotic, futuristic fonts loaded via HTML link tag */
 
 :root {
     --primary-color: #0ea5e9;
@@ -459,6 +458,9 @@ section {
     font-size: 4rem;
     margin-bottom: 1rem;
     line-height: 1.1;
+    font-family: var(--font-heading); /* Explicitly set heading font */
+    font-weight: 700;
+    letter-spacing: 2px;
 }
 
 .greeting {
@@ -479,6 +481,7 @@ section {
     letter-spacing: 3px;
     text-transform: uppercase;
     position: relative;
+    font-family: var(--font-heading); /* Explicitly set heading font */
     display: inline-block !important;
     visibility: visible !important;
     opacity: 1 !important;
@@ -785,6 +788,135 @@ section {
 .timeline-content:hover {
     box-shadow: var(--shadow-xl), 0 0 20px rgba(14, 165, 233, 0.4);
     border-color: var(--primary-color);
+}
+
+/* Education/Experience Card Styles */
+.education-card {
+    background: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 280px;
+}
+
+.education-icon {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-right: 1rem;
+}
+
+.education-icon i {
+    font-size: 18px;
+    color: white;
+}
+
+.education-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.education-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.education-title-group {
+    flex: 1;
+}
+
+.education-degree {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
+}
+
+.education-field {
+    font-size: 0.9rem;
+    color: var(--primary-color);
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.education-institution {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+    margin-bottom: 1rem;
+}
+
+.education-year {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.education-year p {
+    display: inline-block;
+    background: rgba(14, 165, 233, 0.2);
+    color: var(--primary-color);
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    width: fit-content;
+}
+
+.education-description {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-top: auto;
+    padding-top: 0.5rem;
+}
+
+/* Mobile Adjustments for Education Cards */
+@media (max-width: 768px) {
+    .education-card {
+        padding: 1.25rem;
+        min-height: 260px;
+    }
+    
+    .education-icon {
+        width: 35px;
+        height: 35px;
+        margin-right: 0.75rem;
+    }
+    
+    .education-icon i {
+        font-size: 16px;
+    }
+    
+    .education-degree {
+        font-size: 1rem;
+    }
+    
+    .education-field {
+        font-size: 0.8rem;
+    }
+    
+    .education-grid {
+        gap: 1.5rem;
+    }
 }
 
 /* Animations */
@@ -1098,6 +1230,23 @@ section {
     background: rgba(2, 6, 23, 0.85);
     padding: 5rem 0;
     position: relative;
+    overflow: hidden;
+}
+
+.experience::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.8) 0%, rgba(2, 6, 23, 0.9) 100%);
+    z-index: 1;
+}
+
+.experience .container {
+    position: relative;
+    z-index: 2;
 }
 
 /* Timeline Styles (used for Education section) */
@@ -1243,8 +1392,8 @@ section {
 
 .education-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(350px, 100%), 1fr));
-    gap: 3rem;
+    grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
+    gap: 2rem;
     width: 100%;
 }
 
@@ -1650,6 +1799,7 @@ section {
     width: 100%;
     max-width: 100%;
     padding: 0 1rem;
+    margin-bottom: 3rem; /* Added more space between portfolio links and projects */
 }
 
 /* Remove outer box styling from portfolio links */
@@ -1764,6 +1914,7 @@ section {
     max-width: 100%;
     padding: 0 1rem;
     margin-bottom: 2rem;
+    margin-top: 1rem; /* Added top margin for additional separation */
 }
 
 .project-card-new {
@@ -2282,16 +2433,17 @@ section {
     grid-template-columns: minmax(300px, 400px) 1fr;
     gap: 3rem;
     margin-bottom: 3rem;
-    align-items: stretch; /* Ensures equal heights */
-    min-height: 500px; /* Minimum height for better alignment */
+    align-items: start; /* Align to start instead of stretch */
+    min-height: auto; /* Remove minimum height constraint */
 }
 
 .contact-links-vertical {
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    height: 100%;
-    justify-content: space-between; /* Distribute items evenly */
+    justify-content: flex-start; /* Align items to start instead of space-between */
+    max-height: none; /* Remove any height constraints */
+    overflow: hidden; /* Hide any overflow completely */
 }
 
 .contact-links-vertical .contact-link-item {
@@ -2302,7 +2454,6 @@ section {
     justify-content: flex-start;
     align-items: center;
     text-align: left;
-    flex: 1; /* Equal height distribution */
     background: var(--card-bg);
     border: 1px solid var(--border-color);
     border-radius: 15px;
@@ -2371,8 +2522,7 @@ section {
     padding: 2.5rem;
     backdrop-filter: blur(20px);
     position: relative;
-    overflow: hidden;
-    height: 100%; /* Match the height of contact links */
+    overflow: visible;
     display: flex;
     flex-direction: column;
 }
@@ -2435,7 +2585,7 @@ section {
     transform: translateY(-8px) scale(1.02);
     box-shadow: 
         0 30px 60px rgba(139, 92, 246, 0.4),
-        0 0 40px rgba(139, 92, 246, 0.3);
+        0 0 0 0 40px rgba(139, 92, 246, 0.3);
 }
 
 .freelance-title {
@@ -2564,6 +2714,7 @@ section {
 .form-group textarea {
     resize: vertical;
     min-height: 120px;
+    max-height: 300px; /* Prevent excessive vertical resizing */
     line-height: 1.6;
 }
 
@@ -2693,390 +2844,63 @@ section {
     line-height: 1.4;
 }
 
-/* Essential mobile navigation fix */
-@media (max-width: 1024px) {
-    .navbar {
-        height: 70px; /* Fixed height on mobile */
-        padding: 0.5rem 0;
-    }
-    
-    .hero {
-        margin-top: 70px; /* Match mobile navbar height */
-    }
-    
-    .nav-toggle {
-        display: flex !important;
-        margin-left: auto;
-    }
-    
-    .nav-container {
-        justify-content: space-between;
-        position: relative;
-        gap: 1rem;
-        padding: 0 1.5rem; /* Increased padding for better mobile spacing */
-        height: 50px; /* Smaller height on mobile */
-        width: 100%; /* Full width on mobile */
-        max-width: none; /* Remove max-width constraint on mobile */
-    }
-    
-    .nav-logo a {
-        font-size: 1.2rem; /* Smaller logo on mobile */
-        padding: 0.6rem; /* Adjusted for circular shape */
-        height: 40px; /* Smaller circle on mobile */
-        width: 40px;
-    }
-    
-    .nav-menu {
-        position: fixed;
-        top: 0;
-        right: -100%;
-        width: 100vw;
-        height: 100vh;
-        background: linear-gradient(135deg, rgba(2, 6, 23, 0.98) 0%, rgba(30, 41, 59, 0.95) 100%);
-        backdrop-filter: blur(20px);
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 2rem;
-        margin-left: 0; /* Reset margin on mobile */
-        transition: right 0.3s ease;
-        z-index: 1000;
-    }
-    
-    .nav-menu.active {
-        right: 0;
-    }
-    
-    .nav-menu .nav-link {
-        font-size: 1.2rem;
-        padding: 1rem 2rem;
-        width: 80%;
-        text-align: center;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        color: var(--text-primary);
-        text-decoration: none;
-        transition: all 0.3s ease;
-    }
-    
-    .nav-menu .nav-link:hover {
-        background: rgba(255, 255, 255, 0.1);
-        color: var(--accent-color);
-    }
+/* Specific fix for contact section scrollbars */
+.contact {
+    overflow: hidden; /* Prevent any scrollbars in the contact section */
 }
 
-/* Additional navbar responsive adjustments */
-@media (max-width: 1200px) and (min-width: 1025px) {
-    .nav-container {
-        gap: 1.5rem; /* Further reduce gap on medium screens */
-        padding: 0 1.5rem; /* Consistent padding */
-        max-width: none; /* Full width on medium screens */
-    }
-    
-    .nav-menu {
-        gap: 1rem; /* Reduce gap between nav items */
-        margin-left: 1rem; /* Reduce left margin on medium screens */
-    }
-    
-    .nav-link {
-        padding: 0.4rem 0.6rem; /* Even smaller padding */
-        font-size: 0.8rem; /* Smaller font */
-    }
+.contact .container {
+    overflow: visible; /* Allow content to flow naturally */
 }
 
-/* Ultra-wide screens - prevent navbar from being too stretched */
-@media (min-width: 1400px) {
-    .nav-container {
-        max-width: 1400px; /* Limit max width on very large screens */
-    }
-}
-
-/* Final responsive fixes and improvements */
-
-/* Ensure consistent spacing across all screen sizes */
-.section-spacing {
-    padding: clamp(2rem, 5vw, 4rem) 0;
-}
-
-/* Make all card grids fully responsive */
-.cards-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
-    gap: clamp(1rem, 3vw, 2rem);
-    width: 100%;
-}
-
-/* Responsive typography improvements */
-.responsive-text-large {
-    font-size: clamp(2rem, 5vw, 4rem);
-}
-
-.responsive-text-medium {
-    font-size: clamp(1.2rem, 3vw, 2rem);
-}
-
-.responsive-text-small {
-    font-size: clamp(0.9rem, 2vw, 1.1rem);
-}
-
-/* Additional mobile-first improvements */
-@media (max-width: 640px) {
-    .tech-stats {
-        justify-content: center;
-        max-width: 100%;
-        padding: 0 0.5rem;
-    }
-    
-    .stat-card {
-        width: calc(50% - 0.5rem);
-        max-width: 140px;
-        height: auto;
-        min-height: 100px;
-        aspect-ratio: 1;
-    }
-    
-    .portfolio-links {
-        padding: 0 0.5rem;
-    }
-    
-    .projects-showcase {
-        padding: 0 0.5rem;
-    }
-    
-    .contact-links-vertical .contact-link-item {
-        flex: 1 1 100%;
-        max-width: none;
-    }
-    
-    .badges-stats {
-        padding: 0 0.5rem;
-    }
-}
-
-/* Extra small screens optimization */
-@media (max-width: 375px) {
-    .container {
-        padding: 0 1rem;
-    }
-    
-    .tech-stats {
-        gap: 0.3rem;
-    }
-    
-    .stat-card {
-        width: calc(50% - 0.2rem);
-        max-width: 120px;
-        min-height: 90px;
-        padding: 0.5rem 0.2rem;
-    }
-    
-    .stat-number {
-        font-size: 1.1rem;
-    }
-    
-    .stat-label {
-        font-size: 0.6rem;
-    }
-    
-    .hero-title {
-        font-size: 1.6rem;
-    }
-    
-    .name {
-        font-size: 2rem;
-    }
-}
-
-/* Landscape mobile optimization */
-@media (max-height: 500px) and (orientation: landscape) {
-    .hero {
-        min-height: 100vh;
-        padding: 1rem 0;
-    }
-    
-    .hero-title {
-        font-size: 2rem;
-    }
-    
-    .name {
-        font-size: 2.5rem;
-    }
-    
-    .tech-stats {
-        margin-top: 1.5rem;
-    }
-}
-
-/* Prevent any potential overflow issues */
-.overflow-safe {
-    overflow-x: hidden;
-    max-width: 100vw;
-    box-sizing: border-box;
-}
-
-/* Apply overflow safety to main containers */
-body, html, main, section, .container {
-    overflow-x: hidden; /* Only hide horizontal overflow */
-    width: 100%;
-    box-sizing: border-box;
-}
-
-body {
-    overflow-y: auto; /* Allow vertical scrolling for content */
-}
-
-/* Smooth scrolling for better UX */
-html {
-    scroll-behavior: smooth;
-}
-
-/* High DPI display improvements */
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-    .stat-card, .portfolio-card, .education-card, .testimonial-card {
-        border-width: 0.5px;
-    }
-}
-
-/* Final comprehensive responsive improvements */
-
-/* Ensure hero section is always responsive */
-.hero-content {
-    width: 100%;
-    max-width: 100%;
-    overflow-x: hidden;
-    box-sizing: border-box;
-}
-
-.hero-cards {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 2rem;
-    flex-wrap: wrap;
-    width: 100%;
-    max-width: 100%;
-    margin: 0 auto;
-}
-
-/* Make sure badges section is fully responsive */
-.badges-content {
-    width: 100%;
-    max-width: 100%;
-    overflow-x: hidden;
-    box-sizing: border-box;
-}
-
-.badges-stats {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-    width: 100%;
-    margin-bottom: 3rem;
-    padding: 2rem 0;
-}
-
-/* Ensure project cards are responsive */
-.portfolio-links {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
-    gap: 2rem;
-    width: 100%;
-    max-width: 100%;
-}
-
-.projects-showcase {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
-    gap: 2rem;
-    width: 100%;
-    max-width: 100%;
-    padding: 0 1rem;
-    margin-bottom: 2rem;
-}
-
-/* Ensure contact section is responsive */
+/* Ensure no unwanted scrollbars in contact section */
+.contact-form-section,
+.contact-links-vertical,
+.contact-top-section,
 .contact-content {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 clamp(1rem, 4vw, 2rem);
-    box-sizing: border-box;
-}
-
-/* Education timeline responsive improvements */
-.education-content {
-    width: 100%;
-    max-width: 100%;
     overflow-x: hidden;
-    box-sizing: border-box;
+    overflow-y: auto; /* Allow scrolling but hide scrollbar */
+    /* Hide scrollbar for Webkit browsers */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
 }
 
-.education-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(350px, 100%), 1fr));
-    gap: 3rem;
-    width: 100%;
+/* Hide scrollbar for Webkit browsers */
+.contact-form-section::-webkit-scrollbar,
+.contact-links-vertical::-webkit-scrollbar,
+.contact-top-section::-webkit-scrollbar,
+.contact-content::-webkit-scrollbar {
+    display: none;
 }
 
-/* Testimonials responsive improvements */
-.testimonials-content {
-    width: 100%;
-    max-width: 100%;
-    overflow-x: hidden;
-    box-sizing: border-box;
+/* Universal scrollbar hiding for contact section */
+.contact,
+.contact *,
+.contact-content,
+.contact-content *,
+.contact-top-section,
+.contact-top-section *,
+.contact-links-vertical,
+.contact-links-vertical *,
+.contact-form-section,
+.contact-form-section * {
+    /* Hide scrollbars completely */
+    scrollbar-width: none !important; /* Firefox */
+    -ms-overflow-style: none !important; /* Internet Explorer 10+ */
 }
 
-/* Additional testimonial responsive fixes */
-@media (max-width: 768px) {
-    .testimonial-carousel {
-        height: auto; /* Allow flexible height on mobile */
-        min-height: 400px;
-    }
-    
-    .testimonial-card {
-        padding: 2rem 1.5rem;
-        transform: none !important; /* Remove scale transform on mobile */
-    }
-    
-    .testimonial-card.active {
-        transform: none !important;
-    }
-    
-    .testimonial-text {
-        font-size: 1rem;
-        line-height: 1.6;
-    }
-    
-    .testimonial-navigation {
-        gap: 1rem;
-        margin-top: 1.5rem;
-    }
-    
-    .testimonial-prev,
-    .testimonial-next {
-        width: 40px;
-        height: 40px;
-        font-size: 0.9rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .testimonial-card {
-        padding: 1.5rem 1rem;
-    }
-    
-    .testimonial-text {
-        font-size: 0.9rem;
-    }
-    
-    .author-name {
-        font-size: 1rem;
-    }
-    
-    .testimonial-navigation {
-        gap: 0.8rem;
-    }
-    
-    .testimonial-dots {
-        gap: 0.5rem;
-    }
+/* Hide scrollbars for Webkit browsers */
+.contact::-webkit-scrollbar,
+.contact *::-webkit-scrollbar,
+.contact-content::-webkit-scrollbar,
+.contact-content *::-webkit-scrollbar,
+.contact-top-section::-webkit-scrollbar,
+.contact-top-section *::-webkit-scrollbar,
+.contact-links-vertical::-webkit-scrollbar,
+.contact-links-vertical *::-webkit-scrollbar,
+.contact-form-section::-webkit-scrollbar,
+.contact-form-section *::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+    background: transparent !important;
 }
