@@ -248,8 +248,6 @@ const observerOptions = {
 
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-        console.log('🔍 Observer triggered:', entry.target.className, 'isIntersecting:', entry.isIntersecting, 'scrollDirection:', scrollDirection);
-        
         if (entry.isIntersecting) {
             // Element is entering the viewport - animate to visible state
             entry.target.style.opacity = '1';
@@ -506,7 +504,6 @@ document.querySelectorAll(`
     }
     
     observer.observe(el);
-    console.log('🎯 Observing element for animation:', el.className, el.tagName);
 });
 
 // Contact form handling
