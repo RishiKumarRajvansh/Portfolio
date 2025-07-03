@@ -161,7 +161,7 @@ code, .code {
 section {
     padding: 5rem 0;
     position: relative;
-    z-index: 10;
+    /* z-index removed to prevent conflicts with navbar */
 }
 
 .section-title {
@@ -195,9 +195,9 @@ section {
     width: 100%;
     height: 80px; /* Fixed height instead of min-height */
     padding: 1rem 0;
-    background: rgba(15, 23, 42, 0.1);
-    backdrop-filter: blur(2px);
-    z-index: 1000;
+    background: rgba(15, 23, 42, 0.95); /* More opaque background */
+    backdrop-filter: blur(10px); /* Increased blur */
+    z-index: 10000; /* Very high z-index to ensure navbar is always on top */
     transition: all 0.3s ease;
     overflow: visible;
     box-sizing: border-box;
@@ -207,6 +207,8 @@ section {
 
 .navbar.scrolled {
     padding: 0.5rem 0;
+    background: rgba(15, 23, 42, 0.98); /* Even more opaque when scrolled */
+    backdrop-filter: blur(15px); /* Increased blur when scrolled */
 }
 
 .nav-container {
@@ -336,7 +338,7 @@ section {
     cursor: pointer;
     padding: 0.3rem; /* Reduced padding */
     gap: 3px; /* Reduced gap */
-    z-index: 1001;
+    z-index: 10001; /* Higher than navbar */
     width: 30px; /* Fixed width */
     height: 25px; /* Fixed height */
     justify-content: center;
@@ -370,9 +372,9 @@ section {
     display: flex;
     align-items: center;
     position: relative;
-    overflow: hidden;
-    margin-top: 80px; /* Add margin instead of padding to push down from navbar */
-    padding: 2rem 0; /* Normal padding for content spacing */
+    overflow: hidden; /* Prevent scrollbars */
+    margin-top: 0; /* Remove margin since navbar is now inside hero */
+    padding: 0; /* Remove padding to allow full background */
     box-sizing: border-box;
 }
 
@@ -383,27 +385,7 @@ section {
     width: 100%;
     height: 100%;
     background: linear-gradient(135deg, var(--darker-bg) 0%, var(--dark-bg) 100%);
-}
-
-.stars {
-    position: absolute;
-    width: 100%;
-    height: 100%;
     z-index: 1;
-    background-image: 
-        radial-gradient(2px 2px at 20px 30px, #eee, transparent),
-        radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.8), transparent),
-        radial-gradient(1px 1px at 90px 40px, #fff, transparent),
-        radial-gradient(1px 1px at 130px 80px, rgba(255,255,255,0.6), transparent),
-        radial-gradient(2px 2px at 160px 30px, #ddd, transparent);
-    background-repeat: repeat;
-    background-size: 200px 100px;
-    animation: sparkle 20s linear infinite;
-}
-
-@keyframes sparkle {
-    from { transform: translateX(0); }
-    to { transform: translateX(-200px); }
 }
 
 .hero-content {
@@ -411,17 +393,19 @@ section {
     flex-direction: column;
     align-items: center;
     position: relative;
-    z-index: 10;
+    z-index: 100; /* High z-index to stay above overlays but below navbar */
     min-height: 80vh;
     max-width: 900px;
     margin: 0 auto;
     text-align: center;
-    padding: 2rem 1rem;
+    padding: 8rem 1rem 2rem 1rem; /* Added top padding for navbar */
     width: 100%;
     max-width: 100%;
     overflow-x: hidden;
     box-sizing: border-box;
 }
+
+/* Duplicate .hero-content definition removed - consolidated above */
 
 .hero-text {
     animation: fadeInUp 1s ease-out;
@@ -432,6 +416,8 @@ section {
     justify-content: center;
     align-items: center;
     margin-bottom: 1rem;
+    position: relative;
+    z-index: 150; /* High z-index but below navbar */
 }
 
 .hero-cards {
@@ -443,6 +429,9 @@ section {
     width: 100%;
     max-width: 100%;
     margin: 0 auto;
+    position: relative;
+    z-index: 150; /* High z-index for proper layering but below navbar */
+    pointer-events: auto;
 }
 
 .hero-image {
@@ -461,6 +450,8 @@ section {
     font-family: var(--font-heading); /* Explicitly set heading font */
     font-weight: 700;
     letter-spacing: 2px;
+    position: relative;
+    z-index: 200; /* High z-index for visibility but below navbar */
 }
 
 .greeting {
@@ -501,7 +492,7 @@ section {
     display: inline-block !important;
     visibility: visible !important;
     opacity: 1 !important;
-    z-index: 30 !important;
+    z-index: 200 !important; /* High z-index to ensure visibility but below navbar */
     position: relative !important;
     text-shadow: 0 0 15px #0ea5e9 !important;
     letter-spacing: 3px !important;
@@ -557,6 +548,9 @@ section {
     justify-content: center;
     flex-wrap: nowrap;
     align-items: center;
+    position: relative;
+    z-index: 150; /* High z-index for clickability but below navbar */
+    pointer-events: auto;
 }
 
 .btn {
@@ -2435,6 +2429,13 @@ section {
     margin-bottom: 3rem;
     align-items: start; /* Align to start instead of stretch */
     min-height: auto; /* Remove minimum height constraint */
+    position: relative; /* Ensure proper stacking context */
+}
+
+/* Prevent any pseudo-element effects on the section container */
+.contact-top-section::before,
+.contact-top-section::after {
+    display: none !important;
 }
 
 .contact-links-vertical {
@@ -2458,7 +2459,7 @@ section {
     border: 1px solid var(--border-color);
     border-radius: 15px;
     backdrop-filter: blur(10px);
-    transition: all 0.3s ease;
+    transition: all 0.3s ease, opacity 0.6s ease, transform 0.6s ease;
     position: relative;
     overflow: hidden;
 }
@@ -2497,6 +2498,12 @@ section {
     font-size: 1.5rem;
     position: relative;
     z-index: 2;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    overflow: hidden;
 }
 
 .contact-links-vertical .contact-link-content {
@@ -2525,26 +2532,15 @@ section {
     overflow: visible;
     display: flex;
     flex-direction: column;
+    transition: all 0.3s ease, opacity 0.6s ease, transform 0.6s ease;
 }
 
 .contact-form-section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(14, 165, 233, 0.1),
-        transparent
-    );
-    transition: left 0.6s ease;
+    display: none !important;
 }
 
 .contact-form-section:hover::before {
-    left: 100%;
+    display: none !important;
 }
 
 .freelance-availability-card {
@@ -2765,36 +2761,7 @@ section {
     background: linear-gradient(135deg, #0ea5e9, #06b6d4);
 }
 
-.contact-link-icon {
-    width: 60px;
-    height: 60px;
-    border-radius: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.8rem;
-    margin-bottom: 1rem;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    position: relative;
-    overflow: hidden;
-}
-
-.contact-link-icon::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: inherit;
-    opacity: 0.1;
-    border-radius: inherit;
-    transition: opacity 0.3s ease;
-}
-
-.contact-link-item:hover .contact-link-icon::before {
-    opacity: 0.2;
-}
+/* Removed conflicting duplicate .contact-link-icon rule to prevent vibrating effects */
 
 .email-icon {
     background: linear-gradient(135deg, #ff6b6b, #ee5a52);
@@ -2903,4 +2870,84 @@ section {
     display: none !important;
     width: 0 !important;
     background: transparent !important;
+}
+
+/* =====================================
+   RESPONSIVE OPTIMIZATIONS
+   ===================================== */
+
+/* Mobile responsive optimizations */
+@media (max-width: 768px) {
+    /* Reduce navbar stars on mobile */
+    .navbar::before {
+        background-image: 
+            radial-gradient(0.8px 0.8px at 30px 15px, rgba(255,255,255,0.2), transparent),
+            radial-gradient(0.8px 0.8px at 120px 35px, rgba(255,255,255,0.15), transparent),
+            radial-gradient(0.8px 0.8px at 200px 25px, rgba(255,255,255,0.25), transparent);
+        animation-duration: 100s;
+        opacity: 0.4;
+    }
+}
+
+/* Ultra-minimal stars for very small screens */
+@media (max-width: 480px) {
+    .stars::before {
+        background-image: 
+            radial-gradient(1px 1px at 20px 30px, rgba(255,255,255,0.7), transparent),
+            radial-gradient(1px 1px at 90px 40px, rgba(255,255,255,0.6), transparent),
+            radial-gradient(1.5px 1.5px at 160px 30px, rgba(255,255,255,0.8), transparent);
+        animation-duration: 60s;
+    }
+    
+    .stars::after {
+        background-image: 
+            radial-gradient(1px 1px at 70px 50px, rgba(255,255,255,0.5), transparent),
+            radial-gradient(1px 1px at 170px 25px, rgba(255,255,255,0.6), transparent);
+        animation-duration: 80s;
+    }
+    
+    /* Minimal navbar stars */
+    .navbar::before {
+        background-image: 
+            radial-gradient(0.8px 0.8px at 30px 15px, rgba(255,255,255,0.15), transparent),
+            radial-gradient(0.8px 0.8px at 120px 35px, rgba(255,255,255,0.1), transparent);
+        animation-duration: 120s;
+        opacity: 0.3;
+    }
+}
+
+/* Prefer reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    .navbar::before {
+        animation-duration: 200s !important;
+    }
+}
+
+/* High performance mode for older devices */
+@media (max-width: 768px) and (-webkit-max-device-pixel-ratio: 1) {
+    .stars::after {
+        display: none; /* Hide second layer for single pixel ratio devices */
+    }
+    
+    .navbar::before {
+        opacity: 0.2;
+        animation-duration: 150s;
+    }
+}
+
+/* Enhanced effects for larger screens */
+@media (min-width: 1200px) {
+    /* Enhanced navbar stars for desktop */
+    .navbar::before {
+        background-image: 
+            radial-gradient(0.8px 0.8px at 30px 15px, rgba(255,255,255,0.4), transparent),
+            radial-gradient(0.8px 0.8px at 120px 35px, rgba(255,255,255,0.3), transparent),
+            radial-gradient(0.8px 0.8px at 200px 25px, rgba(255,255,255,0.5), transparent),
+            radial-gradient(0.8px 0.8px at 300px 45px, rgba(255,255,255,0.4), transparent),
+            radial-gradient(0.8px 0.8px at 380px 15px, rgba(255,255,255,0.3), transparent),
+            radial-gradient(1px 1px at 80px 55px, rgba(200,220,255,0.5), transparent),
+            radial-gradient(1px 1px at 250px 10px, rgba(255,240,200,0.4), transparent),
+            radial-gradient(1px 1px at 350px 35px, rgba(220,235,255,0.4), transparent);
+        opacity: 0.7;
+    }
 }

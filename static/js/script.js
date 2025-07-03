@@ -1,45 +1,71 @@
 // Mobile Navigation Toggle
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('🔧 Initializing mobile navigation...');
+    // Production mode - only log errors, not debug info
+    const DEBUG_MODE = false; // Set to true for debugging
+    
+    function debugLog(...args) {
+        if (DEBUG_MODE) console.log(...args);
+    }
+    
+    debugLog('🔧 Initializing mobile navigation...');
     
     const navToggle = document.getElementById('nav-toggle');
     const navMenu = document.getElementById('nav-menu');
     const navLinks = document.querySelectorAll('.nav-link');
     
-    console.log('Nav elements found:', {
+    debugLog('Nav elements found:', {
         navToggle: !!navToggle,
         navMenu: !!navMenu,
         navLinksCount: navLinks.length
     });
     
+    // Debug: Log element classes and styles - only in debug mode
+    if (DEBUG_MODE && navToggle) {
+        debugLog('Nav toggle classes:', navToggle.className);
+        debugLog('Nav toggle computed style display:', window.getComputedStyle(navToggle).display);
+    }
+    
+    if (DEBUG_MODE && navMenu) {
+        debugLog('Nav menu classes:', navMenu.className);
+        debugLog('Nav menu computed style display:', window.getComputedStyle(navMenu).display);
+    }
+    
     // Toggle mobile menu
     if (navToggle && navMenu) {
-        console.log('✅ Setting up mobile navigation event listeners');
+        debugLog('✅ Setting up mobile navigation event listeners');
         
         navToggle.addEventListener('click', function(e) {
             e.preventDefault();
             e.stopPropagation();
             
-            console.log('🔄 Nav toggle clicked');
+            debugLog('🔄 Nav toggle clicked');
+            debugLog('Before toggle - navToggle classes:', navToggle.className);
+            debugLog('Before toggle - navMenu classes:', navMenu.className);
             
             navToggle.classList.toggle('active');
             navMenu.classList.toggle('active');
             
+            debugLog('After toggle - navToggle classes:', navToggle.className);
+            debugLog('After toggle - navMenu classes:', navMenu.className);
+            debugLog('After toggle - navMenu computed display:', window.getComputedStyle(navMenu).display);
+            
             const isMenuOpen = navMenu.classList.contains('active');
-            console.log('Menu is now:', isMenuOpen ? 'OPEN' : 'CLOSED');
+            debugLog('Menu is now:', isMenuOpen ? 'OPEN' : 'CLOSED');
             
             // Prevent body scroll when menu is open
             if (isMenuOpen) {
                 document.body.style.overflow = 'hidden';
+                debugLog('Body overflow set to hidden');
             } else {
                 document.body.style.overflow = '';
+                debugLog('Body overflow restored');
             }
         });
         
         // Close menu when clicking on nav links
         navLinks.forEach((link, index) => {
             link.addEventListener('click', function() {
-                console.log(`Nav link ${index} clicked, closing menu`);
+                debugLog(`Nav link ${index} clicked, closing menu`);
                 navToggle.classList.remove('active');
                 navMenu.classList.remove('active');
                 document.body.style.overflow = '';
@@ -50,7 +76,7 @@ document.addEventListener('DOMContentLoaded', function() {
         document.addEventListener('click', function(e) {
             if (!navToggle.contains(e.target) && !navMenu.contains(e.target)) {
                 if (navMenu.classList.contains('active')) {
-                    console.log('Clicked outside menu, closing');
+                    debugLog('Clicked outside menu, closing');
                     navToggle.classList.remove('active');
                     navMenu.classList.remove('active');
                     document.body.style.overflow = '';
@@ -58,7 +84,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     } else {
-        console.error('❌ Navigation elements not found!');
+        console.error('❌ Navigation elements not found!'); // Keep error logs in production
     }
     
     // Handle window resize
@@ -75,17 +101,21 @@ document.addEventListener('DOMContentLoaded', function() {
 let typewriterRunning = false;
 let animationId = null;
 
-// Typing Animation for Name - Continuous Loop
-function typeWriter() {
+// Typing Animation for Name - Continuous Loop with Enhanced Error Handling
+function typeWriter(retryCount = 0) {
     const nameElement = document.getElementById('typewriter');
     if (!nameElement) {
-        console.error('❌ #typewriter element not found');
+        // Retry mechanism for cases where DOM isn't fully loaded
+        if (retryCount < 3) {
+            setTimeout(() => typeWriter(retryCount + 1), 1000);
+            return;
+        }
+        console.error('❌ #typewriter element not found after retries');
         return;
     }
     
     // Prevent multiple animations
     if (typewriterRunning) {
-        console.log('⚠️ Typewriter already running, skipping...');
         return;
     }
     
@@ -94,49 +124,66 @@ function typeWriter() {
     let charIndex = 0;
     let isTyping = true;
     
-    console.log('🔥 Starting NEW typewriter animation cycle');
-    
-    // Force visible styles first
-    nameElement.style.color = '#0ea5e9';
-    nameElement.style.background = 'none';
-    nameElement.style.webkitTextFillColor = '#0ea5e9';
-    nameElement.style.fontSize = '4.5rem';
-    nameElement.style.fontWeight = '900';
-    nameElement.style.display = 'inline-block';
-    nameElement.style.visibility = 'visible';
-    nameElement.style.opacity = '1';
-    nameElement.style.zIndex = '30';
-    nameElement.style.position = 'relative';
-    nameElement.style.textShadow = '0 0 15px #0ea5e9';
-    nameElement.style.letterSpacing = '3px';
-    nameElement.style.textTransform = 'uppercase';
-    
-    // Clear initial content
-    nameElement.textContent = '';
+    // Enhanced element validation and styling
+    try {
+        // Force visible styles first with error handling
+        nameElement.style.color = '#0ea5e9';
+        nameElement.style.background = 'none';
+        nameElement.style.webkitTextFillColor = '#0ea5e9';
+        nameElement.style.fontSize = '4.5rem';
+        nameElement.style.fontWeight = '900';
+        nameElement.style.display = 'inline-block';
+        nameElement.style.visibility = 'visible';
+        nameElement.style.opacity = '1';
+        nameElement.style.zIndex = '30';
+        nameElement.style.position = 'relative';
+        nameElement.style.textShadow = '0 0 15px #0ea5e9';
+        nameElement.style.letterSpacing = '3px';
+        nameElement.style.textTransform = 'uppercase';
+        
+        // Clear initial content
+        nameElement.textContent = '';
+    } catch (error) {
+        console.error('❌ Error setting typewriter styles:', error);
+        typewriterRunning = false;
+        return;
+    }
     
     function animate() {
         if (!typewriterRunning) return;
         
-        if (isTyping) {
-            if (charIndex < text.length) {
-                nameElement.textContent = text.slice(0, charIndex + 1);
-                charIndex++;
-                animationId = setTimeout(animate, 100);
+        // Additional safety check - ensure element still exists
+        if (!nameElement || !nameElement.parentNode) {
+            console.error('❌ Typewriter element removed from DOM');
+            typewriterRunning = false;
+            return;
+        }
+        
+        try {
+            if (isTyping) {
+                if (charIndex < text.length) {
+                    nameElement.textContent = text.slice(0, charIndex + 1);
+                    charIndex++;
+                    animationId = setTimeout(animate, 100);
+                } else {
+                    // Pause at the end before deleting
+                    isTyping = false;
+                    animationId = setTimeout(animate, 1500);
+                }
             } else {
-                // Pause at the end before deleting
-                isTyping = false;
-                animationId = setTimeout(animate, 1500);
+                if (charIndex > 0) {
+                    nameElement.textContent = text.slice(0, charIndex - 1);
+                    charIndex--;
+                    animationId = setTimeout(animate, 75);
+                } else {
+                    // Pause before typing again
+                    isTyping = true;
+                    animationId = setTimeout(animate, 750);
+                }
             }
-        } else {
-            if (charIndex > 0) {
-                nameElement.textContent = text.slice(0, charIndex - 1);
-                charIndex--;
-                animationId = setTimeout(animate, 75);
-            } else {
-                // Pause before typing again
-                isTyping = true;
-                animationId = setTimeout(animate, 750);
-            }
+        } catch (error) {
+            console.error('❌ Error during typewriter animation:', error);
+            typewriterRunning = false;
         }
     }
     
@@ -145,12 +192,12 @@ function typeWriter() {
         if (typewriterRunning) animate();
     }, 500);
     
-    console.log('✅ Typewriter animation initialized for:', text);
+    // Success - no logging needed in production
 }
 
 // Function to restart typewriter (can be called from console or Flask)
 function restartTypewriter() {
-    console.log('🔄 Manually restarting typewriter...');
+    // Only log in debug mode
     typewriterRunning = false;
     if (animationId) {
         clearTimeout(animationId);
@@ -161,7 +208,7 @@ function restartTypewriter() {
 
 // Function to stop typewriter
 function stopTypewriter() {
-    console.log('⏹️ Stopping typewriter...');
+    // Only log in debug mode
     typewriterRunning = false;
     if (animationId) {
         clearTimeout(animationId);
@@ -180,24 +227,8 @@ function showNameDirectly() {
     }
 }
 
-// Navigation Toggle
-const navToggle = document.getElementById('nav-toggle');
-const navMenu = document.getElementById('nav-menu');
-
-if (navToggle) {
-    navToggle.addEventListener('click', () => {
-        navMenu.classList.toggle('active');
-        navToggle.classList.toggle('active');
-    });
-}
-
-// Close mobile menu when clicking on a link
-document.querySelectorAll('.nav-link').forEach(link => {
-    link.addEventListener('click', () => {
-        navMenu.classList.remove('active');
-        navToggle.classList.remove('active');
-    });
-});
+// Navigation Toggle - Using variables already defined in DOMContentLoaded section above
+// Removed duplicate legacy handlers - all navigation is now handled in the main DOMContentLoaded section
 
 // Smooth scrolling for navigation links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -213,30 +244,56 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Navbar scroll effects (background remains constant)
-window.addEventListener('scroll', () => {
-    const navbar = document.querySelector('.navbar');
-    if (window.scrollY > 100) {
-        navbar.classList.add('scrolled');
-    } else {
-        navbar.classList.remove('scrolled');
-    }
-});
-
-// Intersection Observer for animations with scroll direction detection
+// Consolidated and optimized scroll handler
 let lastScrollY = window.scrollY;
 let scrollDirection = 'down';
 let scrollTimeout;
 
-// Track scroll direction with debouncing
 window.addEventListener('scroll', () => {
     const currentScrollY = window.scrollY;
     const diff = currentScrollY - lastScrollY;
     
-    // Only update direction if there's significant movement (reduces jitter)
+    // Navbar scroll effects
+    const navbar = document.querySelector('.hero-navbar') || document.querySelector('.navbar');
+    if (navbar && currentScrollY > 100) {
+        navbar.classList.add('scrolled');
+        document.body.classList.add('navbar-scrolled');
+    } else if (navbar) {
+        navbar.classList.remove('scrolled');
+        document.body.classList.remove('navbar-scrolled');
+    }
+    
+    // Track scroll direction with debouncing
     if (Math.abs(diff) > 5) {
         scrollDirection = diff > 0 ? 'down' : 'up';
     }
+    
+    // Parallax effect for hero background
+    const parallax = document.querySelector('.hero-background');
+    if (parallax) {
+        const speed = currentScrollY * 0.5;
+        parallax.style.transform = `translateY(${speed}px)`;
+    }
+    
+    // Active navigation highlighting
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-link');
+    
+    let current = '';
+    sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        if (currentScrollY >= (sectionTop - 200)) {
+            current = section.getAttribute('id');
+        }
+    });
+    
+    navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${current}`) {
+            link.classList.add('active');
+        }
+    });
     
     lastScrollY = currentScrollY;
 });
@@ -464,15 +521,11 @@ document.querySelectorAll(`
     .education-card,
     .portfolio-card,
     .testimonial-card,
-    .contact-link-item,
     .section-title,
     .section-subtitle,
     .portfolio-links,
     .freelance-availability-card,
     .linkedin-cta,
-    .contact-form-section,
-    .contact-top-section,
-    .contact-links-vertical .contact-link-item,
     .badges-cta,
     .credly-badge.skill-item,
     .education-card.skill-item,
@@ -502,6 +555,26 @@ document.querySelectorAll(`
         el.classList.contains('interest-item')) {
         el.style.transitionDelay = `${index * 0.05}s`;
     }
+    
+    observer.observe(el);
+});
+
+// Handle contact link items separately to avoid transition conflicts
+document.querySelectorAll('.contact-link-item').forEach((el, index) => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(30px)';
+    // Don't override the CSS transition - let CSS handle all transitions
+    // The CSS already has: transition: all 0.3s ease, opacity 0.6s ease, transform 0.6s ease;
+    
+    observer.observe(el);
+});
+
+// Handle contact form section separately to avoid shimmer conflicts
+document.querySelectorAll('.contact-form-section').forEach((el, index) => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(30px)';
+    // Don't override the CSS transition - let CSS handle all transitions
+    // We removed the shimmer effect from this element
     
     observer.observe(el);
 });
@@ -790,37 +863,9 @@ function initTestimonialCarousel() {
     });
 }
 
-// Parallax effect for hero background
-window.addEventListener('scroll', () => {
-    const scrolled = window.pageYOffset;
-    const parallax = document.querySelector('.hero-background');
-    if (parallax) {
-        const speed = scrolled * 0.5;
-        parallax.style.transform = `translateY(${speed}px)`;
-    }
-});
+// Parallax effect integrated into main scroll handler above
 
-// Active navigation highlighting
-window.addEventListener('scroll', () => {
-    const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('.nav-link');
-    
-    let current = '';
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
-        if (scrollY >= (sectionTop - 200)) {
-            current = section.getAttribute('id');
-        }
-    });
-    
-    navLinks.forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === `#${current}`) {
-            link.classList.add('active');
-        }
-    });
-});
+// Active navigation highlighting integrated into main scroll handler above
 
 // Project card hover effects
 document.querySelectorAll('.project-card').forEach(card => {
@@ -909,44 +954,120 @@ document.addEventListener('DOMContentLoaded', () => {
     if (badgesStats) animationObserver.observe(badgesStats);
 });
 
-// Initialize everything when DOM is loaded
-document.addEventListener('DOMContentLoaded', function() {
-    console.log('🎯 DOM loaded, initializing...');
-    
-    // Initialize typing animation
-    typeWriter();
-    
-    // Initialize testimonial carousel
-    initTestimonialCarousel();
-    
-    console.log('✅ Script.js initialization complete');
-});
+// ===================================
+// FRESH STARFIELD VIEWPORT SYSTEM
+// Dynamic navbar themes based on visible content
+// ===================================
 
-// Handle badge image fallbacks
-document.addEventListener('DOMContentLoaded', function() {
-    const badgeImages = document.querySelectorAll('.badge-image img');
+// Starfield viewport system initialization
+function initStarfieldViewport() {
+    console.log('⭐ Initializing Fresh Starfield Viewport System...');
     
-    badgeImages.forEach(img => {
-        img.addEventListener('error', function() {
-            this.style.display = 'none';
-            const fallbackIcon = this.nextElementSibling;
-            if (fallbackIcon && fallbackIcon.classList.contains('fallback-icon')) {
-                fallbackIcon.style.display = 'block';
+    const navbar = document.querySelector('.navbar');
+    const sections = document.querySelectorAll('section[id]');
+    
+    if (!navbar || !sections.length) {
+        console.warn('❌ Navbar or sections not found');
+        return;
+    }
+    
+    console.log(`✅ Found navbar and ${sections.length} sections`);
+    
+    // Current theme tracking
+    let currentTheme = 'hero';
+    
+    // Intersection observer for viewport detection
+    const observerOptions = {
+        root: null,
+        rootMargin: '-10% 0px -70% 0px', // Trigger when section is prominent in viewport
+        threshold: 0
+    };
+    
+    const sectionObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const sectionId = entry.target.id;
+                const newTheme = mapSectionToTheme(sectionId);
+                
+                if (newTheme && currentTheme !== newTheme) {
+                    console.log(`🎨 Viewport theme change: ${currentTheme} → ${newTheme}`);
+                    updateNavbarTheme(newTheme);
+                    currentTheme = newTheme;
+                }
             }
         });
+    }, observerOptions);
+    
+    // Map sections to themes
+    function mapSectionToTheme(sectionId) {
+        const themeMap = {
+            'home': 'hero',
+            'about': 'about', 
+            'education': 'education',
+            'badges': 'education', // Use education theme for badges
+            'experience': 'experience',
+            'projects': 'projects',
+            'testimonials': 'projects', // Use projects theme for testimonials
+            'contact': 'contact'
+        };
+        return themeMap[sectionId] || 'hero';
+    }
+    
+    // Update navbar theme
+    function updateNavbarTheme(theme) {
+        // Remove all existing theme attributes
+        navbar.removeAttribute('data-theme');
         
-        // Also check if image loads successfully
-        img.addEventListener('load', function() {
-            const fallbackIcon = this.nextElementSibling;
-            if (fallbackIcon && fallbackIcon.classList.contains('fallback-icon')) {
-                fallbackIcon.style.display = 'none';
-            }
-        });
+        // Add new theme
+        navbar.setAttribute('data-theme', theme);
+        
+        console.log(`✨ Navbar starfield theme updated to: ${theme}`);
+    }
+    
+    // Start observing sections
+    sections.forEach(section => {
+        sectionObserver.observe(section);
+        console.log(`👀 Observing section: ${section.id}`);
     });
+    
+    // Initialize with hero theme
+    updateNavbarTheme('hero');
+    
+    console.log('⭐ Fresh Starfield Viewport System initialized successfully!');
+}
+
+// ===== RESPONSIVE STARFIELD VIEWPORT HEIGHT FIX =====
+// Fix for mobile browser viewport height issues (address bar hiding/showing)
+
+function setVH() {
+    const vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+}
+
+// Set initial viewport height
+setVH();
+
+// Listen for resize events (important for mobile orientation changes)
+window.addEventListener('resize', setVH);
+
+// Listen for orientationchange for mobile devices
+window.addEventListener('orientationchange', function() {
+    // Small delay to account for mobile browser UI changes
+    setTimeout(setVH, 100);
 });
 
-// Force re-initialization of all animated elements for better bi-directional animation
-document.addEventListener('DOMContentLoaded', function() {
+console.log('📱 Responsive starfield viewport height handler initialized');
+
+// Initialize everything when DOM is loaded - REMOVED - now handled in consolidated initialization
+
+// Removed duplicate badge fallback handler - now handled in consolidated initialization
+
+// ===========================================
+// CONSOLIDATED INITIALIZATION SYSTEM  
+// ===========================================
+
+// Initialize all animated elements for better bi-directional animation
+function initAnimatedElements() {
     // Initialize education cards
     const educationCards = document.querySelectorAll('.education-card');
     educationCards.forEach((card, index) => {
@@ -1001,4 +1122,55 @@ document.addEventListener('DOMContentLoaded', function() {
         card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
         card.style.transitionDelay = '0s';
     });
-});
+}
+
+// Badge fallback initialization
+function initBadgeFallbacks() {
+    const badgeImages = document.querySelectorAll('.badge-image img');
+    
+    badgeImages.forEach(img => {
+        img.addEventListener('error', function() {
+            this.style.display = 'none';
+            const fallbackIcon = this.nextElementSibling;
+            if (fallbackIcon && fallbackIcon.classList.contains('fallback-icon')) {
+                fallbackIcon.style.display = 'block';
+            }
+        });
+        
+        img.addEventListener('load', function() {
+            const fallbackIcon = this.nextElementSibling;
+            if (fallbackIcon && fallbackIcon.classList.contains('fallback-icon')) {
+                fallbackIcon.style.display = 'none';
+            }
+        });
+    });
+}
+
+// Main initialization function - called once when DOM is ready
+function initializePortfolio() {
+    console.log('🎯 Initializing portfolio...');
+    
+    try {
+        // Initialize typing animation
+        typeWriter();
+        
+        // Initialize testimonial carousel
+        initTestimonialCarousel();
+        
+        // Initialize badge image fallbacks
+        initBadgeFallbacks();
+        
+        // Initialize animated elements
+        initAnimatedElements();
+        
+        // Initialize starfield viewport system
+        initStarfieldViewport();
+        
+        console.log('✅ Portfolio initialization complete');
+    } catch (error) {
+        console.error('❌ Error during portfolio initialization:', error);
+    }
+}
+
+// Single DOMContentLoaded listener for everything
+document.addEventListener('DOMContentLoaded', initializePortfolio);

@@ -1,11 +1,38 @@
 {% extends "base.html" %}
 
 {% block content %}
-<!-- Hero Section -->
+<!-- Hero Section with Integrated Navbar -->
 <section id="home" class="hero">
     <div class="hero-background">
-        <div class="stars"></div>
+        <div class="starfield" id="hero-starfield"></div>
     </div>
+    
+    <!-- Navigation integrated into hero -->
+    <nav class="navbar hero-navbar">
+        <div class="container">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <a href="{{ url_for('home') }}">RK</a>
+                </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#education" class="nav-link">Education</a>
+                <a href="#badges" class="nav-link">Badges</a>
+                <a href="#experience" class="nav-link">Experience</a>
+                <a href="#projects" class="nav-link">Projects</a>
+                <a href="#testimonials" class="nav-link">Testimonials</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+            <div class="nav-toggle" id="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            </div>
+        </div>
+    </nav>
+    
     <div class="container">
         <div class="hero-content">
             <div class="hero-text">
@@ -19,7 +46,7 @@
                 </p>
                 <div class="hero-buttons">
                     <a href="#projects" class="btn btn-primary">VIEW MY WORK</a>
-                    <a href="{{ url_for('contact') }}" class="btn btn-secondary">GET IN TOUCH</a>
+                    <a href="#contact" class="btn btn-secondary">GET IN TOUCH</a>
                 </div>
                 
                 <!-- Cards below buttons -->

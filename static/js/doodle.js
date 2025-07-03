@@ -23,7 +23,7 @@ async function fetchDoodleData(count = 10) {
 
 // Create a new floating FontAwesome doodle
 async function createRandomFontAwesomeDoodle(serverData = null) {
-    // console.log('🎨 Creating new doodle...');
+    // Production mode - minimal logging
     
     // Python, Data Science & Programming focused icons
     const pythonDataScienceIcons = [
@@ -80,12 +80,12 @@ async function createRandomFontAwesomeDoodle(serverData = null) {
                 const prefix = doodleData.prefix || 'fas';
                 randomIcon = `${prefix} ${iconName}`;
                 lifetime = doodleData.lifetime || 10000;
-                // console.log('Using server-generated doodle data');
+                // Server data used successfully
             } else {
                 throw new Error('No doodle data from server');
             }
         } catch (error) {
-            // console.log('Falling back to client-side generation:', error.message);
+            // Fallback to client-side generation
             // Generate on client as fallback
             randomIcon = pythonDataScienceIcons[Math.floor(Math.random() * pythonDataScienceIcons.length)];
             lifetime = Math.floor(Math.random() * 15000) + 5000; // 5-20 seconds
@@ -148,7 +148,7 @@ async function createRandomFontAwesomeDoodle(serverData = null) {
         attempts++;
     }
     
-    // console.log(`Creating doodle at position (${fixedLeft}, ${fixedTop}) after ${attempts} attempts`);
+    // Position determined after distance checks
     
     const randomSize = Math.floor(Math.random() * 20) + 20; // 20-40px
     
@@ -169,7 +169,7 @@ async function createRandomFontAwesomeDoodle(serverData = null) {
         left: ${fixedLeft}px !important;
         font-size: ${randomSize}px !important;
         color: ${getRandomColor()} !important;
-        z-index: 99999 !important;
+        z-index: 1 !important;
         transition: all 0.3s ease;
         opacity: 0.9 !important;
         display: block !important;
@@ -261,17 +261,15 @@ function manageDoodleLifecycle() {
 
 // Initialize the doodle system
 function initFontAwesomeDoodles() {
-    // console.log('🌟 Initializing FontAwesome doodle system...');
+    // Production mode - minimal logging
     
     try {
         // Clear any existing doodles
         const existingDoodles = document.querySelectorAll('.floating-fa-doodle');
-        // console.log(`Found ${existingDoodles.length} existing doodles to remove`);
         existingDoodles.forEach(doodle => doodle.remove());
         
         // Verify container
         const container = document.getElementById('floating-doodles');
-        // console.log(`Container found: ${container !== null}`);
         if (!container) {
             console.error('Container #floating-doodles not found!');
             return;
@@ -341,14 +339,18 @@ function getRandomColor() {
 
 // Start the doodle system when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
-    // console.log("🚀 Doodle.js loaded and ready");
-    // console.log("Window dimensions:", window.innerWidth, "x", window.innerHeight);
-    console.log("FontAwesome available:", typeof window.FontAwesome !== 'undefined');
+    // Production mode - minimal logging
+    
+    // Verify FontAwesome availability
+    const fontAwesomeLoaded = typeof window.FontAwesome !== 'undefined';
+    if (!fontAwesomeLoaded) {
+        console.warn('FontAwesome may not be fully loaded');
+    }
     
     // Make sure the container exists
     let container = document.getElementById('floating-doodles');
     if (!container) {
-        console.log("Creating floating-doodles container");
+        // Create container if it doesn't exist
         container = document.createElement('div');
         container.id = 'floating-doodles';
         container.className = 'floating-doodles';
@@ -358,34 +360,27 @@ document.addEventListener('DOMContentLoaded', function() {
             left: 0 !important;
             width: 100vw !important;
             height: 100vh !important;
-            z-index: 99999 !important;
+            z-index: 0 !important;
             pointer-events: none !important;
             overflow: visible !important;
             display: block !important;
             visibility: visible !important;
         `;
         document.body.appendChild(container);
-        console.log("✅ Container created and added to body");
+        // Container created successfully
     } else {
-        console.log("Found existing floating-doodles container");
-        console.log("Container styles:", container.style.cssText);
+        // Found existing container - good
     }
     
     // Force container visibility
     container.style.display = 'block';
     container.style.visibility = 'visible';
-    container.style.zIndex = '99999';
+    container.style.zIndex = '0'; // Fixed z-index
     
-    console.log("Final container check:", {
-        id: container.id,
-        exists: !!container,
-        parentNode: !!container.parentNode,
-        computedStyle: window.getComputedStyle(container).display
-    });
+    // Container verification completed
     
     // Wait for FontAwesome to be ready then initialize
     setTimeout(() => {
-        console.log("🎯 Starting doodle initialization...");
         initFontAwesomeDoodles();
     }, 1000);
 });

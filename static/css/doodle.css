@@ -7,7 +7,7 @@
     left: 0 !important;
     width: 100vw !important; /* Full viewport width */
     height: 100vh !important; /* Full viewport height */
-    z-index: 1 !important; /* Low z-index to stay behind content */
+    z-index: 0 !important; /* Behind all content */
     pointer-events: none !important; /* Don't block interaction with page content */
     overflow: visible !important; /* Allow doodles to overflow the container */
     display: block !important; /* Force display */
@@ -17,7 +17,7 @@
 /* Individual FontAwesome doodles */
 .floating-fa-doodle {
     position: fixed !important; /* Fixed position relative to viewport */
-    z-index: 2 !important; /* Low z-index to stay behind main content */
+    z-index: 1 !important; /* Behind main content but above background */
     pointer-events: none !important; /* Don't interfere with text selection */
     font-size: 25px !important;
     line-height: 1 !important;
