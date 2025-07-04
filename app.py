@@ -1,11 +1,60 @@
-from flask import Flask, render_template, request, redirect, url_for, flash, jsonify
+from flask import Flask, render_template, request, redirect, url_for, flash, jsonify, g
 import os
 import datetime
 import random
 import json
+import time
+from error_handling import handle_api_errors, handle_404_error, handle_500_error, performance_monitor, error_handler
 
 app = Flask(__name__)
-app.secret_key = 'your-secret-key-change-this-in-production'
+app.secret_key = os.environ.get('SECRET_KEY', 'your-secret-key-change-this-in-production')
+
+# Performance monitoring middleware
+@app.before_request
+def before_request():
+    g.start_time = time.time()
+    g.request_id = f"{int(time.time() * 1000)}-{random.randint(1000, 9999)}"
+
+@app.after_request
+def after_request(response):
+    duration = time.time() - g.start_time
+    
+    # Log slow requests
+    if duration > 2.0:
+        app.logger.warning(f'Slow request: {request.path} took {duration:.2f}s')
+    
+    # Update performance metrics
+    performance_monitor.record_request_time(duration, request.endpoint or 'unknown')
+    
+    # Add performance headers
+    response.headers['X-Response-Time'] = f"{duration:.3f}s"
+    response.headers['X-Request-ID'] = g.request_id
+    
+    return response
+
+# Register error handlers
+app.register_error_handler(404, handle_404_error)
+app.register_error_handler(500, handle_500_error)
+
+# Register enhanced API routes
+try:
+    from api_routes import api_bp
+    app.register_blueprint(api_bp)
+    print("✅ Enhanced API routes registered successfully")
+except ImportError as e:
+    print(f"⚠️ Enhanced API routes not available: {e}")
+except Exception as e:
+    print(f"❌ Error registering enhanced API routes: {e}")
+
+# Register hero API routes
+try:
+    from hero_api import hero_api
+    app.register_blueprint(hero_api)
+    print("✅ Hero API routes registered successfully")
+except ImportError as e:
+    print(f"⚠️ Hero API routes not available: {e}")
+except Exception as e:
+    print(f"❌ Error registering hero API routes: {e}")
 
 
 
@@ -343,9 +392,62 @@ def update_doodle_status():
     
     return jsonify({'status': 'ok', 'server_time': datetime.datetime.now().isoformat()})
 
+@app.route('/api/health')
+@handle_api_errors
+def health_check():
+    """Comprehensive health check endpoint"""
+    from error_handling import check_system_health
+    
+    health_status = check_system_health()
+    
+    return jsonify({
+        'success': True,
+        'status': health_status['status'],
+        'timestamp': datetime.datetime.now().isoformat(),
+        'version': '1.0.0',
+        'uptime': time.time() - g.start_time if hasattr(g, 'start_time') else 0,
+        'health_checks': health_status['checks']
+    })
+
+@app.route('/api/metrics')
+@handle_api_errors
+def get_metrics():
+    """Get performance metrics"""
+    perf_stats = performance_monitor.get_performance_stats()
+    error_stats = error_handler.get_error_stats()
+    
+    return jsonify({
+        'success': True,
+        'performance': perf_stats,
+        'errors': error_stats,
+        'timestamp': datetime.datetime.now().isoformat()
+    })
+
+@app.route('/api/status')
+@handle_api_errors
+def api_status():
+    """Get API status"""
+    return jsonify({
+        'success': True,
+        'status': 'operational',
+        'apis': {
+            'hero': '/api/hero/',
+            'doodles': '/api/doodles',
+            'enhanced': '/api/v2/',
+            'health': '/api/health',
+            'metrics': '/api/metrics'
+        },
+        'timestamp': datetime.datetime.now().isoformat()
+    })
+
 @app.errorhandler(404)
 def not_found(error):
     return render_template('404.html'), 404
+
+@app.route('/scroll-test')
+def scroll_test():
+    """Test page for scroll animations"""
+    return render_template('scroll-test.html')
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)

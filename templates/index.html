@@ -14,21 +14,20 @@
                 <div class="nav-logo">
                     <a href="{{ url_for('home') }}">RK</a>
                 </div>
-            <div class="nav-menu" id="nav-menu">
-                <a href="#home" class="nav-link">Home</a>
-                <a href="#about" class="nav-link">About</a>
-                <a href="#education" class="nav-link">Education</a>
-                <a href="#badges" class="nav-link">Badges</a>
-                <a href="#experience" class="nav-link">Experience</a>
-                <a href="#projects" class="nav-link">Projects</a>
-                <a href="#testimonials" class="nav-link">Testimonials</a>
-                <a href="#contact" class="nav-link">Contact</a>
-            </div>
-            <div class="nav-toggle" id="nav-toggle">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </div>
+                <div class="nav-menu" id="nav-menu">
+                    <a href="#home" class="nav-link">Home</a>
+                    <a href="#about" class="nav-link">About</a>
+                    <a href="#education" class="nav-link">Education</a>
+                    <a href="#badges" class="nav-link">Certifications</a>
+                    <a href="#projects" class="nav-link">Projects</a>
+                    <a href="#testimonials" class="nav-link">Testimonials</a>
+                    <a href="#contact" class="nav-link">Contact</a>
+                </div>
+                <div class="nav-toggle" id="nav-toggle">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
             </div>
         </div>
     </nav>
@@ -36,57 +35,57 @@
     <div class="container">
         <div class="hero-content">
             <div class="hero-text">
-                <h1 class="hero-title">
+                <h1 class="hero-title scroll-animate-up">
                     <span class="greeting">HELLO, I'M</span>
                     <span class="name" id="typewriter"></span>
                 </h1>
-                <p class="hero-subtitle">PYTHON DEVELOPER & DATA SCIENTIST</p>
-                <p class="hero-description">
+                <p class="hero-subtitle scroll-animate-up">PYTHON DEVELOPER & DATA SCIENTIST</p>
+                <p class="hero-description scroll-animate-up">
                     Passionate about transforming data into actionable insights and building scalable solutions. Specialized in machine learning, data analysis, and full-stack Python development.
                 </p>
-                <div class="hero-buttons">
+                <div class="hero-buttons scroll-animate-up">
                     <a href="#projects" class="btn btn-primary">VIEW MY WORK</a>
                     <a href="#contact" class="btn btn-secondary">GET IN TOUCH</a>
                 </div>
                 
                 <!-- Cards below buttons -->
                 <div class="hero-cards">
-                    <div class="profile-card">
+                    <div class="profile-card scroll-animate-down">
                         <div class="profile-avatar">
                             <i class="fas fa-terminal"></i>
                         </div>
                     </div>
                     
-                    <div class="tech-stats">
-                        <div class="stat-card">
+                    <div class="tech-stats scroll-animate-down">
+                        <div class="stat-card scroll-animate-up" data-stat-id="python_years">
                             <div class="stat-icon"><i class="fab fa-python"></i></div>
                             <div class="stat-info">
                                 <span class="stat-number" data-target="3">3+</span>
                                 <span class="stat-label">YEARS PYTHON</span>
                             </div>
                         </div>
-                        <div class="stat-card">
+                        <div class="stat-card scroll-animate-scale" data-stat-id="data_projects">
                             <div class="stat-icon"><i class="fas fa-chart-bar"></i></div>
                             <div class="stat-info">
                                 <span class="stat-number" data-target="1">1+</span>
                                 <span class="stat-label">DATA PROJECTS</span>
                             </div>
                         </div>
-                        <div class="stat-card">
+                        <div class="stat-card scroll-animate-up" data-stat-id="flask_apps">
                             <div class="stat-icon"><i class="fas fa-flask"></i></div>
                             <div class="stat-info">
                                 <span class="stat-number" data-target="15">15+</span>
                                 <span class="stat-label">FLASK APPS</span>
                             </div>
                         </div>
-                        <div class="stat-card">
+                        <div class="stat-card scroll-animate-scale" data-stat-id="ml_models">
                             <div class="stat-icon"><i class="fas fa-robot"></i></div>
                             <div class="stat-info">
                                 <span class="stat-number" data-target="10">10+</span>
                                 <span class="stat-label">ML MODELS</span>
                             </div>
                         </div>
-                        <div class="stat-card">
+                        <div class="stat-card scroll-animate-up" data-stat-id="django_projects">
                             <div class="stat-icon"><i class="fas fa-server"></i></div>
                             <div class="stat-info">
                                 <span class="stat-number" data-target="4">4+</span>
@@ -101,66 +100,214 @@
 </section>
 
 <!-- About Section -->
-<section id="about" class="about">
+<section id="about" class="about scroll-animate-up">
     <div class="container">
-        <h2 class="section-title">About Me</h2>
+        <h2 class="section-title scroll-animate-up">About Me</h2>
         <div class="about-content">
-            <div class="about-text">
-                <p class="about-intro">
-                    I'm a creative and analytical developer with a passion for turning complex problems into elegant solutions.
-                </p>
-                
-                <!-- Technical Skills -->
-                <div class="about-section">
-                    <h3 class="about-section-title">Technical Skills</h3>
-                    <div class="tech-skills">
-                        <span class="tech-tag">PYTHON</span>
-                        <span class="tech-tag">JAVASCRIPT</span>
-                        <span class="tech-tag">HTML/CSS</span>
-                        <span class="tech-tag">FLASK</span>
-                        <span class="tech-tag">DJANGO</span>
-                        <span class="tech-tag">DATA SCIENCE</span>
-                        <span class="tech-tag">MACHINE LEARNING</span>
-                        <span class="tech-tag">SQL</span>
-                    </div>
+            <!-- Quick Stats -->
+            <div class="quick-stats scroll-animate-down">
+                <div class="stat-item scroll-animate-up">
+                    <div class="stat-number" data-target="3">3+</div>
+                    <div class="stat-label">Years Experience</div>
                 </div>
+                <div class="stat-item scroll-animate-up">
+                    <div class="stat-number" data-target="1">1+</div>
+                    <div class="stat-label">Projects Completed</div>
+                </div>
+                <div class="stat-item scroll-animate-up">
+                    <div class="stat-number" data-target="15">15+</div>
+                    <div class="stat-label">Technologies</div>
+                </div>
+            </div>
+            
+            <!-- About Introduction Card -->
+            <div class="about-intro-card scroll-animate-scale">
+                <div class="about-intro-content">
+                    <p class="about-intro">
+                        🚀 Innovative Full-Stack Developer & Data Scientist with a passion for creating cutting-edge solutions. I transform complex challenges into elegant, scalable applications using modern technologies and AI-driven approaches.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Skills & Technologies Card -->
+            <div class="skills-card scroll-animate-up">
+                <h3 class="card-title scroll-animate-up">💻 Skills & Technologies</h3>
+                <p class="skills-intro scroll-animate-up">Cutting-edge tech stack powering modern solutions</p>
                 
-                <!-- Interests -->
-                <div class="about-section">
-                    <h3 class="about-section-title">Interests</h3>
-                    <div class="interests-list">
-                        <div class="interest-item">
-                            <i class="fas fa-film"></i>
-                            <span>Marvel Movies & Web Series</span>
+                <!-- Skills Grid Layout -->
+                <div class="skills-grid">
+                    <!-- Programming Languages -->
+                    <div class="skill-category scroll-animate-up">
+                        <h4 class="category-title">
+                            <span class="category-icon">💻</span>
+                            Programming Languages
+                        </h4>
+                        <div class="tech-skills">
+                            <a href="https://www.python.org/" class="tech-tag python scroll-animate-down" target="_blank">
+                                <i class="fab fa-python"></i>
+                                Python
+                            </a>
+                            <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" class="tech-tag javascript scroll-animate-down" target="_blank">
+                                <i class="fab fa-js-square"></i>
+                                JavaScript
+                            </a>
+                            <a href="https://developer.mozilla.org/en-US/docs/Web/HTML" class="tech-tag html scroll-animate-down" target="_blank">
+                                <i class="fab fa-html5"></i>
+                                HTML
+                            </a>
+                            <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" class="tech-tag css scroll-animate-down" target="_blank">
+                                <i class="fab fa-css3-alt"></i>
+                                CSS
+                            </a>
+                            <span class="tech-tag sql scroll-animate-down">
+                                <i class="fas fa-database"></i>
+                                SQL
+                            </span>
                         </div>
-                        <div class="interest-item">
-                            <i class="fas fa-gamepad"></i>
-                            <span>Video Gaming</span>
+                    </div>
+
+                    <!-- Frameworks & Libraries -->
+                    <div class="skill-category scroll-animate-up">
+                        <h4 class="category-title">
+                            <span class="category-icon">⚙️</span>
+                            Frameworks & Libraries
+                        </h4>
+                        <div class="tech-skills">
+                            <a href="https://flask.palletsprojects.com/" class="tech-tag flask scroll-animate-down" target="_blank">
+                                <i class="fas fa-fire"></i>
+                                Flask
+                            </a>
+                            <a href="https://www.djangoproject.com/" class="tech-tag django scroll-animate-down" target="_blank">
+                                <i class="fab fa-python"></i>
+                                Django
+                            </a>
+                            <a href="https://pandas.pydata.org/" class="tech-tag pandas scroll-animate-down" target="_blank">
+                                <i class="fas fa-chart-line"></i>
+                                Pandas
+                            </a>
+                            <a href="https://numpy.org/" class="tech-tag numpy scroll-animate-down" target="_blank">
+                                <i class="fas fa-calculator"></i>
+                                NumPy
+                            </a>
+                            <a href="https://scikit-learn.org/" class="tech-tag sklearn scroll-animate-down" target="_blank">
+                                <i class="fas fa-brain"></i>
+                                Scikit-learn
+                            </a>
                         </div>
-                        <div class="interest-item">
-                            <i class="fas fa-star"></i>
-                            <span>Stargazing & Constellations</span>
+                    </div>
+
+                    <!-- Data Science & ML -->
+                    <div class="skill-category scroll-animate-up">
+                        <h4 class="category-title">
+                            <span class="category-icon">🧠</span>
+                            Data Science & ML
+                        </h4>
+                        <div class="tech-skills">
+                            <span class="tech-tag ml scroll-animate-down">
+                                <i class="fas fa-robot"></i>
+                                Machine Learning
+                            </span>
+                            <span class="tech-tag data-science scroll-animate-down">
+                                <i class="fas fa-chart-bar"></i>
+                                Data Science
+                            </span>
+                            <a href="https://matplotlib.org/" class="tech-tag matplotlib scroll-animate-down" target="_blank">
+                                <i class="fas fa-chart-area"></i>
+                                Matplotlib
+                            </a>
+                            <a href="https://seaborn.pydata.org/" class="tech-tag seaborn scroll-animate-down" target="_blank">
+                                <i class="fas fa-chart-pie"></i>
+                                Seaborn
+                            </a>
+                            <a href="https://jupyter.org/" class="tech-tag jupyter scroll-animate-down" target="_blank">
+                                <i class="fas fa-book"></i>
+                                Jupyter
+                            </a>
                         </div>
-                        <div class="interest-item">
-                            <i class="fas fa-robot"></i>
-                            <span>Testing New AI Technologies</span>
+                    </div>
+
+                    <!-- Databases -->
+                    <div class="skill-category scroll-animate-up">
+                        <h4 class="category-title">
+                            <span class="category-icon">🗄️</span>
+                            Databases
+                        </h4>
+                        <div class="tech-skills">
+                            <a href="https://www.mysql.com/" class="tech-tag mysql scroll-animate-down" target="_blank">
+                                <i class="fas fa-database"></i>
+                                MySQL
+                            </a>
+                            <a href="https://www.postgresql.org/" class="tech-tag postgresql scroll-animate-down" target="_blank">
+                                <i class="fas fa-elephant"></i>
+                                PostgreSQL
+                            </a>
+                            <a href="https://www.sqlite.org/" class="tech-tag sqlite scroll-animate-down" target="_blank">
+                                <i class="fas fa-database"></i>
+                                SQLite
+                            </a>
+                            <a href="https://www.mongodb.com/" class="tech-tag mongodb scroll-animate-down" target="_blank">
+                                <i class="fas fa-leaf"></i>
+                                MongoDB
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Tools & Platforms -->
+                    <div class="skill-category scroll-animate-up">
+                        <h4 class="category-title">
+                            <span class="category-icon">🛠️</span>
+                            Tools & Platforms
+                        </h4>
+                        <div class="tech-skills">
+                            <a href="https://git-scm.com/" class="tech-tag git scroll-animate-down" target="_blank">
+                                <i class="fab fa-git-alt"></i>
+                                Git
+                            </a>
+                            <a href="https://github.com/" class="tech-tag github scroll-animate-down" target="_blank">
+                                <i class="fab fa-github"></i>
+                                GitHub
+                            </a>
+                            <a href="https://code.visualstudio.com/" class="tech-tag vscode scroll-animate-down" target="_blank">
+                                <i class="fas fa-code"></i>
+                                VS Code
+                            </a>
+                            <a href="https://www.docker.com/" class="tech-tag docker scroll-animate-down" target="_blank">
+                                <i class="fab fa-docker"></i>
+                                Docker
+                            </a>
+                            <span class="tech-tag api scroll-animate-down">
+                                <i class="fas fa-plug"></i>
+                                REST APIs
+                            </span>
+                            <span class="tech-tag api scroll-animate-down">
+                                <i class="fas fa-plug"></i>
+                                Gen-Ai
+                            </span>
                         </div>
                     </div>
                 </div>
             </div>
-            
-            <div class="about-stats">
-                <div class="stat-card">
-                    <div class="stat-number" data-target="3">3+</div>
-                    <div class="stat-label">YEARS EXPERIENCE</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number" data-target="1">1+</div>
-                    <div class="stat-label">PROJECTS COMPLETED</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number" data-target="5">5+</div>
-                    <div class="stat-label">TECHNOLOGIES</div>
+
+            <!-- Interests & Personal Card -->
+            <div class="interests-card scroll-animate-down">
+                <h3 class="card-title">🌟 Interests & Hobbies</h3>
+                <div class="interests-grid">
+                    <div class="interest-item">
+                        <i class="fas fa-film"></i>
+                        <span>Marvel Movies & Web Series</span>
+                    </div>
+                    <div class="interest-item">
+                        <i class="fas fa-gamepad"></i>
+                        <span>Video Gaming</span>
+                    </div>
+                    <div class="interest-item">
+                        <i class="fas fa-star"></i>
+                        <span>Stargazing & Constellations</span>
+                    </div>
+                    <div class="interest-item">
+                        <i class="fas fa-robot"></i>
+                        <span>Testing New AI Technologies</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -168,11 +315,11 @@
 </section>
 
 <!-- Education Section -->
-<section id="education" class="education">
+<section id="education" class="education scroll-animate-up">
     <div class="container">
-        <h2 class="section-title">Education</h2>
+        <h2 class="section-title scroll-animate-up">Education</h2>
         <div class="timeline">
-            <div class="timeline-item">
+            <div class="timeline-item scroll-animate-down">
                 <div class="timeline-content">
                     <h3 class="timeline-title">Bachelor of Technology</h3>
                     <h4 class="timeline-company">Computer Science & Engineering</h4>
@@ -185,7 +332,7 @@
                 <div class="timeline-date">2019 - 2023</div>
             </div>
             
-            <div class="timeline-item">
+            <div class="timeline-item scroll-animate-up">
                 <div class="timeline-content">
                     <h3 class="timeline-title">Data Science Certification</h3>
                     <h4 class="timeline-company">Machine Learning & Analytics</h4>
@@ -198,7 +345,7 @@
                 <div class="timeline-date">2022</div>
             </div>
             
-            <div class="timeline-item">
+            <div class="timeline-item scroll-animate-down">
                 <div class="timeline-content">
                     <h3 class="timeline-title">Python Developer Certification</h3>
                     <h4 class="timeline-company">Full Stack Development</h4>
@@ -215,19 +362,19 @@
 </section>
 
 <!-- Credly Badges Section -->
-<section id="badges" class="credly-badges">
+<section id="badges" class="credly-badges scroll-animate-up">
     <div class="container">
-        <h2 class="section-title">Professional Certifications</h2>
-        <p class="section-subtitle">VERIFIED DIGITAL CREDENTIALS FROM INDUSTRY LEADERS</p>
+        <h2 class="section-title scroll-animate-up">Professional Certifications</h2>
+        <p class="section-subtitle scroll-animate-up">VERIFIED DIGITAL CREDENTIALS FROM INDUSTRY LEADERS</p>
         
-        <div class="badges-showcase">
-            <div class="badge-category">
+        <div class="badges-showcase scroll-animate-down">
+            <div class="badge-category scroll-animate-up">
                 <h3 class="category-title">
                     <i class="fab fa-python"></i>
                     PYTHON & DATA SCIENCE
                 </h3>
                 <div class="badges-grid">
-                    <div class="credly-badge skill-item">
+                    <div class="credly-badge skill-item scroll-animate-up">
                         <div class="badge-image">
                             <img src="https://images.credly.com/images/84ac9eff-b8a2-4683-846b-f59887a73801/image.png" alt="Machine Learning with Python" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
                             <i class="fas fa-robot fallback-icon"></i>
@@ -239,7 +386,7 @@
                         </div>
                     </div>
                     
-                    <div class="credly-badge skill-item">
+                    <div class="credly-badge skill-item scroll-animate-up">
                         <div class="badge-image">
                             <img src="https://images.credly.com/images/63316b60-f62d-4e51-aacc-c23cb850089d/image.png" alt="Data Science Foundations" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
                             <i class="fas fa-chart-bar fallback-icon"></i>
@@ -251,7 +398,7 @@
                         </div>
                     </div>
                     
-                    <div class="credly-badge skill-item">
+                    <div class="credly-badge skill-item scroll-animate-up">
                         <div class="badge-image">
                             <img src="https://images.credly.com/images/84ac9eff-b8a2-4683-846b-f59887a73801/image.png" alt="Python for Data Science" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
                             <i class="fab fa-python fallback-icon"></i>
@@ -263,7 +410,7 @@
                         </div>
                     </div>
                     
-                    <div class="credly-badge skill-item">
+                    <div class="credly-badge skill-item scroll-animate-up">
                         <div class="badge-image">
                             <img src="https://images.credly.com/images/be8fcaeb-c769-4858-b567-ffaaa73ce8cf/image.png" alt="Data Analysis with Python" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
                             <i class="fas fa-chart-line fallback-icon"></i>
@@ -275,7 +422,7 @@
                         </div>
                     </div>
                     
-                    <div class="credly-badge skill-item">
+                    <div class="credly-badge skill-item scroll-animate-up">
                         <div class="badge-image">
                             <img src="https://images.credly.com/images/84ac9eff-b8a2-4683-846b-f59887a73801/image.png" alt="Python 101 for Data Science" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
                             <i class="fab fa-python fallback-icon"></i>
@@ -319,7 +466,7 @@
                         </div>
                     </div>
                     
-                    <div class="credly-badge skill-item">
+                    <div class="credly-badge skill-item scroll-animate-up">
                         <div class="badge-image">
                             <img src="https://images.credly.com/images/a972f054-be07-4845-85c7-95c8d11852b1/image.png" alt="Network Security" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
                             <i class="fas fa-shield-alt fallback-icon"></i>
@@ -333,13 +480,13 @@
                 </div>
             </div>
             
-            <div class="badge-category">
+            <div class="badge-category scroll-animate-up">
                 <h3 class="category-title">
                     <i class="fas fa-shield-alt"></i>
                     CYBERSECURITY
                 </h3>
                 <div class="badges-grid">
-                    <div class="credly-badge skill-item">
+                    <div class="credly-badge skill-item scroll-animate-up">
                         <div class="badge-image">
                             <img src="https://images.credly.com/images/054913b2-e271-49a2-a1a4-9bf1c1f9a404/image.png" alt="Introduction to Cybersecurity" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
                             <i class="fas fa-shield-alt fallback-icon"></i>
@@ -351,7 +498,7 @@
                         </div>
                     </div>
                     
-                    <div class="credly-badge skill-item">
+                    <div class="credly-badge skill-item scroll-animate-up">
                         <div class="badge-image">
                             <img src="https://images.credly.com/images/af8c6b4e-fc31-47c4-8dcb-eb7a2065dc5b/image.png" alt="Cybersecurity Fundamentals" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
                             <i class="fas fa-lock fallback-icon"></i>
@@ -391,88 +538,61 @@
 </section>
 
 <!-- Experience Section -->
-<section id="experience" class="experience">
+<section id="experience" class="experience scroll-animate-up">
     <div class="container">
-        <h2 class="section-title">Experience</h2>
-        <div class="education-grid">
-            <div class="education-card skill-item">
-                <div class="education-header">
-                    <div class="education-icon">
-                        <i class="fas fa-laptop-code"></i>
-                    </div>
-                    <div class="education-title-group">
-                        <h3 class="education-degree">Senior Python Developer</h3>
-                        <h4 class="education-field">Data Analysis & ML</h4>
-                    </div>
+        <h2 class="section-title scroll-animate-up">Experience</h2>
+        <div class="experience-cards">
+            <div class="experience-card scroll-animate-down">
+                <div class="experience-header">
+                    <h3 class="experience-title">Senior Python Developer</h3>
+                    <div class="experience-date">2023 - Present</div>
                 </div>
-                <div class="education-content">
-                    <p class="education-institution">Tech Solutions Inc.</p>
-                    <div class="education-year">
-                        <p>2023 - Present</p>
-                    </div>
-                    <p class="education-description">
-                        Led development of data analysis platforms and machine learning models for enterprise clients.
-                        Implemented scalable solutions using Python, Flask, and cloud technologies.
-                    </p>
-                </div>
+                <h4 class="experience-company">Tech Solutions Inc.</h4>
+                <p class="experience-description">
+                    Led development of data analysis platforms and machine learning models for enterprise clients.
+                    Implemented scalable solutions using Python, Flask, and cloud technologies.
+                    Specialized in Data Analysis & ML applications.
+                </p>
             </div>
             
-            <div class="education-card skill-item">
-                <div class="education-header">
-                    <div class="education-icon">
-                        <i class="fas fa-chart-bar"></i>
-                    </div>
-                    <div class="education-title-group">
-                        <h3 class="education-degree">Data Scientist</h3>
-                        <h4 class="education-field">Predictive Analytics</h4>
-                    </div>
+            <div class="experience-card scroll-animate-up">
+                <div class="experience-header">
+                    <h3 class="experience-title">Data Scientist</h3>
+                    <div class="experience-date">2022 - 2023</div>
                 </div>
-                <div class="education-content">
-                    <p class="education-institution">Analytics Pro</p>
-                    <div class="education-year">
-                        <p>2022 - 2023</p>
-                    </div>
-                    <p class="education-description">
-                        Developed predictive models and automated data pipelines. Worked with large datasets
-                        to extract meaningful insights for business decision-making.
-                    </p>
-                </div>
+                <h4 class="experience-company">Analytics Pro</h4>
+                <p class="experience-description">
+                    Developed predictive models and automated data pipelines. Worked with large datasets
+                    to extract meaningful insights for business decision-making.
+                    Specialized in Predictive Analytics.
+                </p>
             </div>
             
-            <div class="education-card skill-item">
-                <div class="education-header">
-                    <div class="education-icon">
-                        <i class="fas fa-code"></i>
-                    </div>
-                    <div class="education-title-group">
-                        <h3 class="education-degree">Junior Python Developer</h3>
-                        <h4 class="education-field">Web Applications</h4>
-                    </div>
+            <div class="experience-card scroll-animate-right">
+                <div class="experience-header">
+                    <h3 class="experience-title">Junior Python Developer</h3>
+                    <div class="experience-date">2021 - 2022</div>
                 </div>
-                <div class="education-content">
-                    <p class="education-institution">StartUp Labs</p>
-                    <div class="education-year">
-                        <p>2021 - 2022</p>
-                    </div>
-                    <p class="education-description">
-                        Built web applications using Flask and Django. Collaborated with cross-functional teams
-                        to deliver high-quality software solutions.
-                    </p>
-                </div>
+                <h4 class="experience-company">StartUp Labs</h4>
+                <p class="experience-description">
+                    Built web applications using Flask and Django. Collaborated with cross-functional teams
+                    to deliver high-quality software solutions.
+                    Specialized in Web Applications development.
+                </p>
             </div>
         </div>
     </div>
 </section>
 
 <!-- Projects Section -->
-<section id="projects" class="projects">
+<section id="projects" class="projects scroll-animate-up">
     <div class="container">
-        <h2 class="section-title">Featured Projects</h2>
-        <p class="section-subtitle">EXPLORE MY DEVELOPMENT AND DATA SCIENCE PROJECTS</p>
+        <h2 class="section-title scroll-animate-up">Featured Projects</h2>
+        <p class="section-subtitle scroll-animate-up">EXPLORE MY DEVELOPMENT AND DATA SCIENCE PROJECTS</p>
         
         <!-- Portfolio Links Row -->
-        <div class="portfolio-links skill-item">
-            <div class="portfolio-card github-card">
+        <div class="portfolio-links skill-item scroll-animate-down">
+            <div class="portfolio-card github-card scroll-animate-scale">
                 <div class="portfolio-icon">
                     <i class="fab fa-github"></i>
                 </div>
@@ -496,8 +616,8 @@
         </div>
         
         <!-- Main Projects Grid -->
-        <div class="projects-showcase">
-            <div class="project-card-new">
+        <div class="projects-showcase scroll-animate-up">
+            <div class="project-card-new scroll-animate-down">
                 <div class="project-header">
                     <div class="project-icon-new">
                         <i class="fas fa-globe"></i>
@@ -529,7 +649,7 @@
                 </div>
             </div>
             
-            <div class="project-card-new">
+            <div class="project-card-new scroll-animate-left">
                 <div class="project-header">
                     <div class="project-icon-new">
                         <i class="fas fa-chart-line"></i>
@@ -563,8 +683,8 @@
         </div>
         
         <!-- Second Row Projects -->
-        <div class="projects-showcase">
-            <div class="project-card-new">
+        <div class="projects-showcase scroll-animate-down">
+            <div class="project-card-new scroll-animate-right">
                 <div class="project-header">
                     <div class="project-icon-new">
                         <i class="fas fa-chart-bar"></i>
@@ -598,7 +718,7 @@
                 </div>
             </div>
             
-            <div class="project-card-new">
+            <div class="project-card-new scroll-animate-scale">
                 <div class="project-header">
                     <div class="project-icon-new">
                         <i class="fas fa-shopping-cart"></i>
@@ -636,15 +756,15 @@
 </section>
 
 <!-- Testimonials Section -->
-<section id="testimonials" class="testimonials">
+<section id="testimonials" class="testimonials scroll-animate-up">
     <div class="container">
-        <h2 class="section-title">What Colleagues Say</h2>
-        <p class="section-subtitle">Testimonials from my LinkedIn connections</p>
+        <h2 class="section-title scroll-animate-up">What Colleagues Say</h2>
+        <p class="section-subtitle scroll-animate-up">Testimonials from my LinkedIn connections</p>
         
-        <div class="testimonials-container">
+        <div class="testimonials-container scroll-animate-down">
             <div class="testimonial-carousel">
                 <div class="testimonial-cards-container">
-                    <div class="testimonial-card active" data-index="0">
+                    <div class="testimonial-card active scroll-animate-down" data-index="0">
                         <div class="testimonial-content">
                             <p class="testimonial-text">
                                 "Working with Rishi has been a great experience. His technical expertise in Python and data analysis is impressive, but what sets him apart is his ability to communicate complex concepts clearly. He's a natural teacher and mentor, always ready to help teammates learn and grow. His work ethic is exemplary."
@@ -664,7 +784,7 @@
                         </div>
                     </div>
                     
-                    <div class="testimonial-card" data-index="1">
+                    <div class="testimonial-card scroll-animate-left" data-index="1">
                         <div class="testimonial-content">
                             <p class="testimonial-text">
                                 "Rishi's attention to detail and problem-solving approach is remarkable. He consistently delivers high-quality code and has a deep understanding of machine learning algorithms. Working with him on data science projects has been incredibly productive and insightful."
@@ -751,17 +871,17 @@
 </section>
 
 <!-- Contact Section -->
-<section id="contact" class="contact">
+<section id="contact" class="contact scroll-animate-up">
     <div class="container">
-        <h2 class="section-title">LET'S CONNECT</h2>
-        <p class="section-subtitle">READY TO COLLABORATE OR THE NEXT PROJECT</p>
+        <h2 class="section-title scroll-animate-up">LET'S CONNECT</h2>
+        <p class="section-subtitle scroll-animate-up">READY TO COLLABORATE OR THE NEXT PROJECT</p>
         
         <div class="contact-content">
             <!-- Top Row: Contact Links and Contact Form -->
             <div class="contact-top-section">
                 <!-- Contact Links Section (Left side - Vertical Layout) -->
-                <div class="contact-links-vertical">
-                    <div class="contact-link-item">
+                <div class="contact-links-vertical scroll-animate-down">
+                    <div class="contact-link-item scroll-animate-up">
                         <div class="contact-link-icon email-icon">
                             <i class="fas fa-envelope"></i>
                         </div>
@@ -771,7 +891,7 @@
                         </div>
                     </div>
                     
-                    <div class="contact-link-item">
+                    <div class="contact-link-item scroll-animate-up">
                         <div class="contact-link-icon linkedin-icon">
                             <i class="fab fa-linkedin"></i>
                         </div>
@@ -842,12 +962,12 @@
             </div>
             
             <!-- Bottom Section: Freelance Card -->
-            <div class="freelance-availability-card">
-                <h3 class="freelance-title">AVAILABLE FOR FREELANCE PROJECTS</h3>
-                <p class="freelance-description">
+            <div class="freelance-availability-card scroll-animate-down">
+                <h3 class="freelance-title scroll-animate-up">AVAILABLE FOR FREELANCE PROJECTS</h3>
+                <p class="freelance-description scroll-animate-up">
                     Looking for expert in web development, Data Science, integrations, or automation to bring your ideas to life.
                 </p>
-                <a href="{{ url_for('pricing_inquiry') }}" class="hire-btn">GET MY PRICING <i class="fas fa-arrow-right"></i></a>
+                <a href="{{ url_for('pricing_inquiry') }}" class="hire-btn scroll-animate-down">GET MY PRICING <i class="fas fa-arrow-right"></i></a>
             </div>
         </div>
     </div>

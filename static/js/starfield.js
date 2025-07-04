@@ -3,17 +3,18 @@
 class StarfieldSystem {
     constructor() {
         this.stars = [];
+        this.globalStars = [];
         this.shootingStars = [];
         this.constellations = [];
         this.heroStarfield = null;
-        this.navbarStarfield = null;
+        this.globalStarfield = null;
         this.animationFrame = null;
         this.isInitialized = false;
         
         // Configuration - Enhanced for Better Visual Impact
         this.config = {
-            starCount: 250, // Increased from 150
-            heroStarCount: 300, // Extra stars for hero section
+            starCount: 150, // Hero section stars
+            globalStarCount: 300, // Global page stars
             shootingStarInterval: 3000, // More frequent - every 3 seconds instead of 8
             shootingStarChance: 0.6, // 60% chance instead of 30%
             constellationCount: 5, // More constellations
@@ -27,32 +28,48 @@ class StarfieldSystem {
     init() {
         if (this.isInitialized) return;
         
-        // Wait for DOM to be ready
+        // Wait for both DOM and all resources to be ready
         if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', () => this.setup());
+            document.addEventListener('DOMContentLoaded', () => {
+                setTimeout(() => this.setup(), 500); // Delay to ensure CSS is loaded
+            });
         } else {
-            this.setup();
+            setTimeout(() => this.setup(), 500); // Delay to ensure CSS is loaded
         }
     }
     
     setup() {
         this.heroStarfield = document.getElementById('hero-starfield');
-        // Remove navbar starfield since navbar is now in hero
-        this.navbarStarfield = null;
+        this.globalStarfield = document.getElementById('global-starfield');
+        
+        // Create global starfield container if it doesn't exist
+        if (!this.globalStarfield) {
+            this.createGlobalStarfield();
+        }
         
         if (!this.heroStarfield) {
             console.warn('Hero starfield container not found');
-            return;
         }
         
         this.createStars();
         this.setupShootingStars();
         this.setupConstellations();
-        // Remove navbar theme setup since navbar is in hero
         this.startAnimation();
         
         this.isInitialized = true;
-        console.log('✨ Starfield system initialized (hero-only mode)');
+        console.log('✨ Starfield system initialized with global coverage');
+    }
+    
+    createGlobalStarfield() {
+        // Create global starfield container
+        this.globalStarfield = document.createElement('div');
+        this.globalStarfield.className = 'starfield-global';
+        this.globalStarfield.id = 'global-starfield';
+        
+        // Insert at the beginning of body
+        document.body.insertBefore(this.globalStarfield, document.body.firstChild);
+        
+        console.log('🌌 Global starfield container created');
     }
     
     createStars() {
@@ -60,16 +77,25 @@ class StarfieldSystem {
         if (this.heroStarfield) {
             this.heroStarfield.innerHTML = '';
         }
+        if (this.globalStarfield) {
+            this.globalStarfield.innerHTML = '';
+        }
         
         this.stars = [];
+        this.globalStars = [];
         
-        // Create stars only for hero section now
-        for (let i = 0; i < this.config.heroStarCount; i++) {
-            this.createStar();
+        // Create stars for hero section
+        for (let i = 0; i < this.config.starCount; i++) {
+            this.createStar(true);
+        }
+        
+        // Create stars for global background
+        for (let i = 0; i < this.config.globalStarCount; i++) {
+            this.createStar(false);
         }
     }
     
-    createStar() {
+    createStar(isHero = true) {
         const star = {
             x: Math.random() * 100,
             y: Math.random() * 100,
@@ -81,21 +107,24 @@ class StarfieldSystem {
             floatDirection: Math.random() * Math.PI * 2
         };
         
-        // Create star element only for hero
-        if (this.heroStarfield) {
+        // Create star element
+        if (isHero && this.heroStarfield) {
             star.element = this.createStarElement(star, false);
             this.heroStarfield.appendChild(star.element);
+            this.stars.push(star);
+        } else if (!isHero && this.globalStarfield) {
+            star.element = this.createStarElement(star, true);
+            this.globalStarfield.appendChild(star.element);
+            this.globalStars.push(star);
         }
-        
-        this.stars.push(star);
     }
     
-    createStarElement(star, isNavbar = false) {
+    createStarElement(star, isGlobal = false) {
         const element = document.createElement('div');
         element.className = `star ${star.size}${Math.random() < 0.1 ? ' pulse-star' : ''}`;
         element.style.left = star.x + '%';
         element.style.top = star.y + '%';
-        element.style.opacity = isNavbar ? star.opacity * 0.7 : star.opacity;
+        element.style.opacity = isGlobal ? star.opacity * 0.4 : star.opacity;
         element.style.animationDelay = Math.random() * 3 + 's';
         element.style.animationDuration = star.twinkleSpeed + 's';
         
@@ -184,47 +213,8 @@ class StarfieldSystem {
         this.heroStarfield.appendChild(constellation);
     }
     
-    setupNavbarThemes() {
-        // Setup Intersection Observer for navbar theme changes
-        const sections = document.querySelectorAll('section[id]');
-        
-        if (sections.length === 0 || !this.navbarStarfield) return;
-        
-        const observerOptions = {
-            root: null,
-            rootMargin: '-20% 0px -70% 0px',
-            threshold: 0
-        };
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const sectionId = entry.target.id;
-                    this.updateNavbarTheme(sectionId);
-                }
-            });
-        }, observerOptions);
-        
-        sections.forEach(section => {
-            observer.observe(section);
-        });
-        
-        // Set initial theme
-        this.updateNavbarTheme('home');
-    }
-    
-    updateNavbarTheme(sectionId) {
-        if (!this.navbarStarfield) return;
-        
-        // Remove existing theme classes
-        this.navbarStarfield.className = this.navbarStarfield.className
-            .replace(/theme-\w+/g, '');
-        
-        // Add new theme class
-        this.navbarStarfield.classList.add(`theme-${sectionId}`);
-        
-        console.log(`🌟 Navbar theme updated to: ${sectionId}`);
-    }
+    // Navbar themes removed - navbar is now integrated into hero section
+    // Theme management is handled by the main script.js file
     
     startAnimation() {
         // Subtle floating animation for stars
@@ -275,9 +265,6 @@ class StarfieldSystem {
         this.stars.forEach(star => {
             if (star.element) {
                 star.element.style.opacity = opacity * star.opacity;
-            }
-            if (star.navElement) {
-                star.navElement.style.opacity = opacity * star.opacity * 0.7;
             }
         });
     }

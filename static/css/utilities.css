@@ -1,0 +1,383 @@
+/* Utility Classes */
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+.mb-1 { margin-bottom: 0.5rem; }
+.mb-2 { margin-bottom: 1rem; }
+.mb-3 { margin-bottom: 1.5rem; }
+.mb-4 { margin-bottom: 2rem; }
+.mb-5 { margin-bottom: 3rem; }
+
+.mt-1 { margin-top: 0.5rem; }
+.mt-2 { margin-top: 1rem; }
+.mt-3 { margin-top: 1.5rem; }
+.mt-4 { margin-top: 2rem; }
+.mt-5 { margin-top: 3rem; }
+
+.hidden { display: none; }
+.visible { display: block; }
+
+/* Section Styles */
+.section {
+    padding: 5rem 0;
+    position: relative;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.section-title {
+    font-family: var(--font-heading);
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 800;
+    color: var(--text-primary);
+    text-align: center;
+    margin-bottom: 1rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    position: relative;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: translateY(0) !important;
+}
+
+/* Section title styling */
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: var(--gradient-primary);
+}
+
+/* Enhanced glowing effects for all cards */
+.card-glow {
+    box-shadow: 0 0 20px rgba(14, 165, 233, 0.2);
+    transition: all 0.3s ease;
+}
+
+.card-glow:hover {
+    box-shadow: 0 0 30px rgba(14, 165, 233, 0.4);
+}
+
+/* Animation classes */
+.animate-in {
+    opacity: 1 !important;
+    transform: translateY(0) scale(1) !important;
+    visibility: visible !important;
+    transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+                transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+}
+
+/* Elements that should animate when entering viewport (specific items only) */
+.timeline-item,
+.stat-item,
+.skill-item,
+.project-card-new,
+.experience-card,
+.testimonial-card,
+.contact-link-item,
+.badge-item,
+.about-intro-card,
+.interest-item,
+.portfolio-card,
+.badge-collection,
+.github-card,
+.kaggle-card,
+.tech-tag {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: translateY(0) scale(1) !important;
+    transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+                transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* CRITICAL: Ensure ALL sections and titles are visible */
+section,
+.section,
+.about,
+.education,
+.credly-badges,
+.experience,
+.projects,
+.testimonials,
+.contact,
+.footer,
+.section-title,
+h1, h2, h3, h4, h5, h6 {
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: block !important;
+}
+
+/* Hero section elements should be visible by default */
+.hero,
+.hero .stat-card,
+.hero .profile-card,
+.hero .hero-cards,
+.hero .tech-stats,
+.hero .hero-content,
+.hero .section-title {
+    opacity: 1 !important;
+    transform: translateY(0) scale(1) !important;
+    visibility: visible !important;
+}
+.about,
+.education,
+.projects,
+.contact,
+.section-title {
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* Container elements should be visible */
+.interests-grid,
+.portfolio-links,
+.contact-top-section,
+.quick-stats,
+.skills-card,
+.interests-card,
+.skill-category,
+.contact-form-section,
+.experience-cards,
+.testimonial-cards-container,
+.contact-links,
+.footer-section,
+.badge-grid,
+.timeline-container,
+.projects-grid,
+.contact-grid,
+.hero-content {
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* Hero section elements should be visible by default (override the opacity: 0) */
+.hero .stat-card,
+.hero .profile-card,
+.hero .hero-cards,
+.hero .tech-stats,
+.hero .hero-content,
+.hero .section-title {
+    opacity: 1 !important;
+    transform: translateY(0) scale(1) !important;
+    visibility: visible !important;
+    transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+                transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+}
+
+/* Even more specific for hero elements that might be getting overridden */
+.hero section .stat-card,
+.hero section .profile-card,
+.hero section .hero-cards,
+.hero section .tech-stats,
+.hero section .hero-content,
+.hero section .section-title,
+.hero .stat-card.stat-card,
+.hero .profile-card.profile-card,
+.hero .hero-cards.hero-cards,
+.hero .tech-stats.tech-stats {
+    opacity: 1 !important;
+    transform: translateY(0) scale(1) !important;
+    visibility: visible !important;
+}
+
+/* Specific animation timings for different elements */
+.timeline-item {
+    transition-duration: 1.0s;
+}
+
+.experience-card,
+.project-card-new,
+.testimonial-card {
+    transition-duration: 0.9s;
+}
+
+.stat-item,
+.stat-card {
+    transition-duration: 0.7s;
+}
+
+.tech-tag,
+.interest-item,
+.contact-link-item {
+    transition-duration: 0.6s;
+}
+
+.skill-category,
+.portfolio-card {
+    transition-duration: 0.8s;
+}
+
+/* =====================================
+   RESPONSIVE OPTIMIZATIONS
+   ===================================== */
+
+/* Mobile responsive optimizations */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 1rem;
+    }
+    
+    .section {
+        padding: 3rem 0;
+    }
+    
+    .section-title {
+        font-size: clamp(1.5rem, 6vw, 2.5rem);
+        letter-spacing: 2px;
+        margin-bottom: 0.5rem;
+    }
+    
+    /* Reduce navbar stars on mobile */
+    .navbar::before {
+        background-image: 
+            radial-gradient(0.8px 0.8px at 30px 15px, rgba(255,255,255,0.2), transparent),
+            radial-gradient(0.8px 0.8px at 120px 35px, rgba(255,255,255,0.15), transparent),
+            radial-gradient(0.8px 0.8px at 200px 25px, rgba(255,255,255,0.25), transparent);
+        animation-duration: 100s;
+        opacity: 0.4;
+    }
+}
+
+/* Ultra-minimal stars for very small screens */
+@media (max-width: 480px) {
+    .container {
+        padding: 0 0.5rem;
+    }
+    
+    .section {
+        padding: 2rem 0;
+    }
+    
+    .section-title {
+        font-size: clamp(1.2rem, 7vw, 2rem);
+        letter-spacing: 1px;
+    }
+    
+    .stars::before {
+        background-image: 
+            radial-gradient(1px 1px at 20px 30px, rgba(255,255,255,0.7), transparent),
+            radial-gradient(1px 1px at 90px 40px, rgba(255,255,255,0.6), transparent),
+            radial-gradient(1.5px 1.5px at 160px 30px, rgba(255,255,255,0.8), transparent);
+        animation-duration: 60s;
+    }
+    
+    .stars::after {
+        background-image: 
+            radial-gradient(1px 1px at 70px 50px, rgba(255,255,255,0.5), transparent),
+            radial-gradient(1px 1px at 170px 25px, rgba(255,255,255,0.6), transparent);
+        animation-duration: 80s;
+    }
+    
+    /* Minimal navbar stars */
+    .navbar::before {
+        background-image: 
+            radial-gradient(0.8px 0.8px at 30px 15px, rgba(255,255,255,0.15), transparent),
+            radial-gradient(0.8px 0.8px at 120px 35px, rgba(255,255,255,0.1), transparent);
+        animation-duration: 120s;
+        opacity: 0.3;
+    }
+}
+
+/* Tablet specific adjustments */
+@media (min-width: 481px) and (max-width: 1024px) {
+    .container {
+        padding: 0 1.5rem;
+    }
+    
+    .section {
+        padding: 4rem 0;
+    }
+}
+
+/* Large desktop enhancements */
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1400px;
+        padding: 0 3rem;
+    }
+    
+    .section {
+        padding: 6rem 0;
+    }
+    
+    /* Enhanced navbar stars for desktop */
+    .navbar::before {
+        background-image: 
+            radial-gradient(0.8px 0.8px at 30px 15px, rgba(255,255,255,0.4), transparent),
+            radial-gradient(0.8px 0.8px at 120px 35px, rgba(255,255,255,0.3), transparent),
+            radial-gradient(0.8px 0.8px at 200px 25px, rgba(255,255,255,0.5), transparent),
+            radial-gradient(0.8px 0.8px at 300px 45px, rgba(255,255,255,0.4), transparent),
+            radial-gradient(0.8px 0.8px at 380px 15px, rgba(255,255,255,0.3), transparent),
+            radial-gradient(1px 1px at 80px 55px, rgba(200,220,255,0.5), transparent),
+            radial-gradient(1px 1px at 250px 10px, rgba(255,240,200,0.4), transparent),
+            radial-gradient(1px 1px at 350px 35px, rgba(220,235,255,0.4), transparent);
+        opacity: 0.7;
+    }
+}
+
+/* Prefer reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    .navbar::before {
+        animation-duration: 200s !important;
+    }
+    
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* High performance mode for older devices */
+@media (max-width: 768px) and (-webkit-max-device-pixel-ratio: 1) {
+    .stars::after {
+        display: none; /* Hide second layer for single pixel ratio devices */
+    }
+    
+    .navbar::before {
+        opacity: 0.2;
+        animation-duration: 150s;
+    }
+}
+
+/* Dark mode support (if needed in future) */
+@media (prefers-color-scheme: dark) {
+    /* Already using dark theme, but can adjust if needed */
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    :root {
+        --border-color: #fff;
+        --text-muted: #e2e8f0;
+    }
+}
+
+/* Print styles */
+@media print {
+    .navbar,
+    .stars,
+    .footer {
+        display: none;
+    }
+    
+    body {
+        background: white;
+        color: black;
+    }
+    
+    .section {
+        page-break-inside: avoid;
+        padding: 1rem 0;
+    }
+}

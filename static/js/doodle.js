@@ -6,18 +6,36 @@ let faActiveDoodles = [];
 let faDoodleCounter = 0;
 let faMaxDoodles = window.innerWidth <= 768 ? 15 : 25; // Responsive limit
 
-// Function to fetch doodle data from the server API
+// Function to fetch doodle data from the server API (Enhanced version)
 async function fetchDoodleData(count = 10) {
     try {
+        // Use the new API client if available
+        if (window.portfolioAPI) {
+            const result = await window.portfolioAPI.getDoodles(count);
+            if (result.success) {
+                return {
+                    doodles: result.doodles,
+                    config: result.performance_config,
+                    enhanced: true
+                };
+            }
+        }
+
+        // Fallback to original API
         const response = await fetch(`/api/doodles?count=${count}`);
         if (!response.ok) {
             throw new Error(`API returned status ${response.status}`);
         }
-        return await response.json();
+        const data = await response.json();
+        return { 
+            doodles: data.doodles || [], 
+            config: data.config || null,
+            enhanced: false 
+        };
     } catch (error) {
         console.error('❌ Error fetching doodle data:', error);
         // Return fallback data if API fails
-        return { doodles: [] };
+        return { doodles: [], config: null, enhanced: false };
     }
 }
 

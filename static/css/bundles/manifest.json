@@ -1,0 +1,134 @@
+{
+  "timestamp": "1751621823.5944471",
+  "bundles": {
+    "critical": {
+      "name": "critical",
+      "files": [
+        {
+          "name": "base.css",
+          "size": 5261,
+          "exists": true
+        },
+        {
+          "name": "utilities.css",
+          "size": 9378,
+          "exists": true
+        },
+        {
+          "name": "hero.css",
+          "size": 8220,
+          "exists": true
+        },
+        {
+          "name": "navigation.css",
+          "size": 5148,
+          "exists": true
+        }
+      ],
+      "original_size": 28117,
+      "deduplicated_size": 26968,
+      "minified_size": 19670,
+      "compression_ratio": 0.6995767685030408,
+      "bundle_path": "static\\css\\bundles\\critical.css",
+      "minified_path": "static\\css\\bundles\\critical.min.css",
+      "inline_critical_path": "static\\css\\bundles\\inline-critical.css",
+      "inline_critical_size": 13826
+    },
+    "layout": {
+      "name": "layout",
+      "files": [
+        {
+          "name": "navigation.css",
+          "size": 5148,
+          "exists": true
+        },
+        {
+          "name": "hero.css",
+          "size": 8220,
+          "exists": true
+        },
+        {
+          "name": "footer.css",
+          "size": 2737,
+          "exists": true
+        }
+      ],
+      "original_size": 16187,
+      "deduplicated_size": 15542,
+      "minified_size": 11709,
+      "compression_ratio": 0.7233582504478903,
+      "bundle_path": "static\\css\\bundles\\layout.css",
+      "minified_path": "static\\css\\bundles\\layout.min.css"
+    },
+    "sections": {
+      "name": "sections",
+      "files": [
+        {
+          "name": "about.css",
+          "size": 12091,
+          "exists": true
+        },
+        {
+          "name": "education.css",
+          "size": 3770,
+          "exists": true
+        },
+        {
+          "name": "badges.css",
+          "size": 5269,
+          "exists": true
+        },
+        {
+          "name": "experience.css",
+          "size": 4530,
+          "exists": true
+        },
+        {
+          "name": "projects.css",
+          "size": 7837,
+          "exists": true
+        },
+        {
+          "name": "testimonials.css",
+          "size": 4798,
+          "exists": true
+        },
+        {
+          "name": "contact.css",
+          "size": 11901,
+          "exists": true
+        }
+      ],
+      "original_size": 50399,
+      "deduplicated_size": 46489,
+      "minified_size": 34233,
+      "compression_ratio": 0.6792396674537193,
+      "bundle_path": "static\\css\\bundles\\sections.css",
+      "minified_path": "static\\css\\bundles\\sections.min.css"
+    },
+    "effects": {
+      "name": "effects",
+      "files": [
+        {
+          "name": "doodle.css",
+          "size": 4667,
+          "exists": true
+        },
+        {
+          "name": "starfield.css",
+          "size": 34569,
+          "exists": true
+        }
+      ],
+      "original_size": 39292,
+      "deduplicated_size": 37863,
+      "minified_size": 24441,
+      "compression_ratio": 0.6220350198513692,
+      "bundle_path": "static\\css\\bundles\\effects.css",
+      "minified_path": "static\\css\\bundles\\effects.min.css"
+    }
+  },
+  "total_original_size": 133995,
+  "total_minified_size": 90053,
+  "overall_compression_ratio": 0.672062390387701
+}
