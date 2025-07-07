@@ -12,7 +12,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 const heroData = await window.heroAPIClient.getHeroData();
                 if (heroData.typewriter_names) {
                     typewriterNames = heroData.typewriter_names;
-                    console.log('✅ Typewriter names loaded from API:', typewriterNames);
+                    // Typewriter names loaded from API
+                    // console.log('✅ Typewriter names loaded from API:', typewriterNames);
                 }
             }
         } catch (error) {
@@ -23,7 +24,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Typing Animation for Name - Continuous Loop with Enhanced Error Handling
     async function startTypewriter() {
         if (isTypewriterRunning) {
-            console.log('Typewriter already running, skipping...');
+            // Typewriter already running, skipping
+            // console.log('Typewriter already running, skipping...');
             return;
         }
 
@@ -100,7 +102,8 @@ document.addEventListener('DOMContentLoaded', function() {
         if (typewriterInterval) {
             clearTimeout(typewriterInterval);
             isTypewriterRunning = false;
-            console.log('Typewriter stopped');
+            // Typewriter stopped
+            // console.log('Typewriter stopped');
         }
     };
 
@@ -109,7 +112,8 @@ document.addEventListener('DOMContentLoaded', function() {
         const nameElement = document.getElementById('typewriter');
         if (nameElement) {
             nameElement.textContent = 'RISHI KUMAR';
-            console.log('Fallback: Showing static name');
+            // Fallback: Showing static name
+            // console.log('Fallback: Showing static name');
         }
     }
 
@@ -118,7 +122,8 @@ document.addEventListener('DOMContentLoaded', function() {
         try {
             if (window.heroAPIClient) {
                 await window.heroAPIClient.refreshHeroStats();
-                console.log('✅ Hero stats refreshed from API');
+                // Hero stats refreshed from API
+                // console.log('✅ Hero stats refreshed from API');
             } else {
                 console.warn('⚠️ Hero API client not available');
             }

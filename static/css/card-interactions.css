@@ -1,0 +1,991 @@
+/* Card Interactions - Consolidated and Optimized */
+
+/* === CSS CUSTOM PROPERTIES === */
+:root {
+    --card-bg-base: rgba(30, 41, 59, 0.7);
+    --card-bg-hover: rgba(30, 41, 59, 0.85);
+    --card-border: rgba(14, 165, 233, 0.2);
+    --card-shadow-base: 0 10px 30px rgba(14, 165, 233, 0.1);
+    --card-shadow-hover: 0 20px 50px rgba(14, 165, 233, 0.25), 0 0 25px rgba(14, 165, 233, 0.4);
+    --card-transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    --card-transform-hover: translateY(-5px) scale(1.02);
+}
+
+/* === BASE CARD STYLES === */
+.card-base,
+.experience-card,
+.project-card-new,
+.about-intro-card,
+.skills-card,
+.interests-card,
+.badge-category,
+.credly-badge,
+.timeline-item,
+.contact-link-item,
+.testimonial-card,
+.portfolio-card {
+    background: var(--card-bg-base) !important;
+    border: 1px solid var(--card-border) !important;
+    border-radius: 20px !important;
+    padding: 2rem !important;
+    backdrop-filter: blur(15px) !important;
+    -webkit-backdrop-filter: blur(15px) !important;
+    transition: var(--card-transition) !important;
+    position: relative !important;
+    overflow: hidden !important;
+    cursor: pointer !important;
+    opacity: 0.9 !important;
+    box-shadow: var(--card-shadow-base) !important;
+    transform: none !important;
+    transform-origin: center center !important;
+    will-change: transform !important;
+}
+
+/* === CARD SHINE EFFECT === */
+.card-base::before,
+.experience-card::before,
+.project-card-new::before,
+.about-intro-card::before,
+.skills-card::before,
+.interests-card::before,
+.badge-category::before,
+.credly-badge::before,
+.timeline-item::before,
+.contact-link-item::before,
+.testimonial-card::before,
+.portfolio-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(14, 165, 233, 0.15), transparent);
+    transition: left 0.6s ease;
+    z-index: 1;
+}
+
+/* === HOVER EFFECTS === */
+.card-base:hover,
+.experience-card:hover,
+.project-card-new:hover,
+.about-intro-card:hover,
+.skills-card:hover,
+.interests-card:hover,
+.badge-category:hover,
+.credly-badge:hover,
+.timeline-item:hover,
+.contact-link-item:hover,
+.testimonial-card:hover,
+.portfolio-card:hover {
+    transform: var(--card-transform-hover) !important;
+    background: var(--card-bg-hover) !important;
+    border-color: var(--primary-color) !important;
+    box-shadow: var(--card-shadow-hover) !important;
+    opacity: 1 !important;
+}
+
+.card-base:hover::before,
+.experience-card:hover::before,
+.project-card-new:hover::before,
+.about-intro-card:hover::before,
+.skills-card:hover::before,
+.interests-card:hover::before,
+.badge-category:hover::before,
+.credly-badge:hover::before,
+.timeline-item:hover::before,
+.contact-link-item:hover::before,
+.testimonial-card:hover::before,
+.portfolio-card:hover::before {
+    left: 100%;
+}
+
+/* === CARD CONTENT Z-INDEX === */
+.card-base > *,
+.experience-card > *,
+.project-card-new > *,
+.about-intro-card > *,
+.skills-card > *,
+.interests-card > *,
+.badge-category > *,
+.credly-badge > *,
+.timeline-item > *,
+.contact-link-item > *,
+.testimonial-card > *,
+.portfolio-card > * {
+    position: relative;
+    z-index: 3;
+}
+
+/* === TIMELINE SPECIFIC STYLES === */
+
+/* Timeline container - restore proper centering */
+.timeline {
+    position: relative !important;
+    max-width: 800px !important;
+    margin: 0 auto !important;
+    padding: 2rem 0 !important;
+}
+
+/* Timeline items positioning */
+.timeline-item:nth-child(odd) {
+    left: 0 !important;
+    margin-right: 1rem !important;
+    margin-left: 0 !important;
+}
+
+.timeline-item:nth-child(even) {
+    left: 50% !important;
+    margin-left: 1rem !important;
+    margin-right: 0 !important;
+}
+
+/* Timeline date styling - positioned inside cards */
+.timeline-date {
+    position: static !important;
+    left: auto !important;
+    right: auto !important;
+    top: auto !important;
+    display: inline-block !important;
+    background: linear-gradient(45deg, #0ea5e9, #3b82f6) !important;
+    color: white !important;
+    padding: 0.4rem 0.8rem !important;
+    border-radius: 6px !important;
+    font-size: 0.85rem !important;
+    font-weight: 600 !important;
+    margin: 0.5rem 0 1rem 0 !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+    transition: all 0.3s ease !important;
+    transform: none !important;
+    white-space: normal !important;
+    text-transform: none !important;
+    letter-spacing: normal !important;
+}
+
+.timeline-date:hover {
+    transform: translateY(-1px) !important;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Timeline text alignment based on card position */
+.timeline-item:nth-child(odd) .timeline-content {
+    text-align: left !important;
+}
+
+.timeline-item:nth-child(even) .timeline-content {
+    text-align: right !important;
+}
+
+.timeline-item:nth-child(odd) .timeline-title,
+.timeline-item:nth-child(odd) .timeline-company,
+.timeline-item:nth-child(odd) .timeline-description,
+.timeline-item:nth-child(odd) .timeline-date {
+    text-align: left !important;
+}
+
+.timeline-item:nth-child(even) .timeline-title,
+.timeline-item:nth-child(even) .timeline-company,
+.timeline-item:nth-child(even) .timeline-description,
+.timeline-item:nth-child(even) .timeline-date {
+    text-align: right !important;
+}
+
+/* Timeline date badge positioning */
+.timeline-item:nth-child(odd) .timeline-date {
+    margin-left: 0 !important;
+    margin-right: auto !important;
+}
+
+.timeline-item:nth-child(even) .timeline-date {
+    margin-left: auto !important;
+    margin-right: 0 !important;
+}
+
+/* === CRITICAL CSS OVERRIDES FOR TIMELINE DATES === */
+.education .timeline .timeline-item .timeline-date,
+body .education .timeline .timeline-item .timeline-content .timeline-date,
+html body .education .timeline .timeline-item .timeline-content .timeline-date {
+    position: static !important;
+    left: unset !important;
+    right: unset !important;
+    top: unset !important;
+    bottom: unset !important;
+    transform: none !important;
+    display: inline-block !important;
+    background: linear-gradient(45deg, #0ea5e9, #3b82f6) !important;
+    color: white !important;
+    padding: 0.4rem 0.8rem !important;
+    border-radius: 6px !important;
+    font-size: 0.85rem !important;
+    font-weight: 600 !important;
+    margin: 0.5rem 0 1rem 0 !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+    transition: all 0.3s ease !important;
+    white-space: normal !important;
+    text-transform: none !important;
+    letter-spacing: normal !important;
+}
+
+/* Force override for specific nth-child selectors */
+.education .timeline .timeline-item:nth-child(odd) .timeline-date,
+.education .timeline .timeline-item:nth-child(even) .timeline-date,
+body .education .timeline .timeline-item:nth-child(odd) .timeline-content .timeline-date,
+body .education .timeline .timeline-item:nth-child(even) .timeline-content .timeline-date,
+html body .education .timeline .timeline-item:nth-child(odd) .timeline-content .timeline-date,
+html body .education .timeline .timeline-item:nth-child(even) .timeline-content .timeline-date {
+    position: static !important;
+    left: unset !important;
+    right: unset !important;
+    top: unset !important;
+    bottom: unset !important;
+    transform: none !important;
+    margin: 0.5rem 0 1rem 0 !important;
+    display: inline-block !important;
+}
+
+/* === PROJECT CARDS SPACING === */
+.projects-showcase {
+    margin-bottom: 3rem !important;
+}
+
+.projects-showcase:last-child {
+    margin-bottom: 2rem !important;
+}
+
+.project-card-new {
+    margin-bottom: 1.5rem !important;
+}
+
+/* === RESPONSIVE DESIGN === */
+@media (max-width: 768px) {
+    .timeline {
+        margin: 0 1rem !important;
+        max-width: none !important;
+    }
+    
+    .timeline-item:nth-child(odd),
+    .timeline-item:nth-child(even) {
+        left: 0 !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        width: 100% !important;
+    }
+    
+    /* Reset text alignment to left for mobile */
+    .timeline-item:nth-child(odd) .timeline-content,
+    .timeline-item:nth-child(even) .timeline-content,
+    .timeline-item:nth-child(odd) .timeline-title,
+    .timeline-item:nth-child(odd) .timeline-company,
+    .timeline-item:nth-child(odd) .timeline-description,
+    .timeline-item:nth-child(odd) .timeline-date,
+    .timeline-item:nth-child(even) .timeline-title,
+    .timeline-item:nth-child(even) .timeline-company,
+    .timeline-item:nth-child(even) .timeline-description,
+    .timeline-item:nth-child(even) .timeline-date {
+        text-align: left !important;
+    }
+    
+    /* Reset date badge positioning for mobile */
+    .timeline-item:nth-child(odd) .timeline-date,
+    .timeline-item:nth-child(even) .timeline-date {
+        margin-left: 0 !important;
+        margin-right: auto !important;
+    }
+    
+    .timeline-date {
+        font-size: 0.8rem !important;
+        padding: 0.3rem 0.6rem !important;
+        margin: 0.3rem 0 0.8rem 0 !important;
+    }
+    
+    .projects-showcase {
+        margin-bottom: 2rem !important;
+    }
+    
+    .project-card-new {
+        margin-bottom: 1rem !important;
+    }
+    
+    /* Smaller hover effects on mobile */
+    .card-base:hover,
+    .experience-card:hover,
+    .project-card-new:hover,
+    .about-intro-card:hover,
+    .skills-card:hover,
+    .interests-card:hover,
+    .badge-category:hover,
+    .credly-badge:hover,
+    .timeline-item:hover,
+    .contact-link-item:hover,
+    .portfolio-card:hover {
+        transform: translateY(-2px) scale(1.005) !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .timeline {
+        margin: 0 0.5rem !important;
+    }
+    
+    .timeline-date {
+        font-size: 0.75rem !important;
+        padding: 0.25rem 0.5rem !important;
+        margin: 0.25rem 0 0.6rem 0 !important;
+    }
+}
+
+/* === ANIMATION KEYFRAMES === */
+@keyframes cardGlow {
+    0%, 100% {
+        box-shadow: var(--card-shadow-base);
+    }
+    50% {
+        box-shadow: var(--card-shadow-hover);
+    }
+}
+
+/* === ENHANCED CARD EFFECTS === */
+[data-enhanced="true"] {
+    cursor: pointer;
+    user-select: none;
+}
+
+[data-enhanced="true"]:hover {
+    cursor: pointer;
+}
+
+/* === SCROLL ANIMATIONS COMPATIBILITY === */
+.scroll-animate,
+.scroll-animate-up,
+.scroll-animate-down,
+.scroll-animate-left,
+.scroll-animate-right,
+.scroll-animate-scale,
+.scroll-animate-slide-left,
+.scroll-animate-slide-right,
+.scroll-animate-fast {
+    opacity: 0 !important;
+    transform: translateY(30px) !important;
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out !important;
+    will-change: opacity, transform !important;
+}
+
+.scroll-animate-down {
+    transform: translateY(-30px) !important;
+}
+
+.scroll-animate.scroll-animated,
+.scroll-animate-up.scroll-animated,
+.scroll-animate-down.scroll-animated,
+.scroll-animate-left.scroll-animated,
+.scroll-animate-right.scroll-animated,
+.scroll-animate-scale.scroll-animated,
+.scroll-animate-slide-left.scroll-animated,
+.scroll-animate-slide-right.scroll-animated,
+.scroll-animate-fast.scroll-animated {
+    opacity: 1 !important;
+    transform: translateY(0) translateX(0) scale(1) !important;
+}
+
+/* === TIMELINE SPECIFIC ANIMATIONS === */
+.timeline-item {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: translateY(0) scale(1) !important;
+    transition: opacity 0.8s cubic-bezier(0.25,0.46,0.45,0.94), transform 0.8s cubic-bezier(0.25,0.46,0.45,0.94);
+    transition-duration: 1.0s;
+}
+
+/* === VISIBILITY FIXES === */
+.card,
+.stat-card,
+.project-card,
+.testimonial-card,
+.skill-category,
+.tech-tag,
+.timeline-item {
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+*:not([class*="scroll-animate"]) {
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* === EMBEDDED CREDLY BADGES STYLES === */
+
+/* Embedded Badges Section */
+.embedded-badges-section {
+    margin: 3rem 0;
+    padding: 2rem;
+    background: rgba(15, 23, 42, 0.6);
+    border-radius: 25px;
+    border: 1px solid rgba(14, 165, 233, 0.3);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    position: relative;
+    overflow: hidden;
+}
+
+.embedded-badges-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent, rgba(14, 165, 233, 0.05), transparent);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.embedded-section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+    position: relative;
+    z-index: 2;
+}
+
+.embedded-title {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #0ea5e9;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.embedded-title i {
+    font-size: 2.5rem;
+    color: #fbbf24;
+    animation: pulse 2s infinite;
+}
+
+.embedded-subtitle {
+    font-size: 1.1rem;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 0;
+}
+
+.embedded-badges-container {
+    position: relative;
+    z-index: 2;
+}
+
+/* Embedded Category Styles */
+.embedded-category {
+    margin-bottom: 3rem;
+    padding: 2rem;
+    background: rgba(30, 41, 59, 0.7);
+    border-radius: 20px;
+    border: 1px solid rgba(14, 165, 233, 0.2);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.embedded-category:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(14, 165, 233, 0.2);
+    border-color: rgba(14, 165, 233, 0.4);
+}
+
+.embedded-category::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(14, 165, 233, 0.1), transparent);
+    transition: left 0.5s ease;
+    pointer-events: none;
+}
+
+.embedded-category:hover::before {
+    left: 100%;
+}
+
+.embedded-category-title {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #0ea5e9;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    position: relative;
+    z-index: 2;
+}
+
+.embedded-category-title i {
+    font-size: 1.6rem;
+    color: #fbbf24;
+}
+
+/* Embedded Badges Grid */
+.embedded-badges-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1.5rem;
+    justify-items: center;
+    align-items: start;
+    position: relative;
+    z-index: 2;
+}
+
+/* Embedded Badge Wrapper */
+.embedded-badge-wrapper {
+    position: relative;
+    padding: 1rem;
+    background: rgba(15, 23, 42, 0.8);
+    border-radius: 15px;
+    border: 1px solid rgba(14, 165, 233, 0.3);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.embedded-badge-wrapper:hover {
+    transform: translateY(-8px) scale(1.05);
+    box-shadow: 0 15px 35px rgba(14, 165, 233, 0.25), 0 0 20px rgba(14, 165, 233, 0.2);
+    border-color: rgba(14, 165, 233, 0.5);
+}
+
+.embedded-badge-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent, rgba(14, 165, 233, 0.08), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.embedded-badge-wrapper:hover::before {
+    opacity: 1;
+}
+
+/* Credly iframe styling */
+.embedded-badge-wrapper iframe {
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    max-width: 100%;
+    height: auto;
+}
+
+.embedded-badge-wrapper:hover iframe {
+    transform: scale(1.02);
+}
+
+/* Section Divider */
+.section-divider {
+    margin: 4rem 0 2rem;
+    text-align: center;
+    position: relative;
+}
+
+.section-divider::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(14, 165, 233, 0.5), transparent);
+    transform: translateY(-50%);
+}
+
+.divider-title {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #0ea5e9;
+    background: #0f172a;
+    padding: 0 2rem;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    position: relative;
+    z-index: 2;
+}
+
+.divider-title i {
+    font-size: 1.8rem;
+    color: #fbbf24;
+}
+
+/* Traditional Badges Section */
+.traditional-badges-section {
+    margin-top: 3rem;
+}
+
+/* Testimonial Carousel Styles */
+.testimonial-cards-container {
+    position: relative;
+    width: 100%;
+    height: auto;
+    min-height: 300px;
+}
+
+.testimonial-card {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(50px);
+    transition: all 0.5s ease;
+    pointer-events: none;
+    padding: 3rem 2rem;
+}
+
+.testimonial-card.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0);
+    pointer-events: auto;
+}
+
+.testimonial-content {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.testimonial-text {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+    font-style: italic;
+    position: relative;
+}
+
+.testimonial-text::before {
+    content: '"';
+    position: absolute;
+    top: -10px;
+    left: -20px;
+    font-size: 3rem;
+    color: var(--primary-color);
+    font-family: Georgia, serif;
+}
+
+.testimonial-text::after {
+    content: '"';
+    position: absolute;
+    bottom: -30px;
+    right: -20px;
+    font-size: 3rem;
+    color: var(--primary-color);
+    font-family: Georgia, serif;
+}
+
+.testimonial-author {
+    text-align: center;
+}
+
+.author-name {
+    font-size: 1.2rem;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.author-title {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+
+.testimonial-date {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+}
+
+.testimonial-rating {
+    display: flex;
+    justify-content: center;
+    gap: 0.3rem;
+    color: var(--warning-color);
+}
+
+.testimonial-navigation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    margin-top: 2rem;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 0 0 20px 20px;
+}
+
+.testimonial-prev, .testimonial-next {
+    background: var(--primary-color);
+    border: none;
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1.2rem;
+}
+
+.testimonial-prev:hover, .testimonial-next:hover {
+    background: var(--secondary-color);
+    transform: scale(1.1);
+    box-shadow: 0 5px 15px rgba(14, 165, 233, 0.4);
+}
+
+.testimonial-dots {
+    display: flex;
+    gap: 0.8rem;
+    align-items: center;
+}
+
+.testimonial-dots .dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.testimonial-dots .dot.active {
+    background: var(--primary-color);
+    transform: scale(1.2);
+    box-shadow: 0 0 10px rgba(14, 165, 233, 0.5);
+}
+
+.testimonial-dots .dot:hover {
+    background: var(--primary-color);
+    transform: scale(1.1);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .timeline {
+        margin: 0 1rem !important;
+        max-width: none !important;
+    }
+    
+    .timeline-item:nth-child(odd),
+    .timeline-item:nth-child(even) {
+        left: 0 !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        width: 100% !important;
+    }
+    
+    /* Reset text alignment to left for mobile */
+    .timeline-item:nth-child(odd) .timeline-content,
+    .timeline-item:nth-child(even) .timeline-content,
+    .timeline-item:nth-child(odd) .timeline-title,
+    .timeline-item:nth-child(odd) .timeline-company,
+    .timeline-item:nth-child(odd) .timeline-description,
+    .timeline-item:nth-child(odd) .timeline-date,
+    .timeline-item:nth-child(even) .timeline-title,
+    .timeline-item:nth-child(even) .timeline-company,
+    .timeline-item:nth-child(even) .timeline-description,
+    .timeline-item:nth-child(even) .timeline-date {
+        text-align: left !important;
+    }
+    
+    /* Reset date badge positioning for mobile */
+    .timeline-item:nth-child(odd) .timeline-date,
+    .timeline-item:nth-child(even) .timeline-date {
+        margin-left: 0 !important;
+        margin-right: auto !important;
+    }
+    
+    .timeline-date {
+        font-size: 0.8rem !important;
+        padding: 0.3rem 0.6rem !important;
+        margin: 0.3rem 0 0.8rem 0 !important;
+    }
+    
+    .projects-showcase {
+        margin-bottom: 2rem !important;
+    }
+    
+    .project-card-new {
+        margin-bottom: 1rem !important;
+    }
+    
+    /* Smaller hover effects on mobile */
+    .card-base:hover,
+    .experience-card:hover,
+    .project-card-new:hover,
+    .about-intro-card:hover,
+    .skills-card:hover,
+    .interests-card:hover,
+    .badge-category:hover,
+    .credly-badge:hover,
+    .timeline-item:hover,
+    .contact-link-item:hover,
+    .portfolio-card:hover {
+        transform: translateY(-2px) scale(1.005) !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .timeline {
+        margin: 0 0.5rem !important;
+    }
+    
+    .timeline-date {
+        font-size: 0.75rem !important;
+        padding: 0.25rem 0.5rem !important;
+        margin: 0.25rem 0 0.6rem 0 !important;
+    }
+    
+    .testimonial-card {
+        padding: 2rem 1rem;
+    }
+    
+    .testimonial-text {
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+    
+    .testimonial-navigation {
+        gap: 1rem;
+        padding: 0.5rem;
+    }
+    
+    .testimonial-prev, .testimonial-next {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+}
+
+/* === SIMPLE MOBILE NAVIGATION BACKUP === */
+@media screen and (max-width: 1024px) {
+    /* Simple mobile menu implementation */
+    .nav-menu {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: rgba(15, 23, 42, 0.98);
+        backdrop-filter: blur(20px);
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        z-index: 9999;
+        padding: 2rem;
+    }
+    
+    .nav-menu.active {
+        display: flex;
+    }
+    
+    .nav-menu .nav-link {
+        display: block;
+        color: white;
+        text-decoration: none;
+        font-size: 1.5rem;
+        padding: 1rem 2rem;
+        border: 2px solid rgba(14, 165, 233, 0.3);
+        border-radius: 10px;
+        background: rgba(14, 165, 233, 0.1);
+        text-align: center;
+        min-width: 200px;
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+        font-weight: 600;
+        letter-spacing: 1px;
+        margin: 0.5rem 0;
+    }
+    
+    .nav-menu .nav-link:hover {
+        background: rgba(14, 165, 233, 0.3);
+        border-color: #0ea5e9;
+        transform: translateY(-2px);
+    }
+    
+    .nav-toggle {
+        display: flex;
+        flex-direction: column;
+        cursor: pointer;
+        padding: 5px;
+        z-index: 10000;
+    }
+    
+    .nav-toggle .bar {
+        width: 25px;
+        height: 3px;
+        background: white;
+        margin: 3px 0;
+        transition: 0.3s;
+    }
+    
+    .nav-toggle.active .bar:nth-child(1) {
+        transform: rotate(-45deg) translate(-5px, 6px);
+    }
+    
+    .nav-toggle.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+    
+    .nav-toggle.active .bar:nth-child(3) {
+        transform: rotate(45deg) translate(-5px, -6px);
+    }
+}
+
+@media screen and (min-width: 1025px) {
+    .nav-toggle {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    /* Responsive adjustments for smaller screens */
+    .nav-menu .nav-link,
+    .nav-menu.active .nav-link {
+        font-size: 1.2rem !important;
+        padding: 0.8rem 1.5rem !important;
+        min-width: 180px !important;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    /* Responsive adjustments for very small screens */
+    .nav-menu .nav-link,
+    .nav-menu.active .nav-link {
+        font-size: 1.1rem !important;
+        padding: 0.7rem 1.2rem !important;
+        min-width: 160px !important;
+    }
+}

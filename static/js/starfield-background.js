@@ -40,7 +40,8 @@
             starfield.appendChild(star);
         }
         
-        console.log('✨ Global starfield created with', config.starCount, 'stars');
+        // Global starfield created
+        // console.log('✨ Global starfield created with', config.starCount, 'stars');
     }
     
     // Create stars for hero section
@@ -72,7 +73,8 @@
             heroStarfield.appendChild(star);
         }
         
-        console.log('🌟 Hero starfield created with', config.heroStars, 'stars');
+        // Hero starfield created
+        // console.log('🌟 Hero starfield created with', config.heroStars, 'stars');
     }
     
     // Create body-wide starfield
@@ -101,7 +103,8 @@
             document.body.appendChild(star);
         }
         
-        console.log('🌌 Body starfield created with 80 stars');
+        // Body starfield created
+        // console.log('🌌 Body starfield created with 80 stars');
     }
     
     // Add CSS animations
@@ -136,7 +139,8 @@
     
     // Initialize starfield
     function init() {
-        console.log('🌌 Enhanced starfield initializing...');
+        // Enhanced starfield initializing
+        // console.log('🌌 Enhanced starfield initializing...');
         
         // Add animations
         addStarAnimations();

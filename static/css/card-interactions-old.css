@@ -1,0 +1,1108 @@
+/* Enhanced Card Hover Effects - Based on Stat Card Styling */
+
+/* Experience Cards Enhanced Styling */
+.experience-card {
+    background: rgba(30, 41, 59, 0.7) !important;
+    border: 1px solid rgba(14, 165, 233, 0.2) !important;
+    border-radius: 20px !important;
+    padding: 2.5rem !important;
+    backdrop-filter: blur(15px) !important;
+    -webkit-backdrop-filter: blur(15px) !important;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+    position: relative !important;
+    overflow: hidden !important;
+    cursor: pointer !important;
+    opacity: 0.9 !important;
+    box-shadow: 0 10px 30px rgba(14, 165, 233, 0.1) !important;
+}
+
+.experience-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(14, 165, 233, 0.15),
+        transparent
+    );
+    transition: left 0.6s ease;
+    z-index: 1;
+}
+
+.experience-card:hover::before {
+    left: 100%;
+}
+
+.experience-card:hover {
+    transform: translateY(-8px) scale(1.02) !important;
+    background: rgba(30, 41, 59, 0.85) !important;
+    border-color: var(--primary-color) !important;
+    box-shadow: 
+        0 20px 60px rgba(14, 165, 233, 0.25),
+        0 0 30px rgba(14, 165, 233, 0.4) !important;
+    opacity: 1 !important;
+}
+
+.experience-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: var(--gradient-primary);
+    border-radius: 2px;
+    z-index: 2;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.experience-card:hover::after {
+    opacity: 1;
+}
+
+.experience-card > * {
+    position: relative;
+    z-index: 3;
+}
+
+/* Project Cards Enhanced Styling */
+.project-card-new {
+    background: rgba(30, 41, 59, 0.75) !important;
+    border: 1px solid rgba(14, 165, 233, 0.2) !important;
+    border-radius: 20px !important;
+    backdrop-filter: blur(15px) !important;
+    -webkit-backdrop-filter: blur(15px) !important;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+    position: relative !important;
+    overflow: hidden !important;
+    cursor: pointer !important;
+    opacity: 0.9 !important;
+    box-shadow: 0 10px 30px rgba(14, 165, 233, 0.1) !important;
+}
+
+.project-card-new::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(14, 165, 233, 0.15),
+        transparent
+    );
+    transition: left 0.6s ease;
+    z-index: 1;
+}
+
+.project-card-new:hover::before {
+    left: 100%;
+}
+
+.project-card-new:hover {
+    transform: translateY(-10px) scale(1.03) !important;
+    background: rgba(30, 41, 59, 0.9) !important;
+    border-color: var(--primary-color) !important;
+    box-shadow: 
+        0 25px 70px rgba(14, 165, 233, 0.3),
+        0 0 40px rgba(14, 165, 233, 0.5) !important;
+    opacity: 1 !important;
+}
+
+.project-card-new > * {
+    position: relative;
+    z-index: 3;
+}
+
+/* About Intro Card Enhanced */
+.about-intro-card {
+    background: rgba(30, 41, 59, 0.7) !important;
+    border: 1px solid rgba(14, 165, 233, 0.2) !important;
+    border-radius: 25px !important;
+    padding: 3rem !important;
+    backdrop-filter: blur(15px) !important;
+    -webkit-backdrop-filter: blur(15px) !important;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+    position: relative !important;
+    overflow: hidden !important;
+    cursor: pointer !important;
+    opacity: 0.9 !important;
+    box-shadow: 0 15px 40px rgba(14, 165, 233, 0.1) !important;
+}
+
+.about-intro-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(14, 165, 233, 0.12),
+        transparent
+    );
+    transition: left 0.6s ease;
+    z-index: 1;
+}
+
+.about-intro-card:hover::before {
+    left: 100%;
+}
+
+.about-intro-card:hover {
+    transform: translateY(-6px) scale(1.01) !important;
+    background: rgba(30, 41, 59, 0.85) !important;
+    border-color: var(--primary-color) !important;
+    box-shadow: 
+        0 20px 50px rgba(14, 165, 233, 0.2),
+        0 0 25px rgba(14, 165, 233, 0.3) !important;
+    opacity: 1 !important;
+}
+
+.about-intro-card > * {
+    position: relative;
+    z-index: 3;
+}
+
+/* Skills Card Enhanced */
+.skills-card {
+    background: rgba(30, 41, 59, 0.7) !important;
+    border: 1px solid rgba(14, 165, 233, 0.2) !important;
+    border-radius: 25px !important;
+    padding: 3.5rem !important;
+    backdrop-filter: blur(15px) !important;
+    -webkit-backdrop-filter: blur(15px) !important;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+    position: relative !important;
+    overflow: hidden !important;
+    cursor: pointer !important;
+    opacity: 0.9 !important;
+    box-shadow: 0 15px 40px rgba(14, 165, 233, 0.1) !important;
+}
+
+.skills-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(14, 165, 233, 0.12),
+        transparent
+    );
+    transition: left 0.6s ease;
+    z-index: 1;
+}
+
+.skills-card:hover::before {
+    left: 100%;
+}
+
+.skills-card:hover {
+    transform: translateY(-8px) scale(1.02) !important;
+    background: rgba(30, 41, 59, 0.85) !important;
+    border-color: var(--primary-color) !important;
+    box-shadow: 
+        0 25px 60px rgba(14, 165, 233, 0.25),
+        0 0 30px rgba(14, 165, 233, 0.4) !important;
+    opacity: 1 !important;
+}
+
+.skills-card > * {
+    position: relative;
+    z-index: 3;
+}
+
+/* Interests Card Enhanced */
+.interests-card {
+    background: rgba(30, 41, 59, 0.7) !important;
+    border: 1px solid rgba(14, 165, 233, 0.2) !important;
+    border-radius: 25px !important;
+    padding: 3rem !important;
+    backdrop-filter: blur(15px) !important;
+    -webkit-backdrop-filter: blur(15px) !important;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+    position: relative !important;
+    overflow: hidden !important;
+    cursor: pointer !important;
+    opacity: 0.9 !important;
+    box-shadow: 0 15px 40px rgba(14, 165, 233, 0.1) !important;
+}
+
+.interests-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(14, 165, 233, 0.12),
+        transparent
+    );
+    transition: left 0.6s ease;
+    z-index: 1;
+}
+
+.interests-card:hover::before {
+    left: 100%;
+}
+
+.interests-card:hover {
+    transform: translateY(-8px) scale(1.02) !important;
+    background: rgba(30, 41, 59, 0.85) !important;
+    border-color: var(--primary-color) !important;
+    box-shadow: 
+        0 25px 60px rgba(14, 165, 233, 0.25),
+        0 0 30px rgba(14, 165, 233, 0.4) !important;
+    opacity: 1 !important;
+}
+
+.interests-card > * {
+    position: relative;
+    z-index: 3;
+}
+
+/* Badge Category Enhanced */
+.badge-category {
+    background: rgba(30, 41, 59, 0.7) !important;
+    border: 1px solid rgba(14, 165, 233, 0.2) !important;
+    border-radius: 25px !important;
+    padding: 3rem !important;
+    backdrop-filter: blur(15px) !important;
+    -webkit-backdrop-filter: blur(15px) !important;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+    position: relative !important;
+    overflow: hidden !important;
+    cursor: pointer !important;
+    opacity: 0.9 !important;
+    box-shadow: 0 15px 40px rgba(14, 165, 233, 0.1) !important;
+}
+
+.badge-category::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(14, 165, 233, 0.12),
+        transparent
+    );
+    transition: left 0.6s ease;
+    z-index: 1;
+}
+
+.badge-category:hover::before {
+    left: 100%;
+}
+
+.badge-category:hover {
+    transform: translateY(-8px) scale(1.02) !important;
+    background: rgba(30, 41, 59, 0.85) !important;
+    border-color: var(--primary-color) !important;
+    box-shadow: 
+        0 25px 60px rgba(14, 165, 233, 0.25),
+        0 0 30px rgba(14, 165, 233, 0.4) !important;
+    opacity: 1 !important;
+}
+
+.badge-category > * {
+    position: relative;
+    z-index: 3;
+}
+
+/* Individual Badge Items Enhanced */
+.credly-badge {
+    background: rgba(15, 23, 42, 0.7) !important;
+    border: 1px solid rgba(14, 165, 233, 0.2) !important;
+    border-radius: 20px !important;
+    padding: 2rem !important;
+    backdrop-filter: blur(15px) !important;
+    -webkit-backdrop-filter: blur(15px) !important;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+    position: relative !important;
+    overflow: hidden !important;
+    cursor: pointer !important;
+    opacity: 0.9 !important;
+    box-shadow: 0 10px 30px rgba(14, 165, 233, 0.1) !important;
+}
+
+.credly-badge::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(14, 165, 233, 0.15),
+        transparent
+    );
+    transition: left 0.6s ease;
+    z-index: 1;
+}
+
+.credly-badge:hover::before {
+    left: 100%;
+}
+
+.credly-badge:hover {
+    transform: translateY(-8px) scale(1.03) !important;
+    background: rgba(15, 23, 42, 0.85) !important;
+    border-color: var(--primary-color) !important;
+    box-shadow: 
+        0 20px 50px rgba(14, 165, 233, 0.25),
+        0 0 25px rgba(14, 165, 233, 0.4) !important;
+    opacity: 1 !important;
+}
+
+.credly-badge > * {
+    position: relative;
+    z-index: 3;
+}
+
+/* Timeline Items Enhanced */
+.timeline-item {
+    background: rgba(30, 41, 59, 0.7) !important;
+    border: 1px solid rgba(14, 165, 233, 0.2) !important;
+    border-radius: 20px !important;
+    padding: 2rem !important;
+    backdrop-filter: blur(15px) !important;
+    -webkit-backdrop-filter: blur(15px) !important;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+    position: relative !important;
+    overflow: hidden !important;
+    cursor: pointer !important;
+    opacity: 0.9 !important;
+    box-shadow: 0 10px 30px rgba(14, 165, 233, 0.1) !important;
+}
+
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(14, 165, 233, 0.15),
+        transparent
+    );
+    transition: left 0.6s ease;
+    z-index: 1;
+}
+
+.timeline-item:hover::before {
+    left: 100%;
+}
+
+.timeline-item:hover {
+    transform: translateY(-8px) scale(1.02) !important;
+    background: rgba(30, 41, 59, 0.85) !important;
+    border-color: var(--primary-color) !important;
+    box-shadow: 
+        0 20px 50px rgba(14, 165, 233, 0.25),
+        0 0 25px rgba(14, 165, 233, 0.4) !important;
+    opacity: 1 !important;
+}
+
+.timeline-item > * {
+    position: relative;
+    z-index: 3;
+}
+
+/* Contact Link Items Enhanced */
+.contact-link-item {
+    background: rgba(30, 41, 59, 0.7) !important;
+    border: 1px solid rgba(14, 165, 233, 0.2) !important;
+    border-radius: 15px !important;
+    padding: 1.5rem !important;
+    backdrop-filter: blur(15px) !important;
+    -webkit-backdrop-filter: blur(15px) !important;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+    position: relative !important;
+    overflow: hidden !important;
+    cursor: pointer !important;
+    opacity: 0.9 !important;
+    box-shadow: 0 8px 25px rgba(14, 165, 233, 0.1) !important;
+}
+
+.contact-link-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(14, 165, 233, 0.15),
+        transparent
+    );
+    transition: left 0.6s ease;
+    z-index: 1;
+}
+
+.contact-link-item:hover::before {
+    left: 100%;
+}
+
+.contact-link-item:hover {
+    transform: translateY(-5px) scale(1.02) !important;
+    background: rgba(30, 41, 59, 0.85) !important;
+    border-color: var(--primary-color) !important;
+    box-shadow: 
+        0 15px 40px rgba(14, 165, 233, 0.25),
+        0 0 20px rgba(14, 165, 233, 0.4) !important;
+    opacity: 1 !important;
+}
+
+.contact-link-item > * {
+    position: relative;
+    z-index: 3;
+}
+
+/* Testimonial Card Enhanced */
+.testimonial-card {
+    background: rgba(30, 41, 59, 0.7) !important;
+    border: 1px solid rgba(14, 165, 233, 0.2) !important;
+    border-radius: 20px !important;
+    backdrop-filter: blur(15px) !important;
+    -webkit-backdrop-filter: blur(15px) !important;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+    position: relative !important;
+    overflow: hidden !important;
+    cursor: pointer !important;
+    opacity: 0.9 !important;
+    box-shadow: 0 10px 30px rgba(14, 165, 233, 0.1) !important;
+}
+
+.testimonial-card.active {
+    opacity: 1 !important;
+    transform: scale(1) !important;
+}
+
+.testimonial-card > * {
+    position: relative;
+    z-index: 3;
+}
+
+/* Portfolio Cards Enhanced */
+.portfolio-card {
+    background: rgba(30, 41, 59, 0.7) !important;
+    border: 1px solid rgba(14, 165, 233, 0.2) !important;
+    border-radius: 15px !important;
+    padding: 2rem !important;
+    backdrop-filter: blur(15px) !important;
+    -webkit-backdrop-filter: blur(15px) !important;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+    position: relative !important;
+    overflow: hidden !important;
+    cursor: pointer !important;
+    opacity: 0.9 !important;
+    box-shadow: 0 10px 30px rgba(14, 165, 233, 0.1) !important;
+}
+
+.portfolio-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(14, 165, 233, 0.15),
+        transparent
+    );
+    transition: left 0.6s ease;
+    z-index: 1;
+}
+
+.portfolio-card:hover::before {
+    left: 100%;
+}
+
+.portfolio-card:hover {
+    transform: translateY(-5px) scale(1.02) !important;
+    background: rgba(30, 41, 59, 0.85) !important;
+    border-color: var(--primary-color) !important;
+    box-shadow: 
+        0 15px 40px rgba(14, 165, 233, 0.25),
+        0 0 20px rgba(14, 165, 233, 0.4) !important;
+    opacity: 1 !important;
+}
+
+.portfolio-card > * {
+    position: relative;
+    z-index: 3;
+}
+
+/* Enhanced Hover Glow Effect for All Cards */
+.experience-card:hover,
+.project-card-new:hover,
+.about-intro-card:hover,
+.skills-card:hover,
+.interests-card:hover,
+.badge-category:hover,
+.credly-badge:hover,
+.timeline-item:hover,
+.contact-link-item:hover,
+.portfolio-card:hover {
+    animation: cardGlow 2s ease-in-out infinite !important;
+}
+
+@keyframes cardGlow {
+    0%, 100% {
+        box-shadow: 
+            0 20px 50px rgba(14, 165, 233, 0.25),
+            0 0 25px rgba(14, 165, 233, 0.4);
+    }
+    50% {
+        box-shadow: 
+            0 25px 60px rgba(14, 165, 233, 0.35),
+            0 0 35px rgba(14, 165, 233, 0.6);
+    }
+}
+
+/* Preserve existing functionality while enhancing appearance */
+.experience-card .experience-header,
+.experience-card .experience-title,
+.experience-card .experience-company,
+.experience-card .experience-description,
+.project-card-new .project-header,
+.project-card-new .project-body,
+.project-card-new .project-actions {
+    position: relative;
+    z-index: 3;
+}
+
+/* Mobile Responsive Adjustments */
+@media (max-width: 768px) {
+    .experience-card:hover,
+    .project-card-new:hover,
+    .about-intro-card:hover,
+    .skills-card:hover,
+    .interests-card:hover,
+    .badge-category:hover,
+    .credly-badge:hover,
+    .timeline-item:hover,
+    .contact-link-item:hover,
+    .portfolio-card:hover {
+        transform: translateY(-4px) scale(1.01) !important;
+    }
+    
+/* Timeline Date Styling - Now positioned inside the card below the title */
+.timeline-date {
+    position: static !important;
+    left: auto !important;
+    right: auto !important;
+    top: auto !important;
+    display: inline-block !important;
+    background: linear-gradient(45deg, #0ea5e9, #3b82f6) !important;
+    color: white !important;
+    padding: 0.4rem 0.8rem !important;
+    border-radius: 6px !important;
+    font-size: 0.85rem !important;
+    font-weight: 600 !important;
+    margin: 0.5rem 0 1rem 0 !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+    transition: all 0.3s ease !important;
+    /* Override any absolute positioning from base CSS */
+    transform: none !important;
+    white-space: normal !important;
+    text-transform: none !important;
+    letter-spacing: normal !important;
+}
+
+.timeline-date:hover {
+    transform: translateY(-1px) !important;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Override base CSS positioning for timeline dates */
+.timeline-item:nth-child(odd) .timeline-date {
+    position: static !important;
+    left: auto !important;
+    right: auto !important;
+    top: auto !important;
+    margin: 0.5rem 0 1rem 0 !important;
+}
+
+.timeline-item:nth-child(even) .timeline-date {
+    position: static !important;
+    left: auto !important;
+    right: auto !important;
+    top: auto !important;
+    margin: 0.5rem 0 1rem 0 !important;
+}
+}
+
+@media (max-width: 480px) {
+    .experience-card:hover,
+    .project-card-new:hover,
+    .about-intro-card:hover,
+    .skills-card:hover,
+    .interests-card:hover,
+    .badge-category:hover,
+    .credly-badge:hover,
+    .timeline-item:hover,
+    .contact-link-item:hover,
+    .portfolio-card:hover {
+        transform: translateY(-2px) scale(1.005) !important;
+    }
+    
+    .timeline-date {
+        font-size: 0.8rem !important;
+        padding: 0.3rem 0.6rem !important;
+        margin: 0.3rem 0 0.8rem 0 !important;
+    }
+}
+
+/* Enhanced Stat Card Transparency and Hover Effects for All Cards */
+
+/* Apply stat card's transparency and hover effects to all suitable cards */
+.experience-card,
+.project-card-new,
+.about-intro-card,
+.skills-card,
+.interests-card,
+.badge-category,
+.credly-badge,
+.timeline-item,
+.contact-link-item,
+.testimonial-card,
+.portfolio-card {
+    /* Stat card transparency styling */
+    background: rgba(30, 41, 59, 0.8) !important;
+    border: 1px solid rgba(14, 165, 233, 0.2) !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    opacity: 0.9 !important;
+    
+    /* Enhanced hover transition */
+    transition: all 0.3s ease !important;
+    position: relative !important;
+    overflow: hidden !important;
+    cursor: pointer !important;
+    
+    /* Stat card hover effects */
+    border-radius: 15px !important;
+    box-shadow: 0 10px 30px rgba(14, 165, 233, 0.1) !important;
+}
+
+/* Stat card's signature hover effect */
+.experience-card:hover,
+.project-card-new:hover,
+.about-intro-card:hover,
+.skills-card:hover,
+.interests-card:hover,
+.badge-category:hover,
+.credly-badge:hover,
+.timeline-item:hover,
+.contact-link-item:hover,
+.testimonial-card:hover,
+.portfolio-card:hover {
+    transform: translateY(-5px) !important;
+    background: rgba(30, 41, 59, 0.9) !important;
+    border-color: var(--primary-color) !important;
+    box-shadow: 
+        0 20px 50px rgba(14, 165, 233, 0.25),
+        0 0 30px rgba(14, 165, 233, 0.4) !important;
+    opacity: 1 !important;
+}
+
+/* Stat card's signature light sweep effect */
+.experience-card::before,
+.project-card-new::before,
+.about-intro-card::before,
+.skills-card::before,
+.interests-card::before,
+.badge-category::before,
+.credly-badge::before,
+.timeline-item::before,
+.contact-link-item::before,
+.testimonial-card::before,
+.portfolio-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(14, 165, 233, 0.1),
+        transparent
+    );
+    transition: left 0.6s ease;
+    z-index: 1;
+}
+
+.experience-card:hover::before,
+.project-card-new:hover::before,
+.about-intro-card:hover::before,
+.skills-card:hover::before,
+.interests-card:hover::before,
+.badge-category:hover::before,
+.credly-badge:hover::before,
+.timeline-item:hover::before,
+.contact-link-item:hover::before,
+.testimonial-card:hover::before,
+.portfolio-card:hover::before {
+    left: 100%;
+}
+
+/* Stat card's signature bottom accent line */
+.experience-card::after,
+.project-card-new::after,
+.about-intro-card::after,
+.skills-card::after,
+.interests-card::after,
+.badge-category::after,
+.credly-badge::after,
+.timeline-item::after,
+.contact-link-item::after,
+.testimonial-card::after,
+.portfolio-card::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 2px;
+    background: var(--primary-color);
+    border-radius: 1px;
+    z-index: 2;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.experience-card:hover::after,
+.project-card-new:hover::after,
+.about-intro-card:hover::after,
+.skills-card:hover::after,
+.interests-card:hover::after,
+.badge-category:hover::after,
+.credly-badge:hover::after,
+.timeline-item:hover::after,
+.contact-link-item:hover::after,
+.testimonial-card:hover::after,
+.portfolio-card:hover::after {
+    opacity: 1;
+}
+
+/* Ensure content stays above effects */
+.experience-card > *,
+.project-card-new > *,
+.about-intro-card > *,
+.skills-card > *,
+.interests-card > *,
+.badge-category > *,
+.credly-badge > *,
+.timeline-item > *,
+.contact-link-item > *,
+.testimonial-card > *,
+.portfolio-card > * {
+    position: relative;
+    z-index: 3;
+}
+
+/* Fix for tilt effect - ensure cards return to normal state */
+.badge-category,
+.credly-badge,
+.experience-card,
+.project-card-new,
+.about-intro-card,
+.skills-card,
+.interests-card,
+.timeline-item,
+.contact-link-item,
+.testimonial-card,
+.portfolio-card {
+    transform: none !important;
+    transform-origin: center center !important;
+    will-change: transform !important;
+}
+
+/* Only apply transforms on hover */
+.badge-category:hover,
+.credly-badge:hover,
+.experience-card:hover,
+.project-card-new:hover,
+.about-intro-card:hover,
+.skills-card:hover,
+.interests-card:hover,
+.timeline-item:hover,
+.contact-link-item:hover,
+.testimonial-card:hover,
+.portfolio-card:hover {
+    transform: translateY(-5px) scale(1.02) !important;
+}
+
+/* Timeline date styles are now handled in the main styles above */
+
+/* Timeline container - restore proper centering */
+.timeline {
+    position: relative !important;
+    max-width: 800px !important;
+    margin: 0 auto !important;
+    padding: 2rem 0 !important;
+}
+
+/* Ensure timeline items maintain proper alternating positioning */
+.timeline-item:nth-child(odd) {
+    left: 0 !important;
+    margin-right: 1rem !important;
+    margin-left: 0 !important;
+}
+
+.timeline-item:nth-child(even) {
+    left: 50% !important;
+    margin-left: 1rem !important;
+    margin-right: 0 !important;
+}
+
+/* Timeline date hover effects - override the card hover transform */
+.timeline-date:hover {
+    transform: translateY(-1px) !important;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Media Query Overrides for Timeline */
+@media (max-width: 768px) {
+    .timeline {
+        margin: 0 1rem !important;
+        max-width: none !important;
+    }
+    
+    .timeline-item:nth-child(odd),
+    .timeline-item:nth-child(even) {
+        left: 0 !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        width: 100% !important;
+    }
+    
+    /* Reset text alignment to left for mobile */
+    .timeline-item:nth-child(odd) .timeline-content,
+    .timeline-item:nth-child(even) .timeline-content {
+        text-align: left !important;
+    }
+    
+    .timeline-item:nth-child(odd) .timeline-title,
+    .timeline-item:nth-child(odd) .timeline-company,
+    .timeline-item:nth-child(odd) .timeline-description,
+    .timeline-item:nth-child(odd) .timeline-date,
+    .timeline-item:nth-child(even) .timeline-title,
+    .timeline-item:nth-child(even) .timeline-company,
+    .timeline-item:nth-child(even) .timeline-description,
+    .timeline-item:nth-child(even) .timeline-date {
+        text-align: left !important;
+    }
+    
+    /* Reset date badge positioning for mobile */
+    .timeline-item:nth-child(odd) .timeline-date,
+    .timeline-item:nth-child(even) .timeline-date {
+        margin-left: 0 !important;
+        margin-right: auto !important;
+    }
+    
+    .timeline-date {
+        font-size: 0.8rem !important;
+        padding: 0.3rem 0.6rem !important;
+        margin: 0.3rem 0 0.8rem 0 !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .timeline {
+        margin: 0 0.5rem !important;
+    }
+    
+    .timeline-date {
+        font-size: 0.75rem !important;
+        padding: 0.25rem 0.5rem !important;
+        margin: 0.25rem 0 0.6rem 0 !important;
+    }
+}
+
+/* Timeline text alignment based on card position */
+.timeline-item:nth-child(odd) .timeline-content {
+    text-align: left !important;
+}
+
+.timeline-item:nth-child(even) .timeline-content {
+    text-align: right !important;
+}
+
+/* Apply alignment to all text elements within timeline cards */
+.timeline-item:nth-child(odd) .timeline-title,
+.timeline-item:nth-child(odd) .timeline-company,
+.timeline-item:nth-child(odd) .timeline-description,
+.timeline-item:nth-child(odd) .timeline-date {
+    text-align: left !important;
+}
+
+.timeline-item:nth-child(even) .timeline-title,
+.timeline-item:nth-child(even) .timeline-company,
+.timeline-item:nth-child(even) .timeline-description,
+.timeline-item:nth-child(even) .timeline-date {
+    text-align: right !important;
+}
+
+/* Ensure date badges are positioned correctly for text alignment */
+.timeline-item:nth-child(odd) .timeline-date {
+    margin-left: 0 !important;
+    margin-right: auto !important;
+}
+
+.timeline-item:nth-child(even) .timeline-date {
+    margin-left: auto !important;
+    margin-right: 0 !important;
+}
+
+/* Fix project cards spacing */
+.projects-showcase {
+    margin-bottom: 3rem !important;
+    /* Add more space between project rows */
+}
+
+.projects-showcase:last-child {
+    margin-bottom: 2rem !important;
+}
+
+/* Add spacing between individual project cards */
+.project-card-new {
+    margin-bottom: 1.5rem !important;
+}
+
+@media (max-width: 768px) {
+    .projects-showcase {
+        margin-bottom: 2rem !important;
+    }
+    
+    .project-card-new {
+        margin-bottom: 1rem !important;
+    }
+}
+
+/* CRITICAL: Override sections.min.css timeline date positioning with maximum specificity */
+.education .timeline .timeline-item .timeline-date {
+    position: static !important;
+    left: auto !important;
+    right: auto !important;
+    top: auto !important;
+    transform: none !important;
+    display: inline-block !important;
+    background: linear-gradient(45deg, #0ea5e9, #3b82f6) !important;
+    color: white !important;
+    padding: 0.4rem 0.8rem !important;
+    border-radius: 6px !important;
+    font-size: 0.85rem !important;
+    font-weight: 600 !important;
+    margin: 0.5rem 0 1rem 0 !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+    transition: all 0.3s ease !important;
+    white-space: normal !important;
+    text-transform: none !important;
+    letter-spacing: normal !important;
+}
+
+/* Force override for specific nth-child selectors from base CSS with high specificity */
+.education .timeline .timeline-item:nth-child(odd) .timeline-date,
+.education .timeline .timeline-item:nth-child(even) .timeline-date {
+    position: static !important;
+    left: auto !important;
+    right: auto !important;
+    top: auto !important;
+    transform: none !important;
+    margin: 0.5rem 0 1rem 0 !important;
+    display: inline-block !important;
+}
+
+.timeline-item .timeline-date {
+    position: static !important;
+    left: auto !important;
+    right: auto !important;
+    top: auto !important;
+    transform: none !important;
+}
+
+/* Force override for specific nth-child selectors from base CSS */
+.timeline-item:nth-child(odd) .timeline-date,
+.timeline-item:nth-child(even) .timeline-date {
+    position: static !important;
+    left: auto !important;
+    right: auto !important;
+    top: auto !important;
+    transform: none !important;
+    margin: 0.5rem 0 1rem 0 !important;
+}
+
+/* NUCLEAR OPTION: Use !important with very high specificity to force timeline dates inside cards */
+body .education .timeline .timeline-item .timeline-content .timeline-date,
+html body .education .timeline .timeline-item .timeline-content .timeline-date {
+    position: static !important;
+    left: unset !important;
+    right: unset !important;
+    top: unset !important;
+    bottom: unset !important;
+    transform: none !important;
+    display: inline-block !important;
+    background: linear-gradient(45deg, #0ea5e9, #3b82f6) !important;
+    color: white !important;
+    padding: 0.4rem 0.8rem !important;
+    border-radius: 6px !important;
+    font-size: 0.85rem !important;
+    font-weight: 600 !important;
+    margin: 0.5rem 0 1rem 0 !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+    transition: all 0.3s ease !important;
+    white-space: normal !important;
+    text-transform: none !important;
+    letter-spacing: normal !important;
+}
+
+body .education .timeline .timeline-item:nth-child(odd) .timeline-content .timeline-date,
+body .education .timeline .timeline-item:nth-child(even) .timeline-content .timeline-date,
+html body .education .timeline .timeline-item:nth-child(odd) .timeline-content .timeline-date,
+html body .education .timeline .timeline-item:nth-child(even) .timeline-content .timeline-date {
+    position: static !important;
+    left: unset !important;
+    right: unset !important;
+    top: unset !important;
+    bottom: unset !important;
+    transform: none !important;
+    margin: 0.5rem 0 1rem 0 !important;
+    display: inline-block !important;
+}
+
+/* Ensure timeline date appears in document flow, not absolutely positioned */
